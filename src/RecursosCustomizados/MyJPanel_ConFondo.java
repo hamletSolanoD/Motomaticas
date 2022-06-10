@@ -7,7 +7,6 @@ import java.awt.LayoutManager;
 
 import javax.swing.JPanel;
 
-import org.omg.CORBA.Bounds;
 
 import ValoresDefault.Constantes;
 

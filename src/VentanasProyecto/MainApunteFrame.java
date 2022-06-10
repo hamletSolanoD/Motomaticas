@@ -148,7 +148,7 @@ public  class MainApunteFrame extends JFrame implements WindowListener, Serializ
 	@Override
 	public void windowClosing(WindowEvent e) {
 		// TODO Auto-generated method stub
-		 if(new MensajeConfirmar(this, "¿Desea salir de la aplicacion?").Respuesta() == 0) { this.dispose();}		
+		 if(new MensajeConfirmar(this, "ï¿½Desea salir de la aplicacion?").Respuesta() == 0) { this.dispose();}		
 
 	}
 	@Override

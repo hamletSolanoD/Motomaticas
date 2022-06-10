@@ -1,32 +1,27 @@
 package ObjetosLogicos;
 
 import java.io.Serializable;
-import java.time.Clock;
-import java.time.LocalDateTime;
-import java.util.Calendar;
-import java.util.Date;
 
-import RecursosCustomizados.JPanel_Lienzo;
+import java.time.LocalDateTime;
+
 import VentanasProyecto.JPanelAlgebra;
 import VentanasProyecto.JPanelNotas;
 import VentanasProyecto.JPanelPizarron;
 import VentanasProyecto.JPanelVisualizar;
 import VentanasProyecto.JpanelVectores;
 
-public  class CuadernoDeApuntesBaseLogica implements Serializable {
-	 String NombreDelApunte = "No Especificado";
-	 String Autor;
-	 LocalDateTime FechaDeCreacion = LocalDateTime.now();  
-	 
-	public JPanelAlgebra Algebra ;
-	public JPanelNotas Notas ;
+public class CuadernoDeApuntesBaseLogica implements Serializable {
+	String NombreDelApunte = "No Especificado";
+	String Autor;
+	LocalDateTime FechaDeCreacion = LocalDateTime.now();
+
+	public JPanelAlgebra Algebra;
+	public JPanelNotas Notas;
 	public JPanelVisualizar Visualizar;
 	public JPanelPizarron Pizarra;
 	public JpanelVectores Vectores;
-	 
-	
-	
-	public CuadernoDeApuntesBaseLogica(String Titulo,String Autor) {
+
+	public CuadernoDeApuntesBaseLogica(String Titulo, String Autor) {
 		// TODO Auto-generated constructor stub
 		NombreDelApunte = Titulo;
 		this.Autor = Autor;
@@ -37,14 +32,16 @@ public  class CuadernoDeApuntesBaseLogica implements Serializable {
 		Visualizar = new JPanelVisualizar();
 
 	}
-	
-	public  String getNombreDelApunte() {
+
+	public String getNombreDelApunte() {
 		return NombreDelApunte;
 	}
-	public  String getFechaDeCreacion() {
+
+	public String getFechaDeCreacion() {
 		return FechaDeCreacion.toString();
 	}
-	public  String getAutor() {
+
+	public String getAutor() {
 		return Autor;
 	}
 
@@ -99,6 +96,5 @@ public  class CuadernoDeApuntesBaseLogica implements Serializable {
 	public void setVisualizar(JPanelVisualizar Visualizar) {
 		this.Visualizar = Visualizar;
 	}
-	
 
 }

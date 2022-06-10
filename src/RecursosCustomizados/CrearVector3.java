@@ -13,7 +13,6 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.text.BadLocationException;
-import javax.xml.soap.Text;
 
 import ObjetosLogicos.Vector3;
 import ValoresDefault.Constantes;
@@ -901,7 +900,7 @@ public class CrearVector3 extends JDialog implements ActionListener {
 	
 		break;
 		case "Cancel":
-			if(new MensajeConfirmar(FramePrincipal, "¿Desea salir sin agregar vector?").Respuesta() == 0) 
+			if(new MensajeConfirmar(FramePrincipal, "ï¿½Desea salir sin agregar vector?").Respuesta() == 0) 
 			{ this.dispose(); VectorNuevo = null;}break;
 		
 		//////////////////////////////////////////// ANGULOS  ////////////////////////////////////////////////

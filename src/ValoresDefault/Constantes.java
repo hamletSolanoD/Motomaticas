@@ -19,7 +19,6 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import javax.swing.event.DocumentEvent;
-import javax.xml.soap.Text;
 
 import RecursosCustomizados.CrearVector3;
 import RecursosCustomizados.MensajeError;
