@@ -1,4 +1,4 @@
-package ObjetosLogicos;
+package ObjetosLogicos.motorMatematico;
 
 import java.io.Serializable;
 import java.util.Iterator;
@@ -9,6 +9,10 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 import org.w3c.dom.events.EventException;
 
+import EjemploDeInyeccion.Vector3;
+import ObjetosLogicos.motorMatematico.*;
+import ObjetosLogicos.motorMatematico.operaciones.Operacion;
+import ObjetosLogicos.motorMatematico.variables.UnidadAritmetica;
 import ValoresDefault.Constantes;
 import ValoresDefault.Constantes.TipoDeErrorAlgebraico;
 import ValoresDefault.Constantes.TipoObjetoAlgebraico;

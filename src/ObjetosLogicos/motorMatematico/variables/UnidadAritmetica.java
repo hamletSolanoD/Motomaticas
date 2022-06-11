@@ -1,5 +1,6 @@
-package ObjetosLogicos;
+package ObjetosLogicos.motorMatematico.variables;
 
+import ObjetosLogicos.motorMatematico.ObjetoAlgebraico;
 import ValoresDefault.Constantes;
 
 public class UnidadAritmetica extends ObjetoAlgebraico {

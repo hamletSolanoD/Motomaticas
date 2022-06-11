@@ -5,7 +5,7 @@ import java.io.Serializable;
 
 import javax.swing.JButton;
 
-import ObjetosLogicos.ObjetoAlgebraico;
+import ObjetosLogicos.motorMatematico.ObjetoAlgebraico;
 import ValoresDefault.Constantes;
 
 public class BotonAritmetico extends JButton implements Serializable {

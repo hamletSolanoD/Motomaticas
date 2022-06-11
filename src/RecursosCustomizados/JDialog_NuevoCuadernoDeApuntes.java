@@ -10,7 +10,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 
-import ObjetosLogicos.CuadernoDeApuntesBaseLogica;
+import ObjetosLogicos.interfazGrafica.CuadernoDeApuntesBaseLogica;
 import ValoresDefault.Constantes;
 
 import java.awt.Component;
@@ -22,7 +22,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
@@ -38,7 +37,7 @@ public class JDialog_NuevoCuadernoDeApuntes extends JDialog implements ActionLis
 	public JDialog_NuevoCuadernoDeApuntes(JFrame Padre) {
 		
 		super(Padre,Dialog.ModalityType.TOOLKIT_MODAL);
-		Padre = Padre;
+		this.Padre = Padre;
 		contentPanel.setBackground(Constantes.SecundarioColor);
 		setBounds(100, 100, 450, 300);
 		getContentPane().setLayout(new BorderLayout());
@@ -152,7 +151,7 @@ public class JDialog_NuevoCuadernoDeApuntes extends JDialog implements ActionLis
 	
 		break;
 		case "Cancel": 
-			MensajeConfirmar confirmar = new MensajeConfirmar(Padre, "¿Desea abandonar sin crear?");
+			MensajeConfirmar confirmar = new MensajeConfirmar(Padre, "ï¿½Desea abandonar sin crear?");
 			if(confirmar.Respuesta() == 0) 
 			{ this.dispose();}
 			break;

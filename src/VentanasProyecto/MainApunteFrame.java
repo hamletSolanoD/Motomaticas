@@ -24,7 +24,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import ObjetosLogicos.CuadernoDeApuntesBaseLogica;
+import ObjetosLogicos.interfazGrafica.CuadernoDeApuntesBaseLogica;
 import RecursosCustomizados.MensajeConfirmar;
 import ValoresDefault.Constantes;
 import javax.swing.JTabbedPane;

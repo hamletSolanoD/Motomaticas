@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 import javax.swing.JButton;
 
-import ObjetosLogicos.ObjetoAlgebraico;
+import ObjetosLogicos.motorMatematico.ObjetoAlgebraico;
 import ValoresDefault.Constantes;
 import ValoresDefault.Constantes.Apunte;
 

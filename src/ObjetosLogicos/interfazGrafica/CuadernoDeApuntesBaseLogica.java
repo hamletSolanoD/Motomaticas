@@ -1,15 +1,17 @@
-package ObjetosLogicos;
+package ObjetosLogicos.interfazGrafica;
 
 import java.io.Serializable;
-
 import java.time.LocalDateTime;
-
 import VentanasProyecto.JPanelAlgebra;
 import VentanasProyecto.JPanelNotas;
 import VentanasProyecto.JPanelPizarron;
 import VentanasProyecto.JPanelVisualizar;
 import VentanasProyecto.JpanelVectores;
 
+/*
+ * Representacion de un archivo tipo cuaderno de apuntes 
+ * viene incluido con sus operacioens, notas, visualizacion grafica, pizarra, etc...
+ */
 public class CuadernoDeApuntesBaseLogica implements Serializable {
 	String NombreDelApunte = "No Especificado";
 	String Autor;
@@ -21,6 +23,10 @@ public class CuadernoDeApuntesBaseLogica implements Serializable {
 	public JPanelPizarron Pizarra;
 	public JpanelVectores Vectores;
 
+	/*
+	 * creacion de un nuevo apunte cada que se decide cargar desde la computadora o
+	 * crear uno en blanco
+	 */
 	public CuadernoDeApuntesBaseLogica(String Titulo, String Autor) {
 		// TODO Auto-generated constructor stub
 		NombreDelApunte = Titulo;

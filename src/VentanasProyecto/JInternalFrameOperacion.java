@@ -25,11 +25,10 @@ import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingUtilities;
 
-import ObjetosLogicos.ObjetoAlgebraico;
-import ObjetosLogicos.Operacion;
-import ObjetosLogicos.OperacionGeneral;
-import ObjetosLogicos.UnidadAritmetica;
-import ObjetosLogicos.Vector3;
+import EjemploDeInyeccion.Vector3;
+import ObjetosLogicos.motorMatematico.*;
+import ObjetosLogicos.motorMatematico.operaciones.Operacion;
+import ObjetosLogicos.motorMatematico.variables.UnidadAritmetica;
 import RecursosCustomizados.BotonAritmetico;
 import RecursosCustomizados.CrearUnidadAritmetica;
 import RecursosCustomizados.CrearVector3;

@@ -1,24 +1,30 @@
-package ObjetosLogicos;
-
+package ObjetosLogicos.motorMatematico.operaciones;
+import EjemploDeInyeccion.Vector3;
+import ObjetosLogicos.motorMatematico.ObjetoAlgebraico;
+import ObjetosLogicos.motorMatematico.variables.UnidadAritmetica;
 import RecursosCustomizados.BotonApuntes;
 import ValoresDefault.Constantes;
 import ValoresDefault.Constantes.Apunte;
 import ValoresDefault.Constantes.Parrafo;
 import ValoresDefault.Constantes.TipoOperacion;
-import VentanasProyecto.JPanelAlgebra;
 import VentanasProyecto.MainApunteFrame;
 
 public class Operacion extends ObjetoAlgebraico {
 
     private TipoOperacion Operacion;
     
+	//constructor por defecto, usando operaciones basicas ya incluidas
 	public Operacion(TipoOperacion Operacion) {
-		super(Constantes.TipoObjetoAlgebraico.Operacion);	
-		this.Operacion = Operacion;	
+		super(Constantes.TipoObjetoAlgebraico.Operacion);	//declara que el objeto que vamos a usar es un objeto tipo operacion, no un objeto tipo variable
+		this.Operacion = Operacion;	// le pasamos por parametro la operacion que se usa
 	}
-	
-    private static void MostrarInformacion(Apunte Apunte) {
 
+
+
+	/*
+	 * agrega al panel general de algebra la informacion de esta operacion en lenguaje humano en un objeto tipo boton de apuntes
+	 */
+    private static void MostrarInformacion(Apunte Apunte) {
     MainApunteFrame.panel_Algebra.AgregarBotonDeApuntes(new BotonApuntes(Apunte));
     }
 
@@ -240,9 +246,15 @@ public class Operacion extends ObjetoAlgebraico {
 	  return Resultado;
   }
 
+
+  /*
+   * retorna su tipo de operacion
+   */
   public TipoOperacion getOperacion() {
 	  return Operacion;
   } 
+
+	/*retorna la descripcion de la operacion */
   public String toString(){
 	  return Operacion.toString();
   }

@@ -15,9 +15,9 @@ import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
-import ObjetosLogicos.ObjetoAlgebraico;
-import ObjetosLogicos.OperacionGeneral;
-import ObjetosLogicos.Vector3;
+import EjemploDeInyeccion.Vector3;
+import ObjetosLogicos.motorMatematico.ObjetoAlgebraico;
+import ObjetosLogicos.motorMatematico.OperacionGeneral;
 
 import java.awt.Color;
 

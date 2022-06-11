@@ -11,7 +11,7 @@ import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
 
-import ObjetosLogicos.CuadernoDeApuntesBaseLogica;
+import ObjetosLogicos.interfazGrafica.CuadernoDeApuntesBaseLogica;
 import RecursosCustomizados.JDialog_NuevoCuadernoDeApuntes;
 import ValoresDefault.Constantes;
 import javax.swing.JSplitPane;

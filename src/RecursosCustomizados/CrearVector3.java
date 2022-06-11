@@ -14,7 +14,7 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.text.BadLocationException;
 
-import ObjetosLogicos.Vector3;
+import EjemploDeInyeccion.Vector3;
 import ValoresDefault.Constantes;
 
 import javax.swing.JLabel;

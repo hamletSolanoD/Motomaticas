@@ -15,7 +15,7 @@ import javax.swing.event.DocumentListener;
 import javax.swing.text.MaskFormatter;
 import javax.swing.text.NumberFormatter;
 
-import ObjetosLogicos.UnidadAritmetica;
+import ObjetosLogicos.motorMatematico.variables.UnidadAritmetica;
 import ValoresDefault.Constantes;
 
 import javax.swing.JLabel;
@@ -138,7 +138,7 @@ public class CrearUnidadAritmetica extends JDialog implements ActionListener {
 		this.dispose();
 		break;
 	case "Cancel": 
-		MensajeConfirmar confirmarCancelar = new MensajeConfirmar(FramePrincipal, "¿Desea salir sin agregar vector?");
+		MensajeConfirmar confirmarCancelar = new MensajeConfirmar(FramePrincipal, "ï¿½Desea salir sin agregar vector?");
 		
 		if(confirmarCancelar.Respuesta() == 0) {this.dispose(); UnidadNueva = null;} break;
 		
