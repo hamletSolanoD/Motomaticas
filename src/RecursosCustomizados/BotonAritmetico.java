@@ -14,14 +14,15 @@ public class BotonAritmetico extends JButton implements Serializable {
 	private String Informacion;
 	private boolean Seleccionado;
 	
-	public BotonAritmetico(ObjetoAlgebraico ObjetoAlgebraico, String Etiqueta, String Informacion) {
-		super(Etiqueta);
+	public BotonAritmetico(ObjetoAlgebraico objetoAlgebraico) {
+		super(objetoAlgebraico.getSimboloIdentificador());
 		super.setFont(Constantes.botones);
-		this.Etiqueta = Etiqueta;
+		this.Etiqueta = objetoAlgebraico.getSimboloIdentificador();
 		setBackground(Constantes.SecundarioColor);
 		setForeground(Constantes.DetallesSegundoColor);
-		this.ObjetoAlgebraico = ObjetoAlgebraico;
-		this.Informacion = Informacion;
+		this.ObjetoAlgebraico = objetoAlgebraico;
+		this.Informacion = objetoAlgebraico.toString();
+		this.setToolTipText(objetoAlgebraico.toStringReducido());
 		
 	}
 

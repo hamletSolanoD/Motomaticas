@@ -60,7 +60,7 @@ public  class MainApunteFrame extends JFrame implements WindowListener, Serializ
 		addWindowListener(this);
 		getContentPane().setLayout(new BorderLayout(0, 0));
 		
-		    panel_Operaciones = Apunte.getVectores();
+		    panel_Operaciones = Apunte.getOperaciones();
 			
 		    panel_Algebra = Apunte.getAlgebra();
 			 
@@ -179,7 +179,7 @@ public  class MainApunteFrame extends JFrame implements WindowListener, Serializ
 		// TODO Auto-generated method stub
 		switch(arg0.getActionCommand()){
 			case "Guardar": 
-				MainApunte.setVectores(panel_Operaciones);
+				MainApunte.setOperaciones(panel_Operaciones);
 				MainApunte.setPizarra(panel_Pizarra);
 				MainApunte.setAlgebra(panel_Algebra);
 				MainApunte.setNotas(panel_Notas);

@@ -122,7 +122,6 @@ public class crearUnidadNumerosReales extends JDialog implements ActionListener 
 
 	public UnidadMatematica getUnidadNueva() {
 		return UnidadNueva;
-		
 	}
 
 	@Override

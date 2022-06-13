@@ -6,12 +6,14 @@ import ObjetosLogicos.motorMatematico.operaciones.OperacionMatematica;
 import ValoresDefault.Constantes.*;
 
 public interface OperacionesVector {
+    
+
 
     public static class operacionVecUnitario extends OperacionMatematica {
         static String[] operandos = { (new Vector3D("")).getNombre(), (new Vector3D("")).getNombre() };
 
         public operacionVecUnitario() {
-            super(false, operandos, "Vector Unitario", " Operacion para calcular el vector unitario de un vector.", 4);
+            super(true,"Â",false, operandos, "Vector Unitario", " Operacion para calcular el vector unitario de un vector.", 4);
             // TODO Auto-generated constructor stub
         }
 
@@ -56,7 +58,7 @@ public interface OperacionesVector {
         static String[] operandos = { (new Vector3D("")).getNombre(), (new Vector3D("")).getNombre() };
 
         public operacionVecMagnitud() {
-            super(false, operandos, "Vector Magnitud", "Operacion para calcular la magnitud de un vector.", 4);
+            super(true,"|A|",false, operandos, "Vector Magnitud", "Operacion para calcular la magnitud de un vector.", 4);
             // TODO Auto-generated constructor stub
         }
 
@@ -91,7 +93,7 @@ public interface OperacionesVector {
         static String[] operandos = { (new Vector3D("")).getNombre(), (new Vector3D("")).getNombre() };
 
         public operacionVecProductoEscalar() {
-            super(false, operandos, "Producto Escalar", "Operacion para calcular el producto escalar entre 2 vectores.",
+            super(false,"•",false, operandos, "Producto Escalar", "Operacion para calcular el producto escalar entre 2 vectores.",
                     4);
             // TODO Auto-generated constructor stub
         }
@@ -139,7 +141,7 @@ public interface OperacionesVector {
              * tiene declarado una funcion por tanto obligatoriamente debe llevar un jdialog
              * de creacion
              */
-            super(true, operandos, "Producto Escalar", "Operacion para calcular el producto escalar entre 2 vectores.",
+            super(false,"•",true, operandos, "Producto Escalar", "Operacion para calcular el producto escalar entre 2 vectores.",
                     4);
             // TODO Auto-generated constructor stub
         }
@@ -158,7 +160,7 @@ public interface OperacionesVector {
         static String[] operandos = { (new Vector3D("")).getNombre(), (new Vector3D("")).getNombre() };
 
         public operacionVecCruz() {
-            super(false, operandos, "Producto Cruz", "Operacion para calcular el producto cruz entre 2 vectores", 4);
+            super(false,"X",false, operandos, "Producto Cruz", "Operacion para calcular el producto cruz entre 2 vectores", 4);
         }
 
         @Override

@@ -1,5 +1,7 @@
 package ModulosImportados.NumerosReales;
 
+import javax.swing.JFrame;
+
 import ObjetosLogicos.motorMatematico.ObjetoAlgebraico;
 import ObjetosLogicos.motorMatematico.operaciones.OperacionMatematica;
 import ObjetosLogicos.motorMatematico.variables.UnidadMatematica;
@@ -14,7 +16,7 @@ public class UnidadNumerosReales extends UnidadMatematica {
                 (new UnidadNumerosReales()).getNombre() };
 
         public Multiplicacion() {
-            super(false, operandos, "Multiplicar",
+            super(false,"X",false, operandos, "Multiplicar Numeros Reales",
                     " Operacion para multiplicar 2 numeros reales y retornar su producto", 2);
             // TODO Auto-generated constructor stub
         }
@@ -39,7 +41,7 @@ public class UnidadNumerosReales extends UnidadMatematica {
                 (new UnidadNumerosReales()).getNombre() };
 
         public Division() {
-            super(false, operandos, "Dividir", " Operacion para dividir 2 numeros reales y retornar su producto", 2);
+            super(false,"/",false, operandos, "Dividir Numeros Reales", " Operacion para dividir 2 numeros reales y retornar su producto", 2);
             // TODO Auto-generated constructor stub
         }
 
@@ -63,7 +65,7 @@ public class UnidadNumerosReales extends UnidadMatematica {
                 (new UnidadNumerosReales()).getNombre() };
 
         public Suma() {
-            super(false, operandos, "Suma", " Operacion para sumar 2 numeros reales y retornar su producto", 1);
+            super(false,"+",false, operandos, "Suma Numeros Reales", " Operacion para sumar 2 numeros reales y retornar su producto", 1);
         }
 
         @Override
@@ -86,7 +88,7 @@ public class UnidadNumerosReales extends UnidadMatematica {
                 (new UnidadNumerosReales()).getNombre() };
 
         public Resta() {
-            super(false, operandos, "Resta", " Operacion para restar 2 numeros reales y retornar su producto", 1);
+            super(false,"-",false, operandos, "Resta Numeros Reales", " Operacion para restar 2 numeros reales y retornar su producto", 1);
             // TODO Auto-generated constructor stub
         }
 
@@ -109,11 +111,11 @@ public class UnidadNumerosReales extends UnidadMatematica {
     OperacionMatematica suma = new Suma();
 
     public UnidadNumerosReales() {
-        super(new Suma(), new Resta(), new Multiplicacion(), new Division());
+        super("U",new Suma(), new Resta(), new Multiplicacion(), new Division());
     }
 
     public UnidadNumerosReales(double Valor) {
-        super(new Suma(), new Resta(), new Multiplicacion(), new Division());
+        super("U",new Suma(), new Resta(), new Multiplicacion(), new Division());
         this.Valor = Valor;
     }
 
@@ -142,9 +144,10 @@ public class UnidadNumerosReales extends UnidadMatematica {
     }
 
     @Override
-    public boolean crearUnidad() {
-        // TODO Auto-generated method stub
-        return false;
+    public UnidadMatematica crearUnidad(JFrame Padre) {
+        crearUnidadNumerosReales CrearUnidadJDialog = new crearUnidadNumerosReales(Padre);
+        return CrearUnidadJDialog.getUnidadNueva();
+        
     }
 
 }
