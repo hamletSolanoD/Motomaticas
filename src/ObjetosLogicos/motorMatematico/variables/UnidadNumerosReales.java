@@ -1,16 +1,22 @@
 package ObjetosLogicos.motorMatematico.variables;
 
+import java.util.ArrayList;
+
 import ObjetosLogicos.motorMatematico.ObjetoAlgebraico;
 import ObjetosLogicos.motorMatematico.operaciones.OperacionMatematica;
 import ValoresDefault.Constantes.Apunte;
 
 public class UnidadNumerosReales extends UnidadMatematica {
     private double Valor;
+    
 
     static class Multiplicacion extends OperacionMatematica {
+     
+        static String[] operandos =    {(new UnidadNumerosReales()).getNombre(),
+            (new UnidadNumerosReales()).getNombre()};
 
-        public Multiplicacion() {
-            super((new UnidadNumerosReales()).getNombre(),(new UnidadNumerosReales()).getNombre(),"Multiplicar", " Operacion para multiplicar 2 numeros reales y retornar su producto", 2);
+        public Multiplicacion() {         
+            super(false,operandos,"Multiplicar", " Operacion para multiplicar 2 numeros reales y retornar su producto", 2);
             // TODO Auto-generated constructor stub
         }
 
@@ -19,7 +25,7 @@ public class UnidadNumerosReales extends UnidadMatematica {
             UnidadNumerosReales A = (UnidadNumerosReales) args[0];
             UnidadNumerosReales B = (UnidadNumerosReales) args[1];
 
-            Apunte nuevoApunte_MultiplicarAritmetico = new Apunte(
+            Apunte nuevoApunte_MultiplicarAritmetico =  new Apunte(
                     "Multiplicar " + A.getValor() + " x " + B.getValor() + " = " + (A.getValor() * B.getValor()));
             MostrarInformacion(nuevoApunte_MultiplicarAritmetico);
 
@@ -29,9 +35,10 @@ public class UnidadNumerosReales extends UnidadMatematica {
     }
 
     static class Division extends OperacionMatematica {
-
+        static String[] operandos =    {(new UnidadNumerosReales()).getNombre(),
+            (new UnidadNumerosReales()).getNombre()};
         public Division() {
-            super((new UnidadNumerosReales()).getNombre(),(new UnidadNumerosReales()).getNombre(),"Dividir", " Operacion para dividir 2 numeros reales y retornar su producto", 2);
+            super(false,operandos,"Dividir", " Operacion para dividir 2 numeros reales y retornar su producto", 2);
             // TODO Auto-generated constructor stub
         }
 
@@ -51,9 +58,10 @@ public class UnidadNumerosReales extends UnidadMatematica {
     }
 
     static class Suma extends OperacionMatematica {
-
+        static String[] operandos =    {(new UnidadNumerosReales()).getNombre(),
+            (new UnidadNumerosReales()).getNombre()};
         public Suma() {
-            super((new UnidadNumerosReales()).getNombre(),(new UnidadNumerosReales()).getNombre(),"Suma", " Operacion para sumar 2 numeros reales y retornar su producto", 2);
+            super(false,operandos,"Suma", " Operacion para sumar 2 numeros reales y retornar su producto", 2);
         }
 
         @Override
@@ -71,9 +79,10 @@ public class UnidadNumerosReales extends UnidadMatematica {
     }
 
     static class Resta extends OperacionMatematica {
-
+        static String[] operandos =    {(new UnidadNumerosReales()).getNombre(),
+            (new UnidadNumerosReales()).getNombre()};
         public Resta() {
-            super((new UnidadNumerosReales()).getNombre(),(new UnidadNumerosReales()).getNombre(),"Resta", " Operacion para restar 2 numeros reales y retornar su producto", 2);
+            super(false,operandos,"Resta", " Operacion para restar 2 numeros reales y retornar su producto", 2);
             // TODO Auto-generated constructor stub
         }
 

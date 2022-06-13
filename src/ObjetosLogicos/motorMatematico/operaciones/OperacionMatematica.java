@@ -1,5 +1,8 @@
 package ObjetosLogicos.motorMatematico.operaciones;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+
 import ObjetosLogicos.motorMatematico.ObjetoAlgebraico;
 import ObjetosLogicos.motorMatematico.variables.UnidadMatematica;
 import RecursosCustomizados.BotonApuntes;
@@ -12,18 +15,18 @@ public abstract class OperacionMatematica extends ObjetoAlgebraico {
 	private String descripcionDeOperacion;
 	private int prioridadDeOperacion;
 	private String tituloOperacion;
-	private String OperandoIzquierdoTipo;
-	private String OperandoDerechoTipo;
+	private String[] TipoOperandosCorrecto;
+	private boolean Funcion;// booleano para saber si una operacion es una funcion con mas de un parametro de entrada o solo una operacion que utiliza 2 tipos de entrada y ya
 
 	// constructor por defecto, usando operaciones basicas ya incluidas
-	public OperacionMatematica(String OperandoIzquierdoTipo,String OperandoDerechoTipo, String tituloOperacion, String descripcionDeOperacion, int prioridadDeOperacion)
+	public OperacionMatematica( boolean Funcion, String[] TipoOperandosCorrecto, String tituloOperacion, String descripcionDeOperacion, int prioridadDeOperacion)
 	 {
 		super(Constantes.TipoObjetoAlgebraico.Operacion);
 		this.tituloOperacion = tituloOperacion;
 		this.prioridadDeOperacion = prioridadDeOperacion;
 		this.descripcionDeOperacion = descripcionDeOperacion;
-		this.OperandoDerechoTipo = OperandoDerechoTipo;
-		this.OperandoIzquierdoTipo = OperandoIzquierdoTipo;
+		this.TipoOperandosCorrecto = TipoOperandosCorrecto;
+		this.Funcion = Funcion;
 	}
 
 	/*
@@ -50,17 +53,19 @@ public abstract class OperacionMatematica extends ObjetoAlgebraico {
 	public String getTituloDeOperacion() {
 		return tituloOperacion;
 	}
-	public String getOperandoIzquierdoTipo() {
-		return OperandoIzquierdoTipo;
-	}
-	public String getOperandoDerechoTipo() {
-		return OperandoDerechoTipo;
-	}
 
-	public boolean comprobarOperandos(UnidadMatematica obj1, UnidadMatematica obj2){
 
-		return obj1.getNombre() == OperandoDerechoTipo && obj2.getNombre() == OperandoIzquierdoTipo;
-	
+	public boolean comprobarOperandosIguales(String[] ArrayTipos){
+		try{
+		for(int e = 0; e < TipoOperandosCorrecto.length; e++){
+			if(ArrayTipos[e] != TipoOperandosCorrecto[e]) return false; 
+		
+		}
+	}catch(IndexOutOfBoundsException e){
+		return false;
+	}
+		return true;
+
 	}
 
 	public abstract ObjetoAlgebraico calcularOperacion(ObjetoAlgebraico... args);
