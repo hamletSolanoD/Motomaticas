@@ -139,25 +139,26 @@ public class OperacionGeneral implements Serializable {
 		for (int Index = 0; Index < ListaParResolverSegundoOrden.size(); Index++) {
 			if (ListaParResolverSegundoOrden.get(Index).getTipoDeObjetoAlgebraico() == TipoObjetoAlgebraico.Operacion) {
 				try {
+					ObjetoAlgebraico objetoAlgebraicoIzquierdo = ListaParResolverSegundoOrden.get(Index - 1);
+					ObjetoAlgebraico objetoAlgebraicoDerecho = ListaParResolverSegundoOrden.get(Index + 1);
+
 					// validacion que a los operadores no esten juntos sino sea operando operador
-					// operando
-					if (ListaParResolverSegundoOrden.get(Index - 1)
-							.getTipoDeObjetoAlgebraico() != TipoObjetoAlgebraico.Operacion &&
-							ListaParResolverSegundoOrden.get(Index + 1)
-									.getTipoDeObjetoAlgebraico() != TipoObjetoAlgebraico.Operacion) {
+					// operando (4 + 2) no (1 ++ 2)
+					if (objetoAlgebraicoIzquierdo.getTipoDeObjetoAlgebraico() != TipoObjetoAlgebraico.Operacion &&
+							objetoAlgebraicoDerecho.getTipoDeObjetoAlgebraico() != TipoObjetoAlgebraico.Operacion) {
 						/////////// Si el try no arroja nada de operador incompleto o tampoco de
 						/////////// operador repitido, avanza
 						String[] OperandosResolver = {
-								((UnidadMatematica) ListaParResolverSegundoOrden.get(Index - 1)).getNombre(),
-								((UnidadMatematica) ListaParResolverSegundoOrden.get(Index + 1)).getNombre()
+								((UnidadMatematica)objetoAlgebraicoIzquierdo).getNombre(),
+								((UnidadMatematica)objetoAlgebraicoDerecho).getNombre()
 						};
 						if (((OperacionMatematica) ListaParResolverSegundoOrden.get(Index))
 								.comprobarOperandosIguales(OperandosResolver)) {
 							listaAuxiliar.clear();
 							listaAuxiliar.addAll(ListaParResolverSegundoOrden.subList(0, Index - 1));
 							listaAuxiliar.add(((OperacionMatematica) ListaParResolverSegundoOrden.get(Index))
-									.calcularOperacion(((UnidadMatematica) ListaParResolverSegundoOrden.get(Index - 1)),
-											((UnidadMatematica) ListaParResolverSegundoOrden.get(Index + 1))));
+									.calcularOperacion(objetoAlgebraicoIzquierdo,
+									objetoAlgebraicoDerecho));
 							try {
 								listaAuxiliar.addAll(ListaParResolverSegundoOrden.subList(Index + 2,
 										ListaParResolverSegundoOrden.size()));
@@ -210,48 +211,18 @@ public class OperacionGeneral implements Serializable {
 
 		for (ObjetoAlgebraico ObjetoActual : ObjetosAlgebraicos_SegundoOrden) {
 			if (ObjetoUltimo != null) {
-				switch (ObjetoActual.getTipoDeObjetoAlgebraico()) { /// IDENTIFICAR EL TIPO DE OBJETO ACTUAL
-					case Unidad:
+				if (ObjetoActual.getTipoDeObjetoAlgebraico() == TipoObjetoAlgebraico.Unidad) { /// IDENTIFICAR EL TIPO DE OBJETO ACTUAL
 						if (ObjetoUltimo.getTipoDeObjetoAlgebraico() == TipoObjetoAlgebraico.Operacion) {
-							if (((OperacionesBasicas) ObjetoUltimo).getOperacion() == TipoOperacion.Sumar) {
 								if (ObjetoPenultimo.getTipoDeObjetoAlgebraico() == TipoObjetoAlgebraico.Unidad) {
-									Resultado = OperacionesBasicas.Sumar((UnidadMatematica) Resultado,
-											(UnidadMatematica) ObjetoActual);
+									Resultado = ((OperacionMatematica)ObjetoUltimo).calcularOperacion((UnidadMatematica) Resultado, (UnidadMatematica) ObjetoActual);
 								} else {
 									return TipoDeErrorAlgebraico.EntradaInvalida;
 								}
-							} else if (((OperacionesBasicas) ObjetoUltimo).getOperacion() == TipoOperacion.Restar) {
-								if (ObjetoPenultimo.getTipoDeObjetoAlgebraico() == TipoObjetoAlgebraico.Unidad) {
-									Resultado = OperacionesBasicas.Restar((UnidadMatematica) Resultado,
-											(UnidadMatematica) ObjetoActual);
-								} else {
-									return TipoDeErrorAlgebraico.EntradaInvalida;
-								}
-							}
-						}
-						break;
-					case Vector:
-						if (ObjetoUltimo.getTipoDeObjetoAlgebraico() == TipoObjetoAlgebraico.Operacion) {
-							if (((OperacionesBasicas) ObjetoUltimo).getOperacion() == TipoOperacion.Sumar) {
-								if (ObjetoPenultimo.getTipoDeObjetoAlgebraico() == TipoObjetoAlgebraico.Vector) {
-									Resultado = OperacionesBasicas.Sumar((Vector3D) Resultado, (Vector3D) ObjetoActual);
-								} else {
-									return TipoDeErrorAlgebraico.EntradaInvalida;
-								}
-							} else if (((OperacionesBasicas) ObjetoUltimo).getOperacion() == TipoOperacion.Restar) {
-								if (ObjetoPenultimo.getTipoDeObjetoAlgebraico() == TipoObjetoAlgebraico.Vector) {
-									Resultado = OperacionesBasicas.Restar((Vector3D) Resultado,
-											(Vector3D) ObjetoActual);
-								} else {
-									return TipoDeErrorAlgebraico.EntradaInvalida;
-								}
-							}
 						}
 						break;
 				}
 			} else {
-				if (ObjetoActual.getTipoDeObjetoAlgebraico() == TipoObjetoAlgebraico.Vector
-						|| ObjetoActual.getTipoDeObjetoAlgebraico() == TipoObjetoAlgebraico.Unidad) {
+				if (ObjetoActual.getTipoDeObjetoAlgebraico() == TipoObjetoAlgebraico.Unidad) {
 					Resultado = ObjetoActual;
 				} else {
 					return TipoDeErrorAlgebraico.EntradaInvalida;
@@ -306,7 +277,7 @@ public class OperacionGeneral implements Serializable {
 
 		if (Resultado == null) {
 			Error = TipoDeErrorAlgebraico.ResultadoNulo;
-			;
+			
 			return TipoDeErrorAlgebraico.ResultadoNulo;
 		}
 
