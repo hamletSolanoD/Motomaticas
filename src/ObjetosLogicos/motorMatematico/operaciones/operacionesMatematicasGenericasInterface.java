@@ -5,11 +5,16 @@ public interface operacionesMatematicasGenericasInterface{
     public class llaveDerecha extends OperacionMatematica{
 
         public llaveDerecha() {
-            super(true, "{", false,null, "llave derecha", "Establece la jerarquia de operaciones con encapsulamiento de llaves",
+            super(true, "}", false,null, "llave derecha", "Establece la jerarquia de operaciones con encapsulamiento de llaves",
                     4);
             //TODO Auto-generated constructor stub
         }
 
+        @Override
+        public String toStringReducido(){
+            return SimboloIdentificador;
+
+        }
         @Override
         public ObjetoAlgebraico calcularOperacion(ObjetoAlgebraico... args) {
             // TODO Auto-generated method stub
@@ -20,9 +25,13 @@ public interface operacionesMatematicasGenericasInterface{
     public class llaveIzquierda extends OperacionMatematica{
 
         public llaveIzquierda() {
-            super(true, "}", false,null, "llave izquierda", "Establece la jerarquia de operaciones con encapsulamiento de llaves",
-                    4);
+            super(true, "{", false,null, "llave izquierda", "Establece la jerarquia de operaciones con encapsulamiento de llaves",4);
             //TODO Auto-generated constructor stub
+        }
+        @Override
+        public String toStringReducido(){
+            return SimboloIdentificador;
+
         }
 
         @Override
@@ -30,6 +39,8 @@ public interface operacionesMatematicasGenericasInterface{
             // TODO Auto-generated method stub
             return args[0];
         }
+
+  
 
     }
 

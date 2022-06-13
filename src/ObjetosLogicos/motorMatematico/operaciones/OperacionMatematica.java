@@ -52,7 +52,7 @@ public abstract class OperacionMatematica extends ObjetoAlgebraico {
 		this.TipoOperandosCorrecto = TipoOperandosCorrecto;
 		this.Funcion = Funcion;
 		inyectarPorCreacion();
-		inyectarBases();
+	
 	}
 
 	private void inyectarPorCreacion() {
@@ -69,7 +69,7 @@ public abstract class OperacionMatematica extends ObjetoAlgebraico {
 			TotalOperacionesMatematicas.add(this);
 	}
 
-	private static void inyectarBases() {
+	public static void inyectarBases() {
 		if (primeraEjecucion) {
 			inyectarFuncionesMatematicas(new operacionesMatematicasGenericasInterface.llaveIzquierda());
 			inyectarFuncionesMatematicas(new operacionesMatematicasGenericasInterface.llaveDerecha());
@@ -88,7 +88,8 @@ public abstract class OperacionMatematica extends ObjetoAlgebraico {
 
 	@Override
 	public String toStringReducido() {
-		return this.nombre;
+		if(conLlave) return SimboloIdentificador +"{";
+		return this.SimboloIdentificador;
 	}
 
 	/*

@@ -61,6 +61,7 @@ public interface OperacionesVector {
             super(true,"|A|",false, operandos, "Vector Magnitud", "Operacion para calcular la magnitud de un vector.", 4);
             // TODO Auto-generated constructor stub
         }
+    
 
         @Override
         public ObjetoAlgebraico calcularOperacion(ObjetoAlgebraico... args) {

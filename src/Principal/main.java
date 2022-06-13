@@ -12,22 +12,18 @@ import ObjetosLogicos.motorMatematico.*;
 import ObjetosLogicos.motorMatematico.operaciones.OperacionMatematica;
 import RecursosCustomizados.JDialog_CrearOperacionMatematica;
 import RecursosCustomizados.JDialog_CrearUnidadMatematica;
+import VentanasProyecto.MainApunteFrame;
 import VentanasProyecto.Portada;
 
 public class main {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		new Vector3D("prueba");
-		new UnidadNumerosReales(34);
-		new JDialog_CrearOperacionMatematica(new JFrame(), "Prueba");
-		
-		
+		OperacionMatematica.inyectarBases();
+		new Vector3D("");
+		new UnidadNumerosReales();
 
-		//new Portada();
-		// new MainApunteFrame();
-		// System.out.println(Operacion.VecProductoEscalar(new Vector3("VA", 3, 5, 1), new Vector3("VB", 6, 2, 8)));
-		// OperacionesVector.operacionVecUnitario d = new OperacionesVector.operacionVecUnitario();
+		new Portada();
 	}
 
 }

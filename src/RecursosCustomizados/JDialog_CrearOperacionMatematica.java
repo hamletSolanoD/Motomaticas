@@ -37,6 +37,7 @@ public class JDialog_CrearOperacionMatematica extends JDialog {
                 public void actionPerformed(ActionEvent e) {
                     operacionMatematicaCreada = operacionMatematica;
                     System.out.println(operacionMatematicaCreada);
+                    dispose();
                 }
             });
 
