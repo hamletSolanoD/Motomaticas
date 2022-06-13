@@ -103,7 +103,7 @@ public  class JPanelAlgebra extends JPanel implements Serializable {
 		BotonApuntes.setFont(Constantes.botones);
 		if(JLabel_OperacionActiva.getText().isEmpty()) {
 			JLabel_OperacionActiva.setText(
-					JpanelVectores.JIFActivo.getTitle()
+					JpanelOperaciones.JIFActivo.getTitle()
 					);
 			}
 		BotonApuntes.addActionListener(new ActionListener() {	

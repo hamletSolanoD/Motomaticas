@@ -1,5 +1,5 @@
 package ObjetosLogicos.motorMatematico.operaciones;
-import EjemploDeInyeccion.Vector3;
+import ModulosImportados.Vector3D.Vector3D;
 import ObjetosLogicos.motorMatematico.ObjetoAlgebraico;
 import ObjetosLogicos.motorMatematico.variables.UnidadAritmetica;
 import RecursosCustomizados.BotonApuntes;
@@ -33,8 +33,8 @@ public class Operacion extends ObjetoAlgebraico {
 	
 	///////////// VECTOR UNITARIO  \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
-	public static Vector3 VecUnitario(Vector3 Vector) {
-		Vector3 Resultado = new Vector3("Vector unitario de "+Vector.getNombre(),Vector.getThetaX(),Vector.getThetaY(),Vector.getThetaZ(),1);
+	public static Vector3D VecUnitario(Vector3D Vector) {
+		Vector3D Resultado = new Vector3D("Vector unitario de "+Vector.getNombre(),Vector.getThetaX(),Vector.getThetaY(),Vector.getThetaZ(),1);
 		
 		Apunte NuevoApunte_VectorUnitario = new Apunte("Vector Unitario de \""+ Vector.getNombre()+"\"");
 		
@@ -59,7 +59,7 @@ public class Operacion extends ObjetoAlgebraico {
 	
 	///////////// VECTOR MAGNITUD  \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
-	public static double VecMagnitud(Vector3 Vector) {
+	public static double VecMagnitud(Vector3D Vector) {
 		Apunte NuevoApunte_Magnitud = new Apunte("Magnitud del vector \""+ Vector.getNombre()+"\"");
 		
 		NuevoApunte_Magnitud.AgregarParrafo(new Parrafo("\nDefinicion: La magnitud de un vector respresenta la unidad de amplitud o cantidad que en union con la direccion representa un vector."));
@@ -77,7 +77,7 @@ public class Operacion extends ObjetoAlgebraico {
 	}
 	
 	///////////// PRODUCTO ESCALAR  \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-	public static UnidadAritmetica VecProductoEscalar(Vector3 Vector,Vector3 Vector2) {
+	public static UnidadAritmetica VecProductoEscalar(Vector3D Vector,Vector3D Vector2) {
 		UnidadAritmetica Resultado =  new UnidadAritmetica((Vector.getMagnitudX()*Vector2.getMagnitudX())+(Vector.getMagnitudY()*Vector2.getMagnitudY())+(Vector.getMagnitudZ()*Vector2.getMagnitudZ()));
 		
 		Apunte nuevoApunte_ProductoEscalar = new Apunte("Producto Escalar de \""+Vector.getNombre()+"\" y \""+ Vector2.getNombre()+"\"");
@@ -100,11 +100,11 @@ public class Operacion extends ObjetoAlgebraico {
 	}
 	
 	///////////// PRODUCTO CRUZ  \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-	public static Vector3 VecCruz(Vector3 VectorA, Vector3 VectorB) {
+	public static Vector3D VecCruz(Vector3D VectorA, Vector3D VectorB) {
 		double MagnitudX = (VectorA.getMagnitudY()*VectorB.getMagnitudZ())-(VectorA.getMagnitudZ()*VectorB.getMagnitudY()); 
 		double MagnitudY = (-1)*((VectorA.getMagnitudX()*VectorB.getMagnitudZ())-(VectorA.getMagnitudZ()*VectorB.getMagnitudX())); 
 		double MagnitudZ = (VectorA.getMagnitudX()*VectorB.getMagnitudY())-(VectorA.getMagnitudY()*VectorB.getMagnitudX()); 
-		Vector3 Resultado = new Vector3("Vector producto cruz de "+VectorA.getNombre()+" y "+VectorB.getNombre(),MagnitudX,MagnitudY,MagnitudZ);
+		Vector3D Resultado = new Vector3D("Vector producto cruz de "+VectorA.getNombre()+" y "+VectorB.getNombre(),MagnitudX,MagnitudY,MagnitudZ);
 		
 		Apunte nuevoApunte_VectorCruz = new Apunte("Vector Cruz de \""+ VectorA.getNombre()+"\" x \""+ VectorB.getNombre()+"\"");
 		
@@ -130,11 +130,11 @@ public class Operacion extends ObjetoAlgebraico {
 		MostrarInformacion(nuevoApunte_SumaAritmetica);
 		return new UnidadAritmetica(A.getValor()+B.getValor());
 	}
-   public static Vector3 Sumar(Vector3 VectorA, Vector3 VectorB) {
+   public static Vector3D Sumar(Vector3D VectorA, Vector3D VectorB) {
 	   double MagnitudX = VectorA.getMagnitudX() + VectorB.getMagnitudX();
 	   double MagnitudY = VectorA.getMagnitudY() + VectorB.getMagnitudY();
 	   double MagnitudZ = VectorA.getMagnitudZ() + VectorB.getMagnitudZ();
-	   Vector3 Resultado = new Vector3("Vector suma de "+VectorA.getNombre()+" y "+VectorB.getNombre(),MagnitudX,MagnitudY,MagnitudZ); 
+	   Vector3D Resultado = new Vector3D("Vector suma de "+VectorA.getNombre()+" y "+VectorB.getNombre(),MagnitudX,MagnitudY,MagnitudZ); 
 	   
 	   Apunte nuevoApunte_SumaVectores = new Apunte("Suma de los vectores \""+ VectorA.getNombre()+"\" + \""+VectorB.getNombre()+"\"");
 	   
@@ -155,11 +155,11 @@ public class Operacion extends ObjetoAlgebraico {
 		return new UnidadAritmetica(A.getValor()-B.getValor());
 		
 	}
-  public static Vector3 Restar(Vector3 VectorA, Vector3 VectorB) {
+  public static Vector3D Restar(Vector3D VectorA, Vector3D VectorB) {
 	   double MagnitudX = VectorA.getMagnitudX() - VectorB.getMagnitudX();
 	   double MagnitudY = VectorA.getMagnitudY() - VectorB.getMagnitudY();
 	   double MagnitudZ = VectorA.getMagnitudZ() - VectorB.getMagnitudZ();
-	   Vector3 Resultado = new Vector3("Vector resta de "+VectorA.getNombre()+" y "+VectorB.getNombre(),MagnitudX,MagnitudY,MagnitudZ);
+	   Vector3D Resultado = new Vector3D("Vector resta de "+VectorA.getNombre()+" y "+VectorB.getNombre(),MagnitudX,MagnitudY,MagnitudZ);
 	   
 	   Apunte nuevoApunte_RestaVectores = new Apunte("Resta de los vectores \""+ VectorA.getNombre()+"\" - \""+VectorB.getNombre()+"\"");
 	  
@@ -175,8 +175,8 @@ public class Operacion extends ObjetoAlgebraico {
 	 return Resultado;
 	}
   
-  public static Vector3 Dividir(Vector3 Vector, UnidadAritmetica Unidad) {
-	  Vector3 Resultado =  new Vector3("Vector Dividir vector "+Vector.getNombre()+" / "+Unidad,Vector.getMagnitudX()/Unidad.getValor(),Vector.getMagnitudY()/Unidad.getValor(),Vector.getMagnitudZ()/Unidad.getValor());
+  public static Vector3D Dividir(Vector3D Vector, UnidadAritmetica Unidad) {
+	  Vector3D Resultado =  new Vector3D("Vector Dividir vector "+Vector.getNombre()+" / "+Unidad,Vector.getMagnitudX()/Unidad.getValor(),Vector.getMagnitudY()/Unidad.getValor(),Vector.getMagnitudZ()/Unidad.getValor());
 	  
 	  Apunte nuevoApunte_DividirVector = new Apunte("Dividir vector \""+ Vector.toStringReducido()+"\" / \""+Unidad.getValor()+"\"");
 	 
@@ -217,8 +217,8 @@ public class Operacion extends ObjetoAlgebraico {
 	  return new UnidadAritmetica(A.getValor()*B.getValor());
 	  }
   
-  public static Vector3 Multiplicar(Vector3 Vector, UnidadAritmetica Unidad) {
-	  Vector3 Resultado = new Vector3("Vector Multiplicar Magnitud de "+Vector.getNombre()+" y "+Unidad,Vector.getMagnitudX()*Unidad.getValor(),Vector.getMagnitudY()*Unidad.getValor(),Vector.getMagnitudZ()*Unidad.getValor());
+  public static Vector3D Multiplicar(Vector3D Vector, UnidadAritmetica Unidad) {
+	  Vector3D Resultado = new Vector3D("Vector Multiplicar Magnitud de "+Vector.getNombre()+" y "+Unidad,Vector.getMagnitudX()*Unidad.getValor(),Vector.getMagnitudY()*Unidad.getValor(),Vector.getMagnitudZ()*Unidad.getValor());
 	  
 	  
 	  Apunte nuevoApunte_Multiplicar = new Apunte("Multiplicar Magnitud del vector \""+ Vector.getMagnitud()+"\" x \""+Unidad.getValor()+"\"");

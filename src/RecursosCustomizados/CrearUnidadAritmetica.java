@@ -138,7 +138,7 @@ public class CrearUnidadAritmetica extends JDialog implements ActionListener {
 		this.dispose();
 		break;
 	case "Cancel": 
-		MensajeConfirmar confirmarCancelar = new MensajeConfirmar(FramePrincipal, "�Desea salir sin agregar vector?");
+		MensajeConfirmar confirmarCancelar = new MensajeConfirmar(FramePrincipal, "Desea salir sin agregar unidad?");
 		
 		if(confirmarCancelar.Respuesta() == 0) {this.dispose(); UnidadNueva = null;} break;
 		

@@ -25,13 +25,12 @@ import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingUtilities;
 
-import EjemploDeInyeccion.Vector3;
+import ModulosImportados.Vector3D.Vector3D;
 import ObjetosLogicos.motorMatematico.*;
 import ObjetosLogicos.motorMatematico.operaciones.Operacion;
 import ObjetosLogicos.motorMatematico.variables.UnidadAritmetica;
 import RecursosCustomizados.BotonAritmetico;
 import RecursosCustomizados.CrearUnidadAritmetica;
-import RecursosCustomizados.CrearVector3;
 import RecursosCustomizados.Mensaje_EntradaDeDatos;
 import ValoresDefault.Constantes;
 import ValoresDefault.Constantes.Apunte;
@@ -55,6 +54,9 @@ import javax.swing.Box;
 import java.awt.GridBagLayout;
 import java.awt.Dimension;
 
+
+
+//suboperacion JFrame
 public class JInternalFrameOperacion extends JInternalFrame implements ActionListener, Serializable {
 
 	////////////////////// Diseño //////////////////
@@ -70,6 +72,9 @@ public class JInternalFrameOperacion extends JInternalFrame implements ActionLis
 	private JTextPane ConsolaOutput;
 	private JTextPane PropiedadesDisplay;
 
+
+
+	//crear el jframe panel de la sub operacion con todos sus componentes 
 	public JInternalFrameOperacion(String Titulo) {
 		this.Titulo = Titulo;
 
@@ -274,6 +279,8 @@ public class JInternalFrameOperacion extends JInternalFrame implements ActionLis
 		setVisible(true);
 	}
 
+
+	// Agregar boton aritmetico a la seccion de operaciones registradas o historial de operaciones
 	private void AgregarBotonAritmetico(BotonAritmetico botonAritmetico) {
 		botonAritmetico.setFont(Constantes.botones);
 		botonAritmetico.addActionListener(new ActionListener() {
@@ -321,12 +328,14 @@ public class JInternalFrameOperacion extends JInternalFrame implements ActionLis
 		getContentPane().paintAll(getContentPane().getGraphics());
 	}
 
+	// Quitar boton aritmetico a la seccion de operaciones registradas o historial de operaciones
 	private void QuitarBotonAritmetico(BotonAritmetico botonAritmetico) {
 		BotonesAritmeticos.remove(botonAritmetico);
 		JPanelOperaciones.remove(botonAritmetico);
 		getContentPane().paintAll(getContentPane().getGraphics());
 	}
 
+	//Calcular la salida general de la operacion para mostrarla en el cuadro de salida
 	public void CalcularConsolaOutput() {
 		ConsolaOutput.setText(""); /// reset output
 		OperacionGeneral.HardReset();
@@ -343,35 +352,34 @@ public class JInternalFrameOperacion extends JInternalFrame implements ActionLis
 				ConsolaOutput.setForeground(Constantes.DetallesSegundoColor);
 				ConsolaOutput.setText(ConsolaOutput.getText() + " = "
 						+ ((UnidadAritmetica) OperacionGeneral.getResultado()).toStringReducido());
-				MainApunteFrame.panel_Visualizar.MostrarVectores(new Vector3("", 90, 90, 90, 0));
+				MainApunteFrame.panel_Visualizar.MostrarVectores(new Vector3D("", 90, 90, 90, 0));
 
 			} else if (OperacionGeneral.getResultado().getTipoDeObjetoAlgebraico() == TipoObjetoAlgebraico.Vector) {
 				ConsolaOutput.setForeground(Constantes.DetallesSegundoColor);
 				ConsolaOutput.setText(ConsolaOutput.getText() + " = "
-						+ ((Vector3) OperacionGeneral.getResultado()).toStringReducido());
-				MainApunteFrame.panel_Visualizar.MostrarVectores(((Vector3) OperacionGeneral.getResultado()));
+						+ ((Vector3D) OperacionGeneral.getResultado()).toStringReducido());
+				MainApunteFrame.panel_Visualizar.MostrarVectores(((Vector3D) OperacionGeneral.getResultado()));
 
 			}
 		} else { // si no hay un resultado que mostrar
 			ConsolaOutput.setForeground(Constantes.DetallesColor);
 			ConsolaOutput.setText("Error en la operacion: " + PosibleError.toString());
-			MainApunteFrame.panel_Visualizar.MostrarVectores(new Vector3("", 90, 90, 90, 0));
+			MainApunteFrame.panel_Visualizar.MostrarVectores(new Vector3D("", 90, 90, 90, 0));
 
 		}
 	}
 
-	private void test() {
-		AgregarBotonAritmetico(new BotonAritmetico(new Vector3("Fff", 34, 54, 23), "algo chido", ""));
-	}
 
+	/*
+	 * define las acciones a realizar por cada boton de operacion
+	 */
 	@Override
-
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub
 		switch (arg0.getActionCommand()) {
 			case "++":
-				CrearVector3 creadorPanelVector = new CrearVector3((JFrame) SwingUtilities.getRoot(this));
-				Vector3 NuevoVector = creadorPanelVector.GetVector();
+				CrearVector3D creadorPanelVector = new CrearVector3D((JFrame) SwingUtilities.getRoot(this));
+				Vector3D NuevoVector = creadorPanelVector.GetVector();
 				if (NuevoVector != null) {
 					NuevoVector.setNombre(new Mensaje_EntradaDeDatos((JFrame) SwingUtilities.getRoot(this),
 							"Ingrese etiqueta del Vector").Respuesta());

@@ -6,7 +6,7 @@ import VentanasProyecto.JPanelAlgebra;
 import VentanasProyecto.JPanelNotas;
 import VentanasProyecto.JPanelPizarron;
 import VentanasProyecto.JPanelVisualizar;
-import VentanasProyecto.JpanelVectores;
+import VentanasProyecto.JpanelOperaciones;
 
 /*
  * Representacion de un archivo tipo cuaderno de apuntes 
@@ -21,7 +21,7 @@ public class CuadernoDeApuntesBaseLogica implements Serializable {
 	public JPanelNotas Notas;
 	public JPanelVisualizar Visualizar;
 	public JPanelPizarron Pizarra;
-	public JpanelVectores Vectores;
+	public JpanelOperaciones Vectores;
 
 	/*
 	 * creacion de un nuevo apunte cada que se decide cargar desde la computadora o
@@ -33,7 +33,7 @@ public class CuadernoDeApuntesBaseLogica implements Serializable {
 		this.Autor = Autor;
 		Algebra = new JPanelAlgebra();
 		Pizarra = new JPanelPizarron();
-		Vectores = new JpanelVectores();
+		Vectores = new JpanelOperaciones();
 		Notas = new JPanelNotas();
 		Visualizar = new JPanelVisualizar();
 
@@ -67,11 +67,11 @@ public class CuadernoDeApuntesBaseLogica implements Serializable {
 		Pizarra = pizarra;
 	}
 
-	public JpanelVectores getVectores() {
+	public JpanelOperaciones getVectores() {
 		return Vectores;
 	}
 
-	public void setVectores(JpanelVectores vectores) {
+	public void setVectores(JpanelOperaciones vectores) {
 		Vectores = vectores;
 	}
 

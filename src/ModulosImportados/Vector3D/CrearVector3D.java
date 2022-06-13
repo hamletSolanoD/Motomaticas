@@ -1,4 +1,4 @@
-package RecursosCustomizados;
+package ModulosImportados.Vector3D;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -6,6 +6,7 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -14,7 +15,9 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.text.BadLocationException;
 
-import EjemploDeInyeccion.Vector3;
+import RecursosCustomizados.MensajeConfirmar;
+import RecursosCustomizados.MensajeError;
+import RecursosCustomizados.MyJPanel_ConFondo;
 import ValoresDefault.Constantes;
 
 import javax.swing.JLabel;
@@ -39,10 +42,8 @@ import java.io.IOException;
 import javax.swing.JTextField;
 import javax.swing.JSplitPane;
 import javax.swing.JTabbedPane;
-import javax.swing.JRadioButtonMenuItem;
-import javax.swing.JCheckBox;
 
-public class CrearVector3 extends JDialog implements ActionListener {
+class CrearVector3D extends JDialog implements ActionListener {
 	private final JPanel contentPanel = new JPanel();
 	private JFrame FramePrincipal;
 	
@@ -92,10 +93,12 @@ public class CrearVector3 extends JDialog implements ActionListener {
 	* 3 = YZ
 	*/
 	
-	Vector3 VectorNuevo = new Vector3("Vector Nuevo");
+	Vector3D VectorNuevo = new Vector3D("Vector Nuevo");
     
 
-
+	/*
+	 * actualizar los valores del textfield si es que fueron calculados no escritos
+	 */
 	private void ActualizarVector() {
 		txtField_MagnitudX.setText(String.valueOf(VectorNuevo.getMagnitudX()));
 		txtField_MagnitudY.setText(String.valueOf(VectorNuevo.getMagnitudY()));
@@ -106,6 +109,9 @@ public class CrearVector3 extends JDialog implements ActionListener {
 		txtField_ThetaZ.setText(String.valueOf(VectorNuevo.getThetaZ()));
 	}
 
+	/*dependiendo el eje desactiva
+	 * partes o componentes de un vector
+	 */
 	private void DesactivarEje(char panel) {
 		/* Dimension:
 		* 0 = XYZ
@@ -237,6 +243,7 @@ public class CrearVector3 extends JDialog implements ActionListener {
 	}
 
 	
+	/*dependiendo el eje desactiva los textfields en sus componentes X,Y,Z,N */
 	private void UnsetEditableAxis(char eje) {
 		switch(eje) {
 		case 'X': txtField_ThetaX.setEditable(false); txtField_ThetaY.setEditable(true); txtField_ThetaZ.setEditable(true); break;
@@ -247,6 +254,8 @@ public class CrearVector3 extends JDialog implements ActionListener {
 		}
 		
 	}
+	
+	/*selecciona o deselecciona los angulos posibles a editar en ese vector dependiendo su eje o si es 3D */
 	private void SeleccionarAnguloEnDimension(char Angulo) {
 		switch(Angulo) {
 		case 'X':
@@ -332,7 +341,8 @@ public class CrearVector3 extends JDialog implements ActionListener {
 
 	}
 	
-	public CrearVector3(JFrame FramePrincipal) {
+	//Constructor dependiente de un frame principal por ser una ventana de JDialog 
+		public CrearVector3D(JFrame FramePrincipal) {
 		super(FramePrincipal,Dialog.ModalityType.TOOLKIT_MODAL);
 		this.FramePrincipal = FramePrincipal;
 		contentPanel.setBackground(Constantes.PrincipalColor);
@@ -875,6 +885,9 @@ public class CrearVector3 extends JDialog implements ActionListener {
 			setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 			setVisible(true);
 	}
+	
+	/* inicializar los valores por defecto del vector
+	*/
 	private void Inicializar() {
 	    DimensionAngulo_rbtn_XY.setSelected(true);
 	    DesactivarEje('Z');
@@ -882,6 +895,9 @@ public class CrearVector3 extends JDialog implements ActionListener {
 		DimensionMagnitudes.setSelected(DimensionMagnitud_rbtn_XY.getModel(),true);
 	}
 
+
+
+	/*Acciones de la ventana vector */
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub
@@ -900,7 +916,7 @@ public class CrearVector3 extends JDialog implements ActionListener {
 	
 		break;
 		case "Cancel":
-			if(new MensajeConfirmar(FramePrincipal, "�Desea salir sin agregar vector?").Respuesta() == 0) 
+			if(new MensajeConfirmar(FramePrincipal, "Desea salir sin agregar vector?").Respuesta() == 0) 
 			{ this.dispose(); VectorNuevo = null;}break;
 		
 		//////////////////////////////////////////// ANGULOS  ////////////////////////////////////////////////
@@ -967,6 +983,9 @@ public class CrearVector3 extends JDialog implements ActionListener {
 		}
 	}
 	
+
+
+	//autorellenar los vectores con su calculo normal
 	private void CalcularMagnitudes() {
 			if(!(VectorNuevo.getMagnitud() != 0 && (VectorNuevo.getThetaX() != 0 || VectorNuevo.getThetaY() != 0 || VectorNuevo.getThetaZ() != 0))) {
 				new MensajeError(FramePrincipal,"Angulos o magnitud vacia");
@@ -979,7 +998,10 @@ public class CrearVector3 extends JDialog implements ActionListener {
 				}
 		}
 	}
-	 public Vector3 GetVector() {
+	
+	
+	
+	public Vector3D GetVector() {
 	      return VectorNuevo;
 	   }
 

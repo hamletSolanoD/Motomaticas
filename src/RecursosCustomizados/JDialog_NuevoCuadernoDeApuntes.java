@@ -151,7 +151,7 @@ public class JDialog_NuevoCuadernoDeApuntes extends JDialog implements ActionLis
 	
 		break;
 		case "Cancel": 
-			MensajeConfirmar confirmar = new MensajeConfirmar(Padre, "�Desea abandonar sin crear?");
+			MensajeConfirmar confirmar = new MensajeConfirmar(Padre, "Desea abandonar sin crear?");
 			if(confirmar.Respuesta() == 0) 
 			{ this.dispose();}
 			break;

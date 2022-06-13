@@ -15,7 +15,7 @@ import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
-import EjemploDeInyeccion.Vector3;
+import ModulosImportados.Vector3D.Vector3D;
 import ObjetosLogicos.motorMatematico.ObjetoAlgebraico;
 import ObjetosLogicos.motorMatematico.OperacionGeneral;
 
@@ -78,7 +78,7 @@ public class JPanelVisualizar extends JPanel {
 		
 		add(scrollPane, BorderLayout.CENTER);
 	}
-	public void MostrarVectores(Vector3 Vector) {
+	public void MostrarVectores(Vector3D Vector) {
 
 		planoCartesianoYZ.setAngulo(90);
 		planoCartesianoXZ.setAngulo(90);

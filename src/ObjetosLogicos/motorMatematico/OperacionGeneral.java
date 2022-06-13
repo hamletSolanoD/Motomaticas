@@ -9,7 +9,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 import org.w3c.dom.events.EventException;
 
-import EjemploDeInyeccion.Vector3;
+import ModulosImportados.Vector3D.Vector3D;
 import ObjetosLogicos.motorMatematico.*;
 import ObjetosLogicos.motorMatematico.operaciones.Operacion;
 import ObjetosLogicos.motorMatematico.variables.UnidadAritmetica;
@@ -114,7 +114,7 @@ public class OperacionGeneral implements Serializable{
 				
 				TipoDeErrorAlgebraico PosibleError = subOperacion.CalcularOperacion();
 				if(PosibleError == null) {
-					ObjetosAlgebraicos_PrimerOrden.add(new UnidadAritmetica(Operacion.VecMagnitud(((Vector3)subOperacion.getResultado()))));
+					ObjetosAlgebraicos_PrimerOrden.add(new UnidadAritmetica(Operacion.VecMagnitud(((Vector3D)subOperacion.getResultado()))));
 					
 					continue Repetidor;
 				}
@@ -134,7 +134,7 @@ public class OperacionGeneral implements Serializable{
 				OperacionGeneral subOperacion = new OperacionGeneral(SubdividirOperacion(ObjetosAlgebraicos,ObjetoActual, ParentesisCierre));
 				TipoDeErrorAlgebraico PosibleError = subOperacion.CalcularOperacion();
 				if(PosibleError == null) {
-					ObjetosAlgebraicos_PrimerOrden.add(Operacion.VecUnitario(((Vector3)subOperacion.getResultado())));
+					ObjetosAlgebraicos_PrimerOrden.add(Operacion.VecUnitario(((Vector3D)subOperacion.getResultado())));
 					continue Repetidor;
 					}
 				else {/// si si tiene regresar el error 
@@ -212,7 +212,7 @@ public class OperacionGeneral implements Serializable{
 						///Una vez terminado de  analizar una posicion se hace la comprobacion de si se ha encontrado un operador valido, crear la nueva lista y Terminar 
 							listaAuxiliar.clear();
 							listaAuxiliar.addAll(ListaParResolverSegundoOrden.subList(0, Index-1));
-							listaAuxiliar.add(Operacion.Dividir((Vector3)ListaParResolverSegundoOrden.get(Index-1), (UnidadAritmetica)ListaParResolverSegundoOrden.get(Index+1)));
+							listaAuxiliar.add(Operacion.Dividir((Vector3D)ListaParResolverSegundoOrden.get(Index-1), (UnidadAritmetica)ListaParResolverSegundoOrden.get(Index+1)));
 							
 							try {
 							listaAuxiliar.addAll(ListaParResolverSegundoOrden.subList(Index+2, ListaParResolverSegundoOrden.size()));}
@@ -245,7 +245,7 @@ public class OperacionGeneral implements Serializable{
 						///Una vez terminado de  analizar una posicion se hace la comprobacion de si se ha encontrado un operador valido, crear la nueva lista y Terminar 
 							listaAuxiliar.clear();
 							listaAuxiliar.addAll(ListaParResolverSegundoOrden.subList(0, Index-1));
-							listaAuxiliar.add(Operacion.Multiplicar((Vector3)ListaParResolverSegundoOrden.get(Index-1), (UnidadAritmetica)ListaParResolverSegundoOrden.get(Index+1)));
+							listaAuxiliar.add(Operacion.Multiplicar((Vector3D)ListaParResolverSegundoOrden.get(Index-1), (UnidadAritmetica)ListaParResolverSegundoOrden.get(Index+1)));
 							try {
 								listaAuxiliar.addAll(ListaParResolverSegundoOrden.subList(Index+2, ListaParResolverSegundoOrden.size()));}
 								catch(EventException e) { System.out.println("Lista mas pequenio de lo esperado");}
@@ -258,7 +258,7 @@ public class OperacionGeneral implements Serializable{
 								///Una vez terminado de  analizar una posicion se hace la comprobacion de si se ha encontrado un operador valido, crear la nueva lista y Terminar 
 									listaAuxiliar.clear();
 									listaAuxiliar.addAll(ListaParResolverSegundoOrden.subList(0, Index-1));
-									listaAuxiliar.add(Operacion.Multiplicar((Vector3)ListaParResolverSegundoOrden.get(Index+1), (UnidadAritmetica)ListaParResolverSegundoOrden.get(Index-1)));
+									listaAuxiliar.add(Operacion.Multiplicar((Vector3D)ListaParResolverSegundoOrden.get(Index+1), (UnidadAritmetica)ListaParResolverSegundoOrden.get(Index-1)));
 									try {
 										listaAuxiliar.addAll(ListaParResolverSegundoOrden.subList(Index+2, ListaParResolverSegundoOrden.size()));}
 										catch(EventException e) { System.out.println("Lista mas pequenio de lo esperado");}
@@ -287,7 +287,7 @@ public class OperacionGeneral implements Serializable{
 					&& ListaParResolverSegundoOrden.get(Index+1).TipoDeObjetoAlgebraico == TipoObjetoAlgebraico.Vector) {
 						listaAuxiliar.clear();
 						listaAuxiliar.addAll(ListaParResolverSegundoOrden.subList(0, Index-1));
-						listaAuxiliar.add(Operacion.VecCruz((Vector3)ListaParResolverSegundoOrden.get(Index-1), (Vector3)ListaParResolverSegundoOrden.get(Index+1)));
+						listaAuxiliar.add(Operacion.VecCruz((Vector3D)ListaParResolverSegundoOrden.get(Index-1), (Vector3D)ListaParResolverSegundoOrden.get(Index+1)));
 						try {
 							listaAuxiliar.addAll(ListaParResolverSegundoOrden.subList(Index+2, ListaParResolverSegundoOrden.size()));}
 							catch(EventException e) { System.out.println("Lista mas pequenio de lo esperado");}
@@ -305,7 +305,7 @@ public class OperacionGeneral implements Serializable{
 					&& ListaParResolverSegundoOrden.get(Index+1).TipoDeObjetoAlgebraico == TipoObjetoAlgebraico.Vector) {
 						listaAuxiliar.clear();
 						listaAuxiliar.addAll(ListaParResolverSegundoOrden.subList(0, Index-1));
-						listaAuxiliar.add(Operacion.VecProductoEscalar((Vector3)ListaParResolverSegundoOrden.get(Index-1), (Vector3)ListaParResolverSegundoOrden.get(Index+1)));
+						listaAuxiliar.add(Operacion.VecProductoEscalar((Vector3D)ListaParResolverSegundoOrden.get(Index-1), (Vector3D)ListaParResolverSegundoOrden.get(Index+1)));
 						try {
 							listaAuxiliar.addAll(ListaParResolverSegundoOrden.subList(Index+2, ListaParResolverSegundoOrden.size()));}
 							catch(EventException e) { System.out.println("Lista mas pequenio de lo esperado");}
@@ -392,7 +392,7 @@ public class OperacionGeneral implements Serializable{
 				if(ObjetoUltimo.getTipoDeObjetoAlgebraico() == TipoObjetoAlgebraico.Operacion) {
 					if(((Operacion)ObjetoUltimo).getOperacion() == TipoOperacion.Sumar) {
 						if(ObjetoPenultimo.getTipoDeObjetoAlgebraico() == TipoObjetoAlgebraico.Vector) {
-						    Resultado = Operacion.Sumar((Vector3)Resultado, (Vector3)ObjetoActual);
+						    Resultado = Operacion.Sumar((Vector3D)Resultado, (Vector3D)ObjetoActual);
 						}
 						else {
 							return TipoDeErrorAlgebraico.EntradaInvalida;
@@ -400,7 +400,7 @@ public class OperacionGeneral implements Serializable{
 					}	
 					else if(((Operacion)ObjetoUltimo).getOperacion() == TipoOperacion.Restar) {
 						if(ObjetoPenultimo.getTipoDeObjetoAlgebraico() == TipoObjetoAlgebraico.Vector) {
-						    Resultado = Operacion.Restar((Vector3)Resultado, (Vector3)ObjetoActual);
+						    Resultado = Operacion.Restar((Vector3D)Resultado, (Vector3D)ObjetoActual);
 						}
 						else {
 							return TipoDeErrorAlgebraico.EntradaInvalida;

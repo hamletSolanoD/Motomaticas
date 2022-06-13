@@ -1,11 +1,11 @@
-package EjemploDeInyeccion;
+package ModulosImportados.Vector3D;
 
 import java.lang.Math;
 
 import ObjetosLogicos.motorMatematico.ObjetoAlgebraico;
 import ValoresDefault.Constantes;;
 
-public class Vector3 extends ObjetoAlgebraico {
+public class Vector3D extends ObjetoAlgebraico {
 	private String Nombre;
 
 	private double magnitud;
@@ -29,7 +29,7 @@ public class Vector3 extends ObjetoAlgebraico {
 	 * Vector 3D con nombre y direcciones creado a partir de 3 magnitudes en sus
 	 * ejes
 	 */
-	public Vector3(String Nombre, double magnitudX, double magnitudY, double magnitudZ) {
+	public Vector3D(String Nombre, double magnitudX, double magnitudY, double magnitudZ) {
 		super(Constantes.TipoObjetoAlgebraico.Vector);
 		this.Nombre = Nombre;
 		this.magnitudX = magnitudX;
@@ -45,7 +45,7 @@ public class Vector3 extends ObjetoAlgebraico {
 	 * Vector 3D con nombre y direcciones creado a partir de 3 de sus angulos y una
 	 * magnitud
 	 */
-	public Vector3(String Nombre, double ThetaX, double ThetaY, double ThetaZ, double Magnitud) {
+	public Vector3D(String Nombre, double ThetaX, double ThetaY, double ThetaZ, double Magnitud) {
 		super(Constantes.TipoObjetoAlgebraico.Vector);
 		this.Nombre = Nombre;
 		this.ThetaX = ThetaX;
@@ -62,7 +62,7 @@ public class Vector3 extends ObjetoAlgebraico {
 	}
 
 	/* Vector 3D con nombre y variables vacias */
-	public Vector3(String Nombre) {
+	public Vector3D(String Nombre) {
 		super(Constantes.TipoObjetoAlgebraico.Vector);
 		this.Nombre = Nombre;
 		if (Nombre == null || Nombre.isEmpty()) {

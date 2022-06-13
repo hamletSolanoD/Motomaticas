@@ -48,9 +48,11 @@ public  class MainApunteFrame extends JFrame implements WindowListener, Serializ
 	public static JPanel panel_Grafico;
 	public static JPanelPizarron panel_Pizarra;
 	public static JPanelNotas panel_Notas;
-	public static JpanelVectores panel_Vectores;
+	public static JpanelOperaciones panel_Operaciones;
 	public static JPanelVisualizar panel_Visualizar;
 	
+
+	/*crear o leer un apunte ya guardado, crear toda la parte visual desde la parte logica del apunte*/
 	public MainApunteFrame(CuadernoDeApuntesBaseLogica Apunte) {
 		MainApunte = Apunte;
 		setBounds(Constantes.PantallaOrdenadorX/25,Constantes.PantallaOrdenadorY/20,(Constantes.PantallaOrdenadorX/10)*9,(Constantes.PantallaOrdenadorY/10)*9);
@@ -58,7 +60,7 @@ public  class MainApunteFrame extends JFrame implements WindowListener, Serializ
 		addWindowListener(this);
 		getContentPane().setLayout(new BorderLayout(0, 0));
 		
-		    panel_Vectores = Apunte.getVectores();
+		    panel_Operaciones = Apunte.getVectores();
 			
 		    panel_Algebra = Apunte.getAlgebra();
 			 
@@ -89,7 +91,7 @@ public  class MainApunteFrame extends JFrame implements WindowListener, Serializ
 		tabbedPane.setBorder(null);
 		tabbedPane.setBackground(Constantes.DetallesColor);
 		tabbedPane.setFont(Constantes.textoNormal);
-		tabbedPane.addTab("Vectores", null, panel_Vectores, null);
+		tabbedPane.addTab("Operaciones", null, panel_Operaciones, null);
 		tabbedPane.addTab("Algebra", null, panel_Algebra, null);
 		tabbedPane.addTab("Vizualizar", null, panel_Visualizar, null);
 		tabbedPane.addTab("Notas", null, panel_Notas, null);
@@ -148,7 +150,7 @@ public  class MainApunteFrame extends JFrame implements WindowListener, Serializ
 	@Override
 	public void windowClosing(WindowEvent e) {
 		// TODO Auto-generated method stub
-		 if(new MensajeConfirmar(this, "�Desea salir de la aplicacion?").Respuesta() == 0) { this.dispose();}		
+		 if(new MensajeConfirmar(this, "Desea salir de la aplicacion?").Respuesta() == 0) { this.dispose();}		
 
 	}
 	@Override
@@ -177,7 +179,7 @@ public  class MainApunteFrame extends JFrame implements WindowListener, Serializ
 		// TODO Auto-generated method stub
 		switch(arg0.getActionCommand()){
 			case "Guardar": 
-				MainApunte.setVectores(panel_Vectores);
+				MainApunte.setVectores(panel_Operaciones);
 				MainApunte.setPizarra(panel_Pizarra);
 				MainApunte.setAlgebra(panel_Algebra);
 				MainApunte.setNotas(panel_Notas);
@@ -191,7 +193,7 @@ public  class MainApunteFrame extends JFrame implements WindowListener, Serializ
 					FileOutputStream FW = new FileOutputStream(FileGuardado+".ApunteFisica");
 					ObjectOutputStream OOS = new ObjectOutputStream(FW);
 					OOS.writeObject(MainApunte);
-					OOS.writeObject(JpanelVectores.JIFActivo);
+					OOS.writeObject(JpanelOperaciones.JIFActivo);
 				}
 				catch(IOException e) {}
 					

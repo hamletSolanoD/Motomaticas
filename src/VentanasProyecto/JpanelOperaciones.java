@@ -27,14 +27,14 @@ import javax.swing.JOptionPane;
 import java.awt.Component;
 import javax.swing.Box;
 
-public class JpanelVectores extends JPanel implements Serializable, ActionListener, InternalFrameListener{
+public class JpanelOperaciones extends JPanel implements Serializable, ActionListener, InternalFrameListener{
 
 	
 	private ArrayList<JInternalFrameOperacion> JIFOperaciones = new ArrayList<JInternalFrameOperacion>();
 	public static JInternalFrameOperacion JIFActivo;
 	private JDesktopPane desktopPane;
 	
-	public JpanelVectores() {
+	public JpanelOperaciones() {
 		setLayout(new BorderLayout(0, 0));
 		
 		
@@ -93,7 +93,7 @@ public class JpanelVectores extends JPanel implements Serializable, ActionListen
 		
 		case "-": 
 			if(!(JIFActivo == null)) {
-				MensajeConfirmar EliminarOperacion = new MensajeConfirmar((JFrame)SwingUtilities.getRoot(this), "¿Seguro que quieres eliminar esta operacion?");
+				MensajeConfirmar EliminarOperacion = new MensajeConfirmar((JFrame)SwingUtilities.getRoot(this), "Seguro que quieres eliminar esta operacion?");
 				if(EliminarOperacion.Respuesta() == 0) {
 			    JIFOperaciones.remove(JIFActivo);
 			    desktopPane.remove(JIFActivo);

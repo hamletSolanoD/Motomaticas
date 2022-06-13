@@ -155,7 +155,7 @@ public class Portada extends JFrame implements ActionListener {
 					if (CuadernoDeApuntesCargado != null) {
 
 						MainApunteFrame MainApunteFrame = new MainApunteFrame(CuadernoDeApuntesCargado);
-						MainApunteFrame.panel_Vectores.JIFActivo = (JInternalFrameOperacion) OIS.readObject();
+						MainApunteFrame.panel_Operaciones.JIFActivo = (JInternalFrameOperacion) OIS.readObject();
 						dispose();
 					}
 
