@@ -25,7 +25,7 @@ import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingUtilities;
 
-import ModulosImportados.Vector3D.Vector3D;
+import ModulosImportados.Vector3D.*;
 import ObjetosLogicos.motorMatematico.*;
 import ObjetosLogicos.motorMatematico.operaciones.Operacion;
 import ObjetosLogicos.motorMatematico.variables.UnidadAritmetica;

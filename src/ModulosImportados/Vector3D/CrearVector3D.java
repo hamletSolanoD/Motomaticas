@@ -43,7 +43,7 @@ import javax.swing.JTextField;
 import javax.swing.JSplitPane;
 import javax.swing.JTabbedPane;
 
-class CrearVector3D extends JDialog implements ActionListener {
+public class CrearVector3D extends JDialog implements ActionListener {
 	private final JPanel contentPanel = new JPanel();
 	private JFrame FramePrincipal;
 	
