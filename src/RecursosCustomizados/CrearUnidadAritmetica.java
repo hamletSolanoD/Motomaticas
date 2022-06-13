@@ -15,7 +15,7 @@ import javax.swing.event.DocumentListener;
 import javax.swing.text.MaskFormatter;
 import javax.swing.text.NumberFormatter;
 
-import ObjetosLogicos.motorMatematico.variables.UnidadAritmetica;
+import ObjetosLogicos.motorMatematico.variables.UnidadMatematica;
 import ValoresDefault.Constantes;
 
 import javax.swing.JLabel;
@@ -39,7 +39,7 @@ import javax.swing.Box;
 public class CrearUnidadAritmetica extends JDialog implements ActionListener {
 
 	private final JPanel contentPanel = new JPanel();
-	UnidadAritmetica UnidadNueva = new UnidadAritmetica();
+	UnidadMatematica UnidadNueva = new UnidadMatematica();
 	private JTextField JtextField_NuevaUnidad;
 	private JFrame FramePrincipal;
 	
@@ -125,7 +125,7 @@ public class CrearUnidadAritmetica extends JDialog implements ActionListener {
 		
 	}
 
-	public UnidadAritmetica getUnidadNueva() {
+	public UnidadMatematica getUnidadNueva() {
 		return UnidadNueva;
 		
 	}

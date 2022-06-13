@@ -3,7 +3,7 @@ import java.io.Serializable;
 import java.util.UUID;
 import ValoresDefault.Constantes.TipoObjetoAlgebraico;
 
-public class ObjetoAlgebraico  implements Serializable{
+public abstract class ObjetoAlgebraico  implements Serializable{
 	protected String ID;
 	protected TipoObjetoAlgebraico TipoDeObjetoAlgebraico;
 	public ObjetoAlgebraico(TipoObjetoAlgebraico TipoDeObjetoAlgebraio){

@@ -27,8 +27,8 @@ import javax.swing.SwingUtilities;
 
 import ModulosImportados.Vector3D.*;
 import ObjetosLogicos.motorMatematico.*;
-import ObjetosLogicos.motorMatematico.operaciones.Operacion;
-import ObjetosLogicos.motorMatematico.variables.UnidadAritmetica;
+import ObjetosLogicos.motorMatematico.operaciones.OperacionesBasicas;
+import ObjetosLogicos.motorMatematico.variables.UnidadMatematica;
 import RecursosCustomizados.BotonAritmetico;
 import RecursosCustomizados.CrearUnidadAritmetica;
 import RecursosCustomizados.Mensaje_EntradaDeDatos;
@@ -351,7 +351,7 @@ public class JInternalFrameOperacion extends JInternalFrame implements ActionLis
 			if (OperacionGeneral.getResultado().getTipoDeObjetoAlgebraico() == TipoObjetoAlgebraico.Unidad) {
 				ConsolaOutput.setForeground(Constantes.DetallesSegundoColor);
 				ConsolaOutput.setText(ConsolaOutput.getText() + " = "
-						+ ((UnidadAritmetica) OperacionGeneral.getResultado()).toStringReducido());
+						+ ((UnidadMatematica) OperacionGeneral.getResultado()).toStringReducido());
 				MainApunteFrame.panel_Visualizar.MostrarVectores(new Vector3D("", 90, 90, 90, 0));
 
 			} else if (OperacionGeneral.getResultado().getTipoDeObjetoAlgebraico() == TipoObjetoAlgebraico.Vector) {
@@ -410,67 +410,67 @@ public class JInternalFrameOperacion extends JInternalFrame implements ActionLis
 
 				break;
 			case "{":
-				ObjetoAlgebraico parentesisIzquierdo = new Operacion(TipoOperacion.Parentesis_Izquierdo);
+				ObjetoAlgebraico parentesisIzquierdo = new OperacionesBasicas(TipoOperacion.Parentesis_Izquierdo);
 				AgregarBotonAritmetico(new BotonAritmetico(parentesisIzquierdo, "{", ""));
 				CalcularConsolaOutput();
 				break;
 			case "}":
-				ObjetoAlgebraico parentesisDerecho = new Operacion(TipoOperacion.Parentesis_Derecho);
+				ObjetoAlgebraico parentesisDerecho = new OperacionesBasicas(TipoOperacion.Parentesis_Derecho);
 				AgregarBotonAritmetico(new BotonAritmetico(parentesisDerecho, "}", ""));
 				CalcularConsolaOutput();
 				break;
 			case "U":
 				CrearUnidadAritmetica creadorPanelUnidad = new CrearUnidadAritmetica(
 						(JFrame) SwingUtilities.getRoot(this));
-				UnidadAritmetica NuevaUnidad = creadorPanelUnidad.getUnidadNueva();
+				UnidadMatematica NuevaUnidad = creadorPanelUnidad.getUnidadNueva();
 				if (NuevaUnidad != null) {
 					AgregarBotonAritmetico(new BotonAritmetico(NuevaUnidad, NuevaUnidad.toStringReducido(), ""));
 					CalcularConsolaOutput();
 				}
 				break;
 			case "Â":
-				ObjetoAlgebraico VectorUnitario = new Operacion(TipoOperacion.Vector_Unitario);
+				ObjetoAlgebraico VectorUnitario = new OperacionesBasicas(TipoOperacion.Vector_Unitario);
 				AgregarBotonAritmetico(new BotonAritmetico(VectorUnitario, "Â{", ""));
 				CalcularConsolaOutput();
 				break;
 			case "|A|":
-				ObjetoAlgebraico VectorMagnitud = new Operacion(TipoOperacion.Vector_Magnitud);
+				ObjetoAlgebraico VectorMagnitud = new OperacionesBasicas(TipoOperacion.Vector_Magnitud);
 				AgregarBotonAritmetico(new BotonAritmetico(VectorMagnitud, "|Ā|{", ""));
 				CalcularConsolaOutput();
 				break;
 
 			case "•":
-				ObjetoAlgebraico productoPunto = new Operacion(TipoOperacion.Producto_Escalar);
+				ObjetoAlgebraico productoPunto = new OperacionesBasicas(TipoOperacion.Producto_Escalar);
 				AgregarBotonAritmetico(new BotonAritmetico(productoPunto, "•", ""));
 				CalcularConsolaOutput();
 				break;
 
 			case "xx":
-				ObjetoAlgebraico productoCruz = new Operacion(TipoOperacion.Producto_Cruz);
+				ObjetoAlgebraico productoCruz = new OperacionesBasicas(TipoOperacion.Producto_Cruz);
 				AgregarBotonAritmetico(new BotonAritmetico(productoCruz, "X", ""));
 				CalcularConsolaOutput();
 				break;
 
 			case "+":
-				ObjetoAlgebraico Suma = new Operacion(TipoOperacion.Sumar);
+				ObjetoAlgebraico Suma = new OperacionesBasicas(TipoOperacion.Sumar);
 				AgregarBotonAritmetico(new BotonAritmetico(Suma, "+", ""));
 				CalcularConsolaOutput();
 				break;
 
 			case "-":
-				ObjetoAlgebraico resta = new Operacion(TipoOperacion.Restar);
+				ObjetoAlgebraico resta = new OperacionesBasicas(TipoOperacion.Restar);
 				AgregarBotonAritmetico(new BotonAritmetico(resta, "-", ""));
 				CalcularConsolaOutput();
 				break;
 
 			case "x":
-				ObjetoAlgebraico Multiplicar = new Operacion(TipoOperacion.Multiplicar);
+				ObjetoAlgebraico Multiplicar = new OperacionesBasicas(TipoOperacion.Multiplicar);
 				AgregarBotonAritmetico(new BotonAritmetico(Multiplicar, "x", ""));
 				CalcularConsolaOutput();
 				break;
 
 			case "/":
-				ObjetoAlgebraico dividir = new Operacion(TipoOperacion.Dividir);
+				ObjetoAlgebraico dividir = new OperacionesBasicas(TipoOperacion.Dividir);
 				AgregarBotonAritmetico(new BotonAritmetico(dividir, "/", ""));
 				CalcularConsolaOutput();
 				break;

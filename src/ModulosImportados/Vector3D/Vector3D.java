@@ -3,10 +3,11 @@ package ModulosImportados.Vector3D;
 import java.lang.Math;
 
 import ObjetosLogicos.motorMatematico.ObjetoAlgebraico;
+import ObjetosLogicos.motorMatematico.variables.UnidadMatematica;
 import ValoresDefault.Constantes;;
 
-public class Vector3D extends ObjetoAlgebraico {
-	private String Nombre;
+public class Vector3D extends UnidadMatematica {
+	private String NombreVector;
 
 	private double magnitud;
 	private double magnitudX;
@@ -19,6 +20,7 @@ public class Vector3D extends ObjetoAlgebraico {
 
 	private int Plano;
 
+
 	/* redondear la cantidad de decimales */
 	public static double redondeo(double Numero, int cantidadRedondeo) {
 		double scale = Math.pow(10, cantidadRedondeo);
@@ -30,7 +32,7 @@ public class Vector3D extends ObjetoAlgebraico {
 	 * ejes
 	 */
 	public Vector3D(String Nombre, double magnitudX, double magnitudY, double magnitudZ) {
-		super(Constantes.TipoObjetoAlgebraico.Vector);
+		super(Constantes.TipoObjetoAlgebraico.Unidad);
 		this.Nombre = Nombre;
 		this.magnitudX = magnitudX;
 		this.magnitudY = magnitudY;
@@ -46,7 +48,7 @@ public class Vector3D extends ObjetoAlgebraico {
 	 * magnitud
 	 */
 	public Vector3D(String Nombre, double ThetaX, double ThetaY, double ThetaZ, double Magnitud) {
-		super(Constantes.TipoObjetoAlgebraico.Vector);
+		super(Constantes.TipoObjetoAlgebraico.Unidad);
 		this.Nombre = Nombre;
 		this.ThetaX = ThetaX;
 		this.ThetaY = ThetaY;
@@ -63,7 +65,7 @@ public class Vector3D extends ObjetoAlgebraico {
 
 	/* Vector 3D con nombre y variables vacias */
 	public Vector3D(String Nombre) {
-		super(Constantes.TipoObjetoAlgebraico.Vector);
+		super(Constantes.TipoObjetoAlgebraico.Unidad);
 		this.Nombre = Nombre;
 		if (Nombre == null || Nombre.isEmpty()) {
 			Nombre = this.toStringReducido();
@@ -291,7 +293,7 @@ public class Vector3D extends ObjetoAlgebraico {
 	 * retornar la descripcion del vector 3D a un tipo string legible a cualquier usuario
 	 */
 	public String toString() {
-		return "Nombre del Vector: " + Nombre + "\n" +
+		return "Nombre del Vector: " + NombreVector + "\n" +
 				"Magnitud: " + redondeo(magnitud, 4) + "\n" +
 				"Magnitud X: " + redondeo(magnitudX, 4) + "\n" +
 				"Magnitud Y: " + redondeo(magnitudY, 4) + "\n" +
@@ -310,8 +312,8 @@ public class Vector3D extends ObjetoAlgebraico {
 	}
 
 	
-	public String getNombre() {
-		return Nombre;
+	public String getNombreVector() {
+		return NombreVector;
 	}
 
 	public double getMagnitud() {
@@ -342,10 +344,10 @@ public class Vector3D extends ObjetoAlgebraico {
 		return redondeo(ThetaZ, 3);
 	}
 
-	public void setNombre(String nombre) {
-		Nombre = nombre;
-		if (Nombre == null) {
-			Nombre = "Vector Sin Nombre";
+	public void setNombreVector(String nombre) {
+		NombreVector = nombre;
+		if (NombreVector == null) {
+			NombreVector = "Vector Sin Nombre";
 		}
 
 	}
@@ -376,6 +378,12 @@ public class Vector3D extends ObjetoAlgebraico {
 
 	public void setThetaZ(double thetaZ) {
 		ThetaZ = thetaZ;
+	}
+
+	@Override
+	public String getNombre() {
+		// TODO Auto-generated method stub
+		return "Vector3D";
 	}
 
 }

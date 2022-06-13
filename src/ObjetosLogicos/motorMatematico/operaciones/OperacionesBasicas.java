@@ -9,92 +9,8 @@ import ValoresDefault.Constantes.Parrafo;
 import ValoresDefault.Constantes.TipoOperacion;
 import VentanasProyecto.MainApunteFrame;
 
-public class Operacion extends ObjetoAlgebraico {
-
-    private TipoOperacion Operacion;
-    
-	//constructor por defecto, usando operaciones basicas ya incluidas
-	public Operacion(TipoOperacion Operacion) {
-		super(Constantes.TipoObjetoAlgebraico.Operacion);	//declara que el objeto que vamos a usar es un objeto tipo operacion, no un objeto tipo variable
-		this.Operacion = Operacion;	// le pasamos por parametro la operacion que se usa
-	}
 
 
-
-	/*
-	 * agrega al panel general de algebra la informacion de esta operacion en lenguaje humano en un objeto tipo boton de apuntes
-	 */
-    private static void MostrarInformacion(Apunte Apunte) {
-    MainApunteFrame.panel_Algebra.AgregarBotonDeApuntes(new BotonApuntes(Apunte));
-    }
-
-	
-	
-	
-	///////////// VECTOR UNITARIO  \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-
-	public static Vector3D VecUnitario(Vector3D Vector) {
-		Vector3D Resultado = new Vector3D("Vector unitario de "+Vector.getNombre(),Vector.getThetaX(),Vector.getThetaY(),Vector.getThetaZ(),1);
-		
-		Apunte NuevoApunte_VectorUnitario = new Apunte("Vector Unitario de \""+ Vector.getNombre()+"\"");
-		
-		NuevoApunte_VectorUnitario.AgregarParrafo(new Parrafo("\nDefinicion: El vector unitario representa un nuevo vector unicamente con la direccion del original y dejando su magnitud en 1"));
-	
-		NuevoApunte_VectorUnitario.AgregarParrafo(new Parrafo("\nFormula:  Â = Vector / Magnitud del Vector"));
-	
-		NuevoApunte_VectorUnitario.AgregarParrafo(new Parrafo("\nProcedimiento:"));
-		NuevoApunte_VectorUnitario.AgregarParrafo(new Parrafo("1.-  Â = "+ Vector.toStringReducido()+"/"+Vector.getMagnitud()));
-		NuevoApunte_VectorUnitario.AgregarParrafo(new Parrafo("2.-  Componente del vector en X: "+Vector.getMagnitudX()+"/"+Vector.getMagnitud()+" = "+Resultado.getMagnitudX()));
-		NuevoApunte_VectorUnitario.AgregarParrafo(new Parrafo("3.-  Componente del vector en Y: "+Vector.getMagnitudY()+"/"+Vector.getMagnitud()+" = "+Resultado.getMagnitudY()));
-		NuevoApunte_VectorUnitario.AgregarParrafo(new Parrafo("4.-  Componente del vector en Z: "+Vector.getMagnitudZ()+"/"+Vector.getMagnitud()+" = "+Resultado.getMagnitudZ()));
-		
-		NuevoApunte_VectorUnitario.AgregarParrafo(new Parrafo("\nVector Original: "+ Vector.getMagnitud()+Resultado.toStringReducido()));
-		NuevoApunte_VectorUnitario.AgregarParrafo(new Parrafo("Vector Unitario: "+ Resultado.toStringReducido()));
-
-
-
-		MostrarInformacion(NuevoApunte_VectorUnitario);
-		return Resultado;
-	}
-	
-	///////////// VECTOR MAGNITUD  \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-
-	public static double VecMagnitud(Vector3D Vector) {
-		Apunte NuevoApunte_Magnitud = new Apunte("Magnitud del vector \""+ Vector.getNombre()+"\"");
-		
-		NuevoApunte_Magnitud.AgregarParrafo(new Parrafo("\nDefinicion: La magnitud de un vector respresenta la unidad de amplitud o cantidad que en union con la direccion representa un vector."));
-	
-		NuevoApunte_Magnitud.AgregarParrafo(new Parrafo("\nFormula: Magnitud² = magnitudX² + magnitudY² + magnitudZ²"));
-		
-		NuevoApunte_Magnitud.AgregarParrafo(new Parrafo("\nProcedimiento:"));
-		NuevoApunte_Magnitud.AgregarParrafo(new Parrafo("1.- Magnitud² = "+Vector.getMagnitudX()+"² + "+Vector.getMagnitudY()+"² + "+Vector.getMagnitudZ()+"²"));
-		NuevoApunte_Magnitud.AgregarParrafo(new Parrafo("2.- Magnitud² = "+Math.pow(Vector.getMagnitudX(),2)+" + "+Math.pow(Vector.getMagnitudY(),2)+" + "+Math.pow(Vector.getMagnitudZ(),2)+""));
-		NuevoApunte_Magnitud.AgregarParrafo(new Parrafo("3.- Magnitud² = "+(Math.pow(Vector.getMagnitudX(),2)+Math.pow(Vector.getMagnitudY(),2)+Math.pow(Vector.getMagnitudZ(),2))));
-		NuevoApunte_Magnitud.AgregarParrafo(new Parrafo("4.- Magnitud  = "+Vector.getMagnitud()));
-
-		MostrarInformacion(NuevoApunte_Magnitud);
-		return  Vector.getMagnitud();
-	}
-	
-	///////////// PRODUCTO ESCALAR  \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
-	public static UnidadAritmetica VecProductoEscalar(Vector3D Vector,Vector3D Vector2) {
-		UnidadAritmetica Resultado =  new UnidadAritmetica((Vector.getMagnitudX()*Vector2.getMagnitudX())+(Vector.getMagnitudY()*Vector2.getMagnitudY())+(Vector.getMagnitudZ()*Vector2.getMagnitudZ()));
-		
-		Apunte nuevoApunte_ProductoEscalar = new Apunte("Producto Escalar de \""+Vector.getNombre()+"\" y \""+ Vector2.getNombre()+"\"");
-		
-		nuevoApunte_ProductoEscalar.AgregarParrafo(new Parrafo("\nDefinicion: El producto escalar representa la proyeccion del vector A sobre el vector B y equivalentemente B sobre A. "));
-		
-		nuevoApunte_ProductoEscalar.AgregarParrafo(new Parrafo("\nFormula 1: vecA • vecB = |A||B| cos(θ)"));
-		nuevoApunte_ProductoEscalar.AgregarParrafo(new Parrafo("Formula 2: vecA • vecB = AxBx + AyBy + AzBz "));
-		
-		nuevoApunte_ProductoEscalar.AgregarParrafo(new Parrafo("\nProcedimiento:"));
-		nuevoApunte_ProductoEscalar.AgregarParrafo(new Parrafo("1.- vecA • vecB = ("+Vector.getMagnitudX()+")"+"("+Vector2.getMagnitudX()+")"+" + ("+Vector.getMagnitudY()+")"+"("+Vector2.getMagnitudY()+")"+" + ("+Vector.getMagnitudZ()+")"+"("+Vector2.getMagnitudZ()+")"));
-		nuevoApunte_ProductoEscalar.AgregarParrafo(new Parrafo("2.- vecA • vecB = "+Vector.getMagnitudX()*Vector2.getMagnitudX()+"+"+Vector.getMagnitudY()*Vector2.getMagnitudY()+"+"+Vector.getMagnitudZ()*Vector2.getMagnitudZ()));
-		nuevoApunte_ProductoEscalar.AgregarParrafo(new Parrafo("3.- vecA • vecB = "+Resultado.getValor()));
-
-		MostrarInformacion(nuevoApunte_ProductoEscalar);
-		return Resultado;
-	}
 	public static UnidadAritmetica VecProductoEscalar(double MagnitudA, double MagnitudB, double Angulo) {
 		return new UnidadAritmetica( MagnitudA*MagnitudB*Math.cos(Angulo));
 	}
@@ -123,13 +39,7 @@ public class Operacion extends ObjetoAlgebraico {
 	
 	/////////////    OPERACIONES ARITMETICAS                                  \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
 
-	public static UnidadAritmetica Sumar(UnidadAritmetica A, UnidadAritmetica B) {
-		
-		Apunte nuevoApunte_SumaAritmetica = new Apunte("Suma "+A.getValor()+" + "+B.getValor()+" = "+ (A.getValor()+B.getValor()));
-		
-		MostrarInformacion(nuevoApunte_SumaAritmetica);
-		return new UnidadAritmetica(A.getValor()+B.getValor());
-	}
+
    public static Vector3D Sumar(Vector3D VectorA, Vector3D VectorB) {
 	   double MagnitudX = VectorA.getMagnitudX() + VectorB.getMagnitudX();
 	   double MagnitudY = VectorA.getMagnitudY() + VectorB.getMagnitudY();
@@ -149,12 +59,7 @@ public class Operacion extends ObjetoAlgebraico {
 	 return Resultado;
 	}
 
-	public static UnidadAritmetica Restar(UnidadAritmetica A, UnidadAritmetica B) {
-		Apunte nuevoApunte_RestaAritmetica = new Apunte("Resta "+A.getValor()+" - "+B.getValor()+" = "+(A.getValor()-B.getValor()));
-		MostrarInformacion(nuevoApunte_RestaAritmetica);
-		return new UnidadAritmetica(A.getValor()-B.getValor());
-		
-	}
+
   public static Vector3D Restar(Vector3D VectorA, Vector3D VectorB) {
 	   double MagnitudX = VectorA.getMagnitudX() - VectorB.getMagnitudX();
 	   double MagnitudY = VectorA.getMagnitudY() - VectorB.getMagnitudY();
@@ -202,21 +107,10 @@ public class Operacion extends ObjetoAlgebraico {
 	  MostrarInformacion(nuevoApunte_DividirVector);
 	  return Resultado;
   }
-  public static UnidadAritmetica Dividir(UnidadAritmetica A, UnidadAritmetica B) {
-	  Apunte nuevoApunte_DividirAritmetico = new Apunte("Dividir "+A.getValor()+" / "+B.getValor()+" = "+(A.getValor()/B.getValor()));
-		
-	  MostrarInformacion(nuevoApunte_DividirAritmetico);
-	  return new UnidadAritmetica(A.getValor()/B.getValor());
-  }
 
   
   
-  public static UnidadAritmetica Multiplicar(UnidadAritmetica A, UnidadAritmetica B) { 
-	  Apunte nuevoApunte_MultiplicarAritmetico = new Apunte("Multiplicar "+A.getValor()+" x "+B.getValor()+" = "+(A.getValor()*B.getValor()));
 
-	  return new UnidadAritmetica(A.getValor()*B.getValor());
-	  }
-  
   public static Vector3D Multiplicar(Vector3D Vector, UnidadAritmetica Unidad) {
 	  Vector3D Resultado = new Vector3D("Vector Multiplicar Magnitud de "+Vector.getNombre()+" y "+Unidad,Vector.getMagnitudX()*Unidad.getValor(),Vector.getMagnitudY()*Unidad.getValor(),Vector.getMagnitudZ()*Unidad.getValor());
 	  
@@ -247,16 +141,16 @@ public class Operacion extends ObjetoAlgebraico {
   }
 
 
-  /*
-   * retorna su tipo de operacion
-   */
-  public TipoOperacion getOperacion() {
-	  return Operacion;
-  } 
-
-	/*retorna la descripcion de la operacion */
-  public String toString(){
-	  return Operacion.toString();
-  }
 	
 }
+/*		
+		Producto_Cruz("Operacion Producto Cruz:\n Operacion para calcular el producto cruz entre 2 vectores."),
+		Sumar("Suma:\n Operacion para sumar 2 unidades o 2 vectores"),
+		Restar("Resta:\n Operacion para restar 2 unidades o 2 vectores"),
+		Dividir("Dividir:\n Operacion para dividir 2 unidades o la magnitud de un vector por una unidad"),
+		Multiplicar(
+				"Multiplicar:\n Operacion para multiplicar 2 unidades o la magnitud de un vector entre una unidad."),
+		Parentesis_Izquierdo(
+				"Parentesis Izquierdo:\n Simbologia para subdividir una operacion en multiples jerarquias."),
+		Parentesis_Derecho("Parentesis Derecho:\n Simbologia para subdividir una operacion en multiples jerarquias.");
+ */

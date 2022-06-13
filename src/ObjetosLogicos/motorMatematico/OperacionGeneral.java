@@ -11,8 +11,8 @@ import org.w3c.dom.events.EventException;
 
 import ModulosImportados.Vector3D.Vector3D;
 import ObjetosLogicos.motorMatematico.*;
-import ObjetosLogicos.motorMatematico.operaciones.Operacion;
-import ObjetosLogicos.motorMatematico.variables.UnidadAritmetica;
+import ObjetosLogicos.motorMatematico.operaciones.OperacionesBasicas;
+import ObjetosLogicos.motorMatematico.variables.UnidadMatematica;
 import ValoresDefault.Constantes;
 import ValoresDefault.Constantes.TipoDeErrorAlgebraico;
 import ValoresDefault.Constantes.TipoObjetoAlgebraico;
@@ -39,6 +39,8 @@ public class OperacionGeneral implements Serializable{
 		return ObjetosAlgebraicos;
 	}
 	
+
+	
 	private List<ObjetoAlgebraico> SubdividirOperacion(List<ObjetoAlgebraico> ListaOriginal,ObjetoAlgebraico PrimerObjeto, ObjetoAlgebraico UltimoObjeto) {
 		
 		
@@ -63,16 +65,16 @@ public class OperacionGeneral implements Serializable{
 		
 		for(int Index =  ObjetosAlgebraicos.indexOf(Inicio); Index < ObjetosAlgebraicos.size(); Index++ ) {
 			if(ObjetosAlgebraicos.get(Index).TipoDeObjetoAlgebraico == TipoObjetoAlgebraico.Operacion) {
-                if(((Operacion)ObjetosAlgebraicos.get(Index)).getOperacion() == TipoOperacion.Parentesis_Izquierdo) {
+                if(((OperacionesBasicas)ObjetosAlgebraicos.get(Index)).getOperacion() == TipoOperacion.Parentesis_Izquierdo) {
 					NumeroDeParentesis++;
 				}	
-                else if(((Operacion)ObjetosAlgebraicos.get(Index)).getOperacion() == TipoOperacion.Vector_Magnitud) {
+                else if(((OperacionesBasicas)ObjetosAlgebraicos.get(Index)).getOperacion() == TipoOperacion.Vector_Magnitud) {
 					NumeroDeParentesis++;
 				}	  
-                else if(((Operacion)ObjetosAlgebraicos.get(Index)).getOperacion() == TipoOperacion.Vector_Unitario) {
+                else if(((OperacionesBasicas)ObjetosAlgebraicos.get(Index)).getOperacion() == TipoOperacion.Vector_Unitario) {
 					NumeroDeParentesis++;
 				}	
-                else if(((Operacion)ObjetosAlgebraicos.get(Index)).getOperacion() == TipoOperacion.Parentesis_Derecho) {
+                else if(((OperacionesBasicas)ObjetosAlgebraicos.get(Index)).getOperacion() == TipoOperacion.Parentesis_Derecho) {
 
 					NumeroDeParentesis--;
 				}
@@ -105,7 +107,7 @@ public class OperacionGeneral implements Serializable{
 		case Operacion:
 			
 			/////////////////////////////// OPERACION /////////////////////////////////////////
-			switch(((Operacion)ObjetoActual).getOperacion()) {
+			switch(((OperacionesBasicas)ObjetoActual).getOperacion()) {
 			case Vector_Magnitud:   
 			{
 				ObjetoAlgebraico ParentesisCierre = BuscarParentesisCierre(ObjetoActual);
@@ -114,7 +116,7 @@ public class OperacionGeneral implements Serializable{
 				
 				TipoDeErrorAlgebraico PosibleError = subOperacion.CalcularOperacion();
 				if(PosibleError == null) {
-					ObjetosAlgebraicos_PrimerOrden.add(new UnidadAritmetica(Operacion.VecMagnitud(((Vector3D)subOperacion.getResultado()))));
+					ObjetosAlgebraicos_PrimerOrden.add(new UnidadMatematica(OperacionesBasicas.VecMagnitud(((Vector3D)subOperacion.getResultado()))));
 					
 					continue Repetidor;
 				}
@@ -134,7 +136,7 @@ public class OperacionGeneral implements Serializable{
 				OperacionGeneral subOperacion = new OperacionGeneral(SubdividirOperacion(ObjetosAlgebraicos,ObjetoActual, ParentesisCierre));
 				TipoDeErrorAlgebraico PosibleError = subOperacion.CalcularOperacion();
 				if(PosibleError == null) {
-					ObjetosAlgebraicos_PrimerOrden.add(Operacion.VecUnitario(((Vector3D)subOperacion.getResultado())));
+					ObjetosAlgebraicos_PrimerOrden.add(OperacionesBasicas.VecUnitario(((Vector3D)subOperacion.getResultado())));
 					continue Repetidor;
 					}
 				else {/// si si tiene regresar el error 
@@ -203,7 +205,7 @@ public class OperacionGeneral implements Serializable{
 					if(ListaParResolverSegundoOrden.get(Index-1).getTipoDeObjetoAlgebraico() != TipoObjetoAlgebraico.Operacion &&
 							ListaParResolverSegundoOrden.get(Index+1).getTipoDeObjetoAlgebraico() != TipoObjetoAlgebraico.Operacion ) {
 						/////////// Si el try no arroja nada de operador incompleto o tampoco de operador repitido, avanza	
-				switch(((Operacion)ListaParResolverSegundoOrden.get(Index)).getOperacion()){
+				switch(((OperacionesBasicas)ListaParResolverSegundoOrden.get(Index)).getOperacion()){
 				case Dividir:
 					 // Comprobar que se divide un vector entre una unidad o una unidad entre una unidad;
 					//primer caso
@@ -212,7 +214,7 @@ public class OperacionGeneral implements Serializable{
 						///Una vez terminado de  analizar una posicion se hace la comprobacion de si se ha encontrado un operador valido, crear la nueva lista y Terminar 
 							listaAuxiliar.clear();
 							listaAuxiliar.addAll(ListaParResolverSegundoOrden.subList(0, Index-1));
-							listaAuxiliar.add(Operacion.Dividir((Vector3D)ListaParResolverSegundoOrden.get(Index-1), (UnidadAritmetica)ListaParResolverSegundoOrden.get(Index+1)));
+							listaAuxiliar.add(OperacionesBasicas.Dividir((Vector3D)ListaParResolverSegundoOrden.get(Index-1), (UnidadMatematica)ListaParResolverSegundoOrden.get(Index+1)));
 							
 							try {
 							listaAuxiliar.addAll(ListaParResolverSegundoOrden.subList(Index+2, ListaParResolverSegundoOrden.size()));}
@@ -226,7 +228,7 @@ public class OperacionGeneral implements Serializable{
 							&& ListaParResolverSegundoOrden.get(Index+1).TipoDeObjetoAlgebraico == TipoObjetoAlgebraico.Unidad) {
 						listaAuxiliar.clear();
 						listaAuxiliar.addAll(ListaParResolverSegundoOrden.subList(0, Index-1));
-						listaAuxiliar.add(Operacion.Dividir((UnidadAritmetica)ListaParResolverSegundoOrden.get(Index-1), (UnidadAritmetica)ListaParResolverSegundoOrden.get(Index+1)));
+						listaAuxiliar.add(OperacionesBasicas.Dividir((UnidadMatematica)ListaParResolverSegundoOrden.get(Index-1), (UnidadMatematica)ListaParResolverSegundoOrden.get(Index+1)));
 						try {
 							listaAuxiliar.addAll(ListaParResolverSegundoOrden.subList(Index+2, ListaParResolverSegundoOrden.size()));}
 							catch(EventException e) { System.out.println("Lista mas pequenio de lo esperado");}
@@ -245,7 +247,7 @@ public class OperacionGeneral implements Serializable{
 						///Una vez terminado de  analizar una posicion se hace la comprobacion de si se ha encontrado un operador valido, crear la nueva lista y Terminar 
 							listaAuxiliar.clear();
 							listaAuxiliar.addAll(ListaParResolverSegundoOrden.subList(0, Index-1));
-							listaAuxiliar.add(Operacion.Multiplicar((Vector3D)ListaParResolverSegundoOrden.get(Index-1), (UnidadAritmetica)ListaParResolverSegundoOrden.get(Index+1)));
+							listaAuxiliar.add(OperacionesBasicas.Multiplicar((Vector3D)ListaParResolverSegundoOrden.get(Index-1), (UnidadMatematica)ListaParResolverSegundoOrden.get(Index+1)));
 							try {
 								listaAuxiliar.addAll(ListaParResolverSegundoOrden.subList(Index+2, ListaParResolverSegundoOrden.size()));}
 								catch(EventException e) { System.out.println("Lista mas pequenio de lo esperado");}
@@ -258,7 +260,7 @@ public class OperacionGeneral implements Serializable{
 								///Una vez terminado de  analizar una posicion se hace la comprobacion de si se ha encontrado un operador valido, crear la nueva lista y Terminar 
 									listaAuxiliar.clear();
 									listaAuxiliar.addAll(ListaParResolverSegundoOrden.subList(0, Index-1));
-									listaAuxiliar.add(Operacion.Multiplicar((Vector3D)ListaParResolverSegundoOrden.get(Index+1), (UnidadAritmetica)ListaParResolverSegundoOrden.get(Index-1)));
+									listaAuxiliar.add(OperacionesBasicas.Multiplicar((Vector3D)ListaParResolverSegundoOrden.get(Index+1), (UnidadMatematica)ListaParResolverSegundoOrden.get(Index-1)));
 									try {
 										listaAuxiliar.addAll(ListaParResolverSegundoOrden.subList(Index+2, ListaParResolverSegundoOrden.size()));}
 										catch(EventException e) { System.out.println("Lista mas pequenio de lo esperado");}
@@ -270,7 +272,7 @@ public class OperacionGeneral implements Serializable{
 							&& ListaParResolverSegundoOrden.get(Index+1).TipoDeObjetoAlgebraico == TipoObjetoAlgebraico.Unidad) {
 						listaAuxiliar.clear();
 						listaAuxiliar.addAll(ListaParResolverSegundoOrden.subList(0, Index-1));
-						listaAuxiliar.add(Operacion.Multiplicar((UnidadAritmetica)ListaParResolverSegundoOrden.get(Index-1), (UnidadAritmetica)ListaParResolverSegundoOrden.get(Index+1)));
+						listaAuxiliar.add(OperacionesBasicas.Multiplicar((UnidadMatematica)ListaParResolverSegundoOrden.get(Index-1), (UnidadMatematica)ListaParResolverSegundoOrden.get(Index+1)));
 						try {
 							listaAuxiliar.addAll(ListaParResolverSegundoOrden.subList(Index+2, ListaParResolverSegundoOrden.size()));}
 							catch(EventException e) { System.out.println("Lista mas pequenio de lo esperado");}
@@ -287,7 +289,7 @@ public class OperacionGeneral implements Serializable{
 					&& ListaParResolverSegundoOrden.get(Index+1).TipoDeObjetoAlgebraico == TipoObjetoAlgebraico.Vector) {
 						listaAuxiliar.clear();
 						listaAuxiliar.addAll(ListaParResolverSegundoOrden.subList(0, Index-1));
-						listaAuxiliar.add(Operacion.VecCruz((Vector3D)ListaParResolverSegundoOrden.get(Index-1), (Vector3D)ListaParResolverSegundoOrden.get(Index+1)));
+						listaAuxiliar.add(OperacionesBasicas.VecCruz((Vector3D)ListaParResolverSegundoOrden.get(Index-1), (Vector3D)ListaParResolverSegundoOrden.get(Index+1)));
 						try {
 							listaAuxiliar.addAll(ListaParResolverSegundoOrden.subList(Index+2, ListaParResolverSegundoOrden.size()));}
 							catch(EventException e) { System.out.println("Lista mas pequenio de lo esperado");}
@@ -305,7 +307,7 @@ public class OperacionGeneral implements Serializable{
 					&& ListaParResolverSegundoOrden.get(Index+1).TipoDeObjetoAlgebraico == TipoObjetoAlgebraico.Vector) {
 						listaAuxiliar.clear();
 						listaAuxiliar.addAll(ListaParResolverSegundoOrden.subList(0, Index-1));
-						listaAuxiliar.add(Operacion.VecProductoEscalar((Vector3D)ListaParResolverSegundoOrden.get(Index-1), (Vector3D)ListaParResolverSegundoOrden.get(Index+1)));
+						listaAuxiliar.add(OperacionesBasicas.VecProductoEscalar((Vector3D)ListaParResolverSegundoOrden.get(Index-1), (Vector3D)ListaParResolverSegundoOrden.get(Index+1)));
 						try {
 							listaAuxiliar.addAll(ListaParResolverSegundoOrden.subList(Index+2, ListaParResolverSegundoOrden.size()));}
 							catch(EventException e) { System.out.println("Lista mas pequenio de lo esperado");}
@@ -370,17 +372,17 @@ public class OperacionGeneral implements Serializable{
 			switch(ObjetoActual.getTipoDeObjetoAlgebraico()) { /// IDENTIFICAR EL TIPO DE OBJETO ACTUAL 
 			case Unidad : 	
 				if(ObjetoUltimo.getTipoDeObjetoAlgebraico() == TipoObjetoAlgebraico.Operacion) {
-				if(((Operacion)ObjetoUltimo).getOperacion() == TipoOperacion.Sumar) {
+				if(((OperacionesBasicas)ObjetoUltimo).getOperacion() == TipoOperacion.Sumar) {
 					if(ObjetoPenultimo.getTipoDeObjetoAlgebraico() == TipoObjetoAlgebraico.Unidad) {
-					    Resultado = Operacion.Sumar((UnidadAritmetica)Resultado, (UnidadAritmetica)ObjetoActual);
+					    Resultado = OperacionesBasicas.Sumar((UnidadMatematica)Resultado, (UnidadMatematica)ObjetoActual);
 					}
 					else {
 						return TipoDeErrorAlgebraico.EntradaInvalida;
 					}
 				}	
-				else if(((Operacion)ObjetoUltimo).getOperacion() == TipoOperacion.Restar) {
+				else if(((OperacionesBasicas)ObjetoUltimo).getOperacion() == TipoOperacion.Restar) {
 					if(ObjetoPenultimo.getTipoDeObjetoAlgebraico() == TipoObjetoAlgebraico.Unidad) {
-					    Resultado = Operacion.Restar((UnidadAritmetica)Resultado, (UnidadAritmetica)ObjetoActual);
+					    Resultado = OperacionesBasicas.Restar((UnidadMatematica)Resultado, (UnidadMatematica)ObjetoActual);
 					}
 					else {
 						return TipoDeErrorAlgebraico.EntradaInvalida;
@@ -390,17 +392,17 @@ public class OperacionGeneral implements Serializable{
 			break;
 			case Vector:  
 				if(ObjetoUltimo.getTipoDeObjetoAlgebraico() == TipoObjetoAlgebraico.Operacion) {
-					if(((Operacion)ObjetoUltimo).getOperacion() == TipoOperacion.Sumar) {
+					if(((OperacionesBasicas)ObjetoUltimo).getOperacion() == TipoOperacion.Sumar) {
 						if(ObjetoPenultimo.getTipoDeObjetoAlgebraico() == TipoObjetoAlgebraico.Vector) {
-						    Resultado = Operacion.Sumar((Vector3D)Resultado, (Vector3D)ObjetoActual);
+						    Resultado = OperacionesBasicas.Sumar((Vector3D)Resultado, (Vector3D)ObjetoActual);
 						}
 						else {
 							return TipoDeErrorAlgebraico.EntradaInvalida;
 						}
 					}	
-					else if(((Operacion)ObjetoUltimo).getOperacion() == TipoOperacion.Restar) {
+					else if(((OperacionesBasicas)ObjetoUltimo).getOperacion() == TipoOperacion.Restar) {
 						if(ObjetoPenultimo.getTipoDeObjetoAlgebraico() == TipoObjetoAlgebraico.Vector) {
-						    Resultado = Operacion.Restar((Vector3D)Resultado, (Vector3D)ObjetoActual);
+						    Resultado = OperacionesBasicas.Restar((Vector3D)Resultado, (Vector3D)ObjetoActual);
 						}
 						else {
 							return TipoDeErrorAlgebraico.EntradaInvalida;

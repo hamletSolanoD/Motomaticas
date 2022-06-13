@@ -133,7 +133,7 @@ public interface Constantes {
 
 	/* objetos algebraicos que el motor los reconoce como tal */
 	public enum TipoObjetoAlgebraico {
-		Vector, Unidad, Operacion
+		Unidad, Operacion
 
 	}
 
@@ -244,33 +244,5 @@ public interface Constantes {
 	}
 
 
-	/*
-	 * Tipo de operacion a realizar estandar, con su respectiva descripcion para poder insertarla en el parrafo
-	 */
-	public enum TipoOperacion {
-		Vector_Unitario("Operacion Vector Unitario:\n Operacion para calcular el vector unitario de un vector."),
-		Vector_Magnitud("Operacion Vector Magnitud:\n  Operacion para calcular la magnitud de un vector."),
-		Producto_Escalar("Operacion Producto Escalar:\n Operacion para calcular el producto escalar entre 2 vectores."),
-		Producto_Cruz("Operacion Producto Cruz:\n Operacion para calcular el producto cruz entre 2 vectores."),
-		Sumar("Suma:\n Operacion para sumar 2 unidades o 2 vectores"),
-		Restar("Resta:\n Operacion para restar 2 unidades o 2 vectores"),
-		Dividir("Dividir:\n Operacion para dividir 2 unidades o la magnitud de un vector por una unidad"),
-		Multiplicar(
-				"Multiplicar:\n Operacion para multiplicar 2 unidades o la magnitud de un vector entre una unidad."),
-		Parentesis_Izquierdo(
-				"Parentesis Izquierdo:\n Simbologia para subdividir una operacion en multiples jerarquias."),
-		Parentesis_Derecho("Parentesis Derecho:\n Simbologia para subdividir una operacion en multiples jerarquias.");
-
-		String Descripcion;
-
-		TipoOperacion(String Descripcion) {
-			this.Descripcion = Descripcion;
-
-		}
-
-		public String toString() {
-			return Descripcion;
-		}
-	}
 
 }

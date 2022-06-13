@@ -21,7 +21,7 @@ public class CuadernoDeApuntesBaseLogica implements Serializable {
 	public JPanelNotas Notas;
 	public JPanelVisualizar Visualizar;
 	public JPanelPizarron Pizarra;
-	public JpanelOperaciones Vectores;
+	public JpanelOperaciones Operaciones;
 
 	/*
 	 * creacion de un nuevo apunte cada que se decide cargar desde la computadora o
@@ -33,7 +33,7 @@ public class CuadernoDeApuntesBaseLogica implements Serializable {
 		this.Autor = Autor;
 		Algebra = new JPanelAlgebra();
 		Pizarra = new JPanelPizarron();
-		Vectores = new JpanelOperaciones();
+		Operaciones = new JpanelOperaciones();
 		Notas = new JPanelNotas();
 		Visualizar = new JPanelVisualizar();
 
@@ -67,12 +67,12 @@ public class CuadernoDeApuntesBaseLogica implements Serializable {
 		Pizarra = pizarra;
 	}
 
-	public JpanelOperaciones getVectores() {
-		return Vectores;
+	public JpanelOperaciones getOperaciones() {
+		return Operaciones;
 	}
 
-	public void setVectores(JpanelOperaciones vectores) {
-		Vectores = vectores;
+	public void setOperaciones(JpanelOperaciones Operaciones) {
+		Operaciones = Operaciones;
 	}
 
 	public void setNombreDelApunte(String nombreDelApunte) {
