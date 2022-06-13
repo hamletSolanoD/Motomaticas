@@ -99,7 +99,6 @@ public class crearUnidadNumerosReales extends JDialog implements ActionListener 
 		Component verticalStrut_1 = Box.createVerticalStrut(50);
 		panel.add(verticalStrut_1, BorderLayout.SOUTH);
 		
-		JLabel lblNewLabel = new JLabel("Agregar Constante");
 	
 		
 			JPanel buttonPane = new JPanel();

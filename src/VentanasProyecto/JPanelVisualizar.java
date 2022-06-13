@@ -4,7 +4,6 @@ import javax.swing.JPanel;
 
 import RecursosCustomizados.JPanel_PlanoCartesiano;
 import ValoresDefault.Constantes;
-import ValoresDefault.Constantes.TipoObjetoAlgebraico;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -16,8 +15,6 @@ import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
 import ModulosImportados.Vector3D.Vector3D;
-import ObjetosLogicos.motorMatematico.ObjetoAlgebraico;
-import ObjetosLogicos.motorMatematico.OperacionGeneral;
 
 import java.awt.Color;
 

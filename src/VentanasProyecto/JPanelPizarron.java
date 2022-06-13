@@ -1,18 +1,13 @@
 package VentanasProyecto;
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseMotionListener;
-import java.awt.image.SampleModel;
 import java.io.Serializable;
 
-import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.plaf.ColorChooserUI;
 
 import RecursosCustomizados.JPanel_Lienzo;
 
@@ -21,8 +16,7 @@ import javax.swing.JButton;
 import javax.swing.JColorChooser;
 import javax.swing.JSlider;
 import javax.swing.SwingConstants;
-import java.awt.Component;
-import javax.swing.Box;
+
 
 public class JPanelPizarron extends JPanel implements Serializable, MouseMotionListener {
 

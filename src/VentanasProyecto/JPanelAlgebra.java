@@ -2,16 +2,13 @@ package VentanasProyecto;
 
 import java.util.ArrayList;
 
-import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
 import RecursosCustomizados.BotonApuntes;
-import RecursosCustomizados.BotonAritmetico;
 import ValoresDefault.Constantes;
 
 import javax.swing.JSplitPane;
-import javax.swing.JTextArea;
 import javax.swing.JTextPane;
 import javax.swing.ScrollPaneConstants;
 
@@ -19,14 +16,12 @@ import java.awt.BorderLayout;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.Serializable;
 
 import javax.swing.JLabel;
-import javax.swing.BoxLayout;
 import java.awt.Component;
 import javax.swing.Box;
 import javax.swing.SwingConstants;

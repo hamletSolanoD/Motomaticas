@@ -1,7 +1,6 @@
 package RecursosCustomizados;
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.PaintContext;
 
 import javax.swing.JPanel;
 

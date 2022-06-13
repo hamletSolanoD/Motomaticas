@@ -1,12 +1,9 @@
 package VentanasProyecto;
 
-import java.awt.EventQueue;
-import java.awt.Font;
 import java.awt.GridBagConstraints;
 
 import javax.swing.JInternalFrame;
 import java.awt.BorderLayout;
-import java.awt.Color;
 
 import javax.swing.JToolBar;
 import javax.swing.JSplitPane;
@@ -19,13 +16,11 @@ import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingUtilities;
 
-import ModulosImportados.NumerosReales.crearUnidadNumerosReales;
 import ObjetosLogicos.motorMatematico.operaciones.OperacionMatematica;
 import ObjetosLogicos.motorMatematico.operaciones.operacionesMatematicasGenericasInterface;
 import ModulosImportados.Vector3D.*;
@@ -34,27 +29,20 @@ import ObjetosLogicos.motorMatematico.variables.UnidadMatematica;
 import RecursosCustomizados.BotonAritmetico;
 import RecursosCustomizados.JDialog_CrearOperacionMatematica;
 import RecursosCustomizados.JDialog_CrearUnidadMatematica;
-import RecursosCustomizados.Mensaje_EntradaDeDatos;
 import ValoresDefault.Constantes;
-import ValoresDefault.Constantes.Apunte;
 import ValoresDefault.Constantes.TipoDeErrorAlgebraico;
 import ValoresDefault.Constantes.TipoObjetoAlgebraico;
 
-import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JButton;
-import javax.swing.JEditorPane;
 import javax.swing.JTextPane;
-import javax.swing.JTextArea;
-import javax.swing.JLabel;
+
 import javax.swing.JOptionPane;
 
 import java.awt.Component;
-import java.awt.Container;
 
 import javax.swing.Box;
 import java.awt.GridBagLayout;
-import java.awt.Dimension;
 
 //suboperacion JFrame
 public class JInternalFrameOperacion extends JInternalFrame implements ActionListener, Serializable {
@@ -122,6 +110,12 @@ public class JInternalFrameOperacion extends JInternalFrame implements ActionLis
 		EliminarOperacion.addActionListener(this);
 		EliminarOperacion.setFont(Constantes.textoNormal);
 
+		JButton AgregarUnidades = Constantes.BotonCuadrado("+U", Constantes.DetallesColor, Constantes.PrincipalColor);
+		panel_3.add(AgregarUnidades);
+		AgregarUnidades.setActionCommand("+U");
+		AgregarUnidades.addActionListener(this);
+		AgregarUnidades.setFont(Constantes.textoNormal);
+
 		JButton JerarquiaDer = Constantes.BotonCuadrado("{", Constantes.DetallesColor, Constantes.PrincipalColor);
 		panel_3.add(JerarquiaDer);
 		JerarquiaDer.setActionCommand("{");
@@ -133,6 +127,12 @@ public class JInternalFrameOperacion extends JInternalFrame implements ActionLis
 		JerarquiaIzq.setActionCommand("}");
 		JerarquiaIzq.addActionListener(this);
 		JerarquiaIzq.setFont(Constantes.textoNormal);
+
+		JButton AgregarOperacion = Constantes.BotonCuadrado("...", Constantes.DetallesColor, Constantes.PrincipalColor);
+		panel_3.add(AgregarOperacion);
+		AgregarOperacion.setActionCommand("...");
+		AgregarOperacion.addActionListener(this);
+		AgregarOperacion.setFont(Constantes.textoNormal);
 
 		JSplitPane splitPane = new JSplitPane();
 		splitPane.setResizeWeight(0.50);

@@ -13,7 +13,6 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
-import javax.swing.text.BadLocationException;
 
 import RecursosCustomizados.MensajeConfirmar;
 import RecursosCustomizados.MensajeError;
@@ -22,9 +21,7 @@ import RecursosCustomizados.MyJPanel_ConFondo;
 import ValoresDefault.Constantes;
 
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
-import javax.swing.SwingUtilities;
 
 import java.awt.Component;
 import java.awt.Dialog;
@@ -32,16 +29,13 @@ import java.awt.Dialog;
 import javax.imageio.ImageIO;
 import javax.swing.Box;
 import javax.swing.ButtonGroup;
-import javax.swing.ButtonModel;
 import javax.swing.JRadioButton;
 import java.awt.GridLayout;
-import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
 import javax.swing.JTextField;
-import javax.swing.JSplitPane;
 import javax.swing.JTabbedPane;
 
 public class CrearVector3D extends JDialog implements ActionListener {

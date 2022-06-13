@@ -4,13 +4,11 @@ import java.io.Serializable;
 
 import javax.swing.JButton;
 
-import ObjetosLogicos.motorMatematico.ObjetoAlgebraico;
 import ValoresDefault.Constantes;
 import ValoresDefault.Constantes.Apunte;
 
 public class BotonApuntes extends JButton implements Serializable {
 
-	private String Etiqueta;
     private Apunte Apunte;
 	private boolean Seleccionado;
 	

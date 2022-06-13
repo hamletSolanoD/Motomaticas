@@ -72,7 +72,7 @@ public class CuadernoDeApuntesBaseLogica implements Serializable {
 	}
 
 	public void setOperaciones(JpanelOperaciones Operaciones) {
-		Operaciones = Operaciones;
+		this.Operaciones = Operaciones;
 	}
 
 	public void setNombreDelApunte(String nombreDelApunte) {

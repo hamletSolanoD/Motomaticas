@@ -9,7 +9,6 @@ import ValoresDefault.Constantes.Parrafo;
 import ObjetosLogicos.motorMatematico.ObjetoAlgebraico;
 import ObjetosLogicos.motorMatematico.operaciones.OperacionMatematica;
 import ObjetosLogicos.motorMatematico.variables.UnidadMatematica;
-import ValoresDefault.Constantes;
 import ValoresDefault.Constantes.Apunte;;
 
 public class Vector3D extends UnidadMatematica implements OperacionesVector{

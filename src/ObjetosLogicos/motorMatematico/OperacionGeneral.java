@@ -9,8 +9,6 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 import org.w3c.dom.events.EventException;
 
-import ModulosImportados.Vector3D.Vector3D;
-import ObjetosLogicos.motorMatematico.*;
 import ObjetosLogicos.motorMatematico.operaciones.OperacionMatematica;
 import ObjetosLogicos.motorMatematico.operaciones.operacionesMatematicasGenericasInterface;
 import ObjetosLogicos.motorMatematico.variables.UnidadMatematica;

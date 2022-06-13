@@ -1,17 +1,13 @@
 package RecursosCustomizados;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 
-import javax.swing.JFrame;
 import javax.swing.JPanel;
-import java.awt.Component;
-import javax.swing.Box;
+
 
 import java.awt.BasicStroke;
-import java.awt.BorderLayout;
 
 public class JPanel_PlanoCartesiano extends JPanel {
 private int SeparacionX;

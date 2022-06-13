@@ -2,11 +2,9 @@ package VentanasProyecto;
 
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
-import java.awt.Dialog;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.Serializable;
-import java.time.temporal.JulianFields;
 import java.util.ArrayList;
 
 import javax.swing.JToolBar;
@@ -21,9 +19,7 @@ import ValoresDefault.Constantes;
 
 import javax.swing.JButton;
 import javax.swing.JDesktopPane;
-import javax.swing.JDialog;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 import java.awt.Component;
 import javax.swing.Box;
 

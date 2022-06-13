@@ -20,7 +20,6 @@ public class main {
 		// TODO Auto-generated method stub
 		new Vector3D("prueba");
 		new UnidadNumerosReales(34);
-		OperacionesVector.operacionVecCruz vecCruz = new 	OperacionesVector.operacionVecCruz();
 		new JDialog_CrearOperacionMatematica(new JFrame(), "Prueba");
 		
 		

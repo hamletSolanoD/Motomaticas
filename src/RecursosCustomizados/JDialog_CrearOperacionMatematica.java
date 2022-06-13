@@ -21,7 +21,6 @@ import java.awt.event.ActionEvent;
 
 public class JDialog_CrearOperacionMatematica extends JDialog {
     private final JPanel contentPanel = new JPanel();
-    private JFrame Padre;
     private OperacionMatematica operacionMatematicaCreada;
 
     private void inicializarOpcionesOperacionMatematica() {
@@ -55,7 +54,6 @@ public class JDialog_CrearOperacionMatematica extends JDialog {
 
     public JDialog_CrearOperacionMatematica(JFrame Padre, String Mensaje) {
         super(Padre, "Confirmar", Dialog.ModalityType.TOOLKIT_MODAL);
-        this.Padre = Padre;
         setBounds(100, 100, Constantes.PantallaOrdenadorX / 3, Constantes.PantallaOrdenadorY / 3);
         setTitle("Insertar operacion Matematica");
         setResizable(false);

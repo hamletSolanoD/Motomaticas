@@ -1,35 +1,26 @@
 package VentanasProyecto;
 
 import java.awt.BorderLayout;
-import java.awt.EventQueue;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
-import java.awt.peer.FramePeer;
-import java.io.EOFException;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
-import java.io.OutputStreamWriter;
 import java.io.Serializable;
-import java.nio.file.Path;
-import java.nio.file.spi.FileTypeDetector;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 
 import ObjetosLogicos.interfazGrafica.CuadernoDeApuntesBaseLogica;
 import RecursosCustomizados.MensajeConfirmar;
 import ValoresDefault.Constantes;
 import javax.swing.JTabbedPane;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
+
 
 import java.awt.Component;
 

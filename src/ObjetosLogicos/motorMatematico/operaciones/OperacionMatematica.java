@@ -52,7 +52,7 @@ public abstract class OperacionMatematica extends ObjetoAlgebraico {
 		this.TipoOperandosCorrecto = TipoOperandosCorrecto;
 		this.Funcion = Funcion;
 		inyectarPorCreacion();
-		// inyectarBases();
+		inyectarBases();
 	}
 
 	private void inyectarPorCreacion() {
