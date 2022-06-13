@@ -1,8 +1,8 @@
 package ModulosImportados.Vector3D;
 
+import ModulosImportados.NumerosReales.UnidadNumerosReales;
 import ObjetosLogicos.motorMatematico.ObjetoAlgebraico;
 import ObjetosLogicos.motorMatematico.operaciones.OperacionMatematica;
-import ObjetosLogicos.motorMatematico.variables.UnidadNumerosReales;
 import ValoresDefault.Constantes.*;
 
 public interface OperacionesVector {

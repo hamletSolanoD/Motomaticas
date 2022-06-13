@@ -25,18 +25,16 @@ import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingUtilities;
 
+import ModulosImportados.NumerosReales.crearUnidadNumerosReales;
 import ModulosImportados.Vector3D.*;
 import ObjetosLogicos.motorMatematico.*;
-import ObjetosLogicos.motorMatematico.operaciones.OperacionesBasicas;
 import ObjetosLogicos.motorMatematico.variables.UnidadMatematica;
 import RecursosCustomizados.BotonAritmetico;
-import RecursosCustomizados.CrearUnidadAritmetica;
 import RecursosCustomizados.Mensaje_EntradaDeDatos;
 import ValoresDefault.Constantes;
 import ValoresDefault.Constantes.Apunte;
 import ValoresDefault.Constantes.TipoDeErrorAlgebraico;
 import ValoresDefault.Constantes.TipoObjetoAlgebraico;
-import ValoresDefault.Constantes.TipoOperacion;
 
 import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
@@ -381,7 +379,7 @@ public class JInternalFrameOperacion extends JInternalFrame implements ActionLis
 				CrearVector3D creadorPanelVector = new CrearVector3D((JFrame) SwingUtilities.getRoot(this));
 				Vector3D NuevoVector = creadorPanelVector.GetVector();
 				if (NuevoVector != null) {
-					NuevoVector.setNombre(new Mensaje_EntradaDeDatos((JFrame) SwingUtilities.getRoot(this),
+					NuevoVector.setNombreVector(new Mensaje_EntradaDeDatos((JFrame) SwingUtilities.getRoot(this),
 							"Ingrese etiqueta del Vector").Respuesta());
 					AgregarBotonAritmetico(
 							new BotonAritmetico(NuevoVector, NuevoVector.toStringReducido(), NuevoVector.getNombre()));
@@ -420,7 +418,7 @@ public class JInternalFrameOperacion extends JInternalFrame implements ActionLis
 				CalcularConsolaOutput();
 				break;
 			case "U":
-				CrearUnidadAritmetica creadorPanelUnidad = new CrearUnidadAritmetica(
+				crearUnidadNumerosReales creadorPanelUnidad = new crearUnidadNumerosReales(
 						(JFrame) SwingUtilities.getRoot(this));
 				UnidadMatematica NuevaUnidad = creadorPanelUnidad.getUnidadNueva();
 				if (NuevaUnidad != null) {

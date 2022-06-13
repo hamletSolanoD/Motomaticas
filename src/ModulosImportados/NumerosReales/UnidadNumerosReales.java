@@ -1,7 +1,8 @@
-package ObjetosLogicos.motorMatematico.variables;
+package ModulosImportados.NumerosReales;
 
 import ObjetosLogicos.motorMatematico.ObjetoAlgebraico;
 import ObjetosLogicos.motorMatematico.operaciones.OperacionMatematica;
+import ObjetosLogicos.motorMatematico.variables.UnidadMatematica;
 import ValoresDefault.Constantes.Apunte;
 
 public class UnidadNumerosReales extends UnidadMatematica {

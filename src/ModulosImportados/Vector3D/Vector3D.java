@@ -1,11 +1,12 @@
 package ModulosImportados.Vector3D;
 
 import java.lang.Math;
+
+import ModulosImportados.NumerosReales.UnidadNumerosReales;
 import ValoresDefault.Constantes.Parrafo;
 import ObjetosLogicos.motorMatematico.ObjetoAlgebraico;
 import ObjetosLogicos.motorMatematico.operaciones.OperacionMatematica;
 import ObjetosLogicos.motorMatematico.variables.UnidadMatematica;
-import ObjetosLogicos.motorMatematico.variables.UnidadNumerosReales;
 import ValoresDefault.Constantes;
 import ValoresDefault.Constantes.Apunte;;
 

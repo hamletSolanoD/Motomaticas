@@ -1,4 +1,4 @@
-package RecursosCustomizados;
+package ModulosImportados.NumerosReales;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -12,38 +12,33 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
-import javax.swing.text.MaskFormatter;
-import javax.swing.text.NumberFormatter;
+
 
 import ObjetosLogicos.motorMatematico.variables.UnidadMatematica;
+import RecursosCustomizados.MensajeConfirmar;
 import ValoresDefault.Constantes;
 
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
+
 import javax.swing.SwingConstants;
-import java.awt.GridLayout;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.text.Format;
-import java.text.NumberFormat;
-import java.text.ParseException;
-import java.time.format.FormatStyle;
 
-import javax.swing.JFormattedTextField;
 import javax.swing.JTextField;
 import java.awt.Component;
 import java.awt.Dialog;
 
 import javax.swing.Box;
 
-public class CrearUnidadAritmetica extends JDialog implements ActionListener {
+public class crearUnidadNumerosReales extends JDialog implements ActionListener {
 
 	private final JPanel contentPanel = new JPanel();
-	UnidadMatematica UnidadNueva = new UnidadMatematica();
+	UnidadNumerosReales UnidadNueva = new UnidadNumerosReales();
 	private JTextField JtextField_NuevaUnidad;
 	private JFrame FramePrincipal;
 	
-	public CrearUnidadAritmetica(JFrame FramePrincipal) {
+	public crearUnidadNumerosReales(JFrame FramePrincipal) {
 		super(FramePrincipal,Dialog.ModalityType.TOOLKIT_MODAL);
 		this.FramePrincipal = FramePrincipal;
 		setBounds(100, 100, 450, 300);
