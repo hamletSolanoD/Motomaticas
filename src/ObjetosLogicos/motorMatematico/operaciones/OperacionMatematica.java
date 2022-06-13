@@ -111,13 +111,21 @@ public abstract class OperacionMatematica extends ObjetoAlgebraico {
 	}
 
 	public boolean comprobarOperandosIguales(String[] ArrayTipos) {
+		System.out.println(TipoOperandosCorrecto);
+		System.out.println(ArrayTipos);
+
+
+
 		try {
 			for (int e = 0; e < TipoOperandosCorrecto.length; e++) {
+				String var = TipoOperandosCorrecto[e];
 				if (ArrayTipos[e] != TipoOperandosCorrecto[e])
 					return false;
 
 			}
-		} catch (IndexOutOfBoundsException e) {
+		} catch (Throwable e) {
+			System.out.println(e);
+
 			return false;
 		}
 		return true;

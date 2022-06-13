@@ -174,7 +174,7 @@ public class OperacionGeneral implements Serializable {
 				} catch (IndexOutOfBoundsException i) {
 					/// error -1 por objeto vacio
 					// -3 por operador repetido
-					System.err.print("Error de sintaxis" + i.getMessage());
+					System.err.print("Error de sintaxis " + i.getMessage());
 					return Constantes.TipoDeErrorAlgebraico.EntradaInvalida;
 				}
 

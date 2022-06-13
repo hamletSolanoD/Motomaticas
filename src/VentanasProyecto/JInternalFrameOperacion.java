@@ -268,14 +268,15 @@ public class JInternalFrameOperacion extends JInternalFrame implements ActionLis
 						+ ((UnidadMatematica) OperacionGeneral.getResultado()).toStringReducido());
 
 				// MainApunteFrame.panel_Visualizar.MostrarVectores(new Vector3D("", 90, 90, 90, 0));
-			} else { // si no hay un resultado que mostrar
+			} 
+		}else { // si no hay un resultado que mostrar
 				ConsolaOutput.setForeground(Constantes.DetallesColor);
 				ConsolaOutput.setText("Error en la operacion: " + PosibleError.toString());
 				// MainApunteFrame.panel_Visualizar.MostrarVectores(new Vector3D("", 90, 90, 90, 0));
 
 			}
 		}
-	}
+	
 
 	/*
 	 * define las acciones a realizar por cada boton de operacion
