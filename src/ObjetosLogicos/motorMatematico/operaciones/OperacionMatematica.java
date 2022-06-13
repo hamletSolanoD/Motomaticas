@@ -1,10 +1,7 @@
 package ObjetosLogicos.motorMatematico.operaciones;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 
 import ObjetosLogicos.motorMatematico.ObjetoAlgebraico;
-import ObjetosLogicos.motorMatematico.variables.UnidadMatematica;
 import RecursosCustomizados.BotonApuntes;
 import ValoresDefault.Constantes;
 import ValoresDefault.Constantes.Apunte;
@@ -37,6 +34,10 @@ public abstract class OperacionMatematica extends ObjetoAlgebraico {
 		MainApunteFrame.panel_Algebra.AgregarBotonDeApuntes(new BotonApuntes(Apunte));
 	}
 
+	@Override
+	public String toStringReducido() {
+		return this.getTituloDeOperacion();
+	}
 	/*
 	 * retorna su tipo de operacion
 	 */

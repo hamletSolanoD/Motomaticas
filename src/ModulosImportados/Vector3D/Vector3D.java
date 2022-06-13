@@ -1,12 +1,200 @@
 package ModulosImportados.Vector3D;
 
 import java.lang.Math;
-
+import ValoresDefault.Constantes.Parrafo;
 import ObjetosLogicos.motorMatematico.ObjetoAlgebraico;
+import ObjetosLogicos.motorMatematico.operaciones.OperacionMatematica;
 import ObjetosLogicos.motorMatematico.variables.UnidadMatematica;
-import ValoresDefault.Constantes;;
+import ObjetosLogicos.motorMatematico.variables.UnidadNumerosReales;
+import ValoresDefault.Constantes;
+import ValoresDefault.Constantes.Apunte;;
 
 public class Vector3D extends UnidadMatematica {
+
+	private static class suma extends OperacionMatematica {
+		static String[] operandos = { (new Vector3D("")).getNombre(), (new Vector3D("")).getNombre() };
+
+		public suma() {
+			super(false, operandos, "Suma", "Operacion para sumar 2 vectores", 1);
+		}
+
+		@Override
+		public ObjetoAlgebraico calcularOperacion(ObjetoAlgebraico... args) {
+			Vector3D VectorA = (Vector3D) args[0];
+			Vector3D VectorB = (Vector3D) args[0];
+			double MagnitudX = VectorA.getMagnitudX() + VectorB.getMagnitudX();
+			double MagnitudY = VectorA.getMagnitudY() + VectorB.getMagnitudY();
+			double MagnitudZ = VectorA.getMagnitudZ() + VectorB.getMagnitudZ();
+			Vector3D Resultado = new Vector3D("Vector suma de " + VectorA.getNombre() + " y " + VectorB.getNombre(),
+					MagnitudX, MagnitudY, MagnitudZ);
+
+			Apunte nuevoApunte_SumaVectores = new Apunte(
+					"Suma de los vectores \"" + VectorA.getNombre() + "\" + \"" + VectorB.getNombre() + "\"");
+			nuevoApunte_SumaVectores.AgregarParrafo(new Parrafo(
+					"\nDefinicion: La suma de vectores representa sumar individulmente las componentes de cada vector para dar resultado con ellas a uno nuevo."));
+			nuevoApunte_SumaVectores.AgregarParrafo(
+					new Parrafo("\nFormula: vecA + vecB = Vector( (Ax + Bx) î, (Ay + By) ĵ, (Az + Bz) ž)"));
+			nuevoApunte_SumaVectores.AgregarParrafo(new Parrafo("\nProcedimiento:"));
+			nuevoApunte_SumaVectores.AgregarParrafo(
+					new Parrafo("1.- vecA + vecB = Vector( (" + VectorA.getMagnitudX() + " + " + VectorB.getMagnitudX()
+							+ ") î, (" + VectorA.getMagnitudY() + " + " + VectorB.getMagnitudY() + ") ĵ, ("
+							+ VectorA.getMagnitudZ() + " + " + VectorB.getMagnitudZ() + ") ž)"));
+			nuevoApunte_SumaVectores.AgregarParrafo(new Parrafo("2.- vecA + vecB = " + Resultado.toStringReducido()));
+			MostrarInformacion(nuevoApunte_SumaVectores);
+
+			return Resultado;
+		}
+
+	}
+
+	private static class resta extends OperacionMatematica {
+		static String[] operandos = { (new Vector3D("")).getNombre(), (new Vector3D("")).getNombre() };
+
+		public resta() {
+			super(false, operandos, "Resta", "Operacion para restar 2 vectores", 1);
+		}
+
+		@Override
+		public ObjetoAlgebraico calcularOperacion(ObjetoAlgebraico... args) {
+			Vector3D VectorA = (Vector3D) args[0];
+			Vector3D VectorB = (Vector3D) args[0];
+			double MagnitudX = VectorA.getMagnitudX() - VectorB.getMagnitudX();
+			double MagnitudY = VectorA.getMagnitudY() - VectorB.getMagnitudY();
+			double MagnitudZ = VectorA.getMagnitudZ() - VectorB.getMagnitudZ();
+			Vector3D Resultado = new Vector3D("Vector resta de " + VectorA.getNombre() + " y " + VectorB.getNombre(),
+					MagnitudX, MagnitudY, MagnitudZ);
+
+			Apunte nuevoApunte_RestaVectores = new Apunte(
+					"Resta de los vectores \"" + VectorA.getNombre() + "\" - \"" + VectorB.getNombre() + "\"");
+
+			nuevoApunte_RestaVectores.AgregarParrafo(new Parrafo(
+					"\nDefinicion: La resta de vectores representa restar individulmente las componentes de cada vector para dar resultado con ellas a uno nuevo."));
+
+			nuevoApunte_RestaVectores.AgregarParrafo(
+					new Parrafo("\nFormula: vecA - vecB = Vector( (Ax - Bx) î, (Ay - By) ĵ, (Az - Bz) ž)"));
+
+			nuevoApunte_RestaVectores.AgregarParrafo(new Parrafo("\nProcedimiento:"));
+			nuevoApunte_RestaVectores.AgregarParrafo(
+					new Parrafo("1.- vecA - vecB = Vector( (" + VectorA.getMagnitudX() + " - " + VectorB.getMagnitudX()
+							+ ") î, (" + VectorA.getMagnitudY() + " - " + VectorB.getMagnitudY() + ") ĵ, ("
+							+ VectorA.getMagnitudZ() + " - " + VectorB.getMagnitudZ() + ") ž)"));
+			nuevoApunte_RestaVectores.AgregarParrafo(new Parrafo("2.- vecA - vecB = " + Resultado.toStringReducido()));
+
+			MostrarInformacion(nuevoApunte_RestaVectores);
+			return Resultado;
+		}
+
+	}
+
+	private static class multiplicacion extends OperacionMatematica {
+		static String[] operandos = { (new Vector3D("")).getNombre(), (new UnidadNumerosReales()).getNombre() };
+
+		public multiplicacion() {
+			super(false, operandos, "multiplicar",
+					"Operacion para multiplicar la magnitud de un vector por una unidad.", 2);
+		}
+
+		@Override
+		public ObjetoAlgebraico calcularOperacion(ObjetoAlgebraico... args) {
+			Vector3D Vector = (Vector3D) args[0];
+			UnidadNumerosReales Unidad = (UnidadNumerosReales) args[0];
+			Vector3D Resultado = new Vector3D("Vector Multiplicar Magnitud de " + Vector.getNombre() + " y " + Unidad,
+					Vector.getMagnitudX() * Unidad.getValor(), Vector.getMagnitudY() * Unidad.getValor(),
+					Vector.getMagnitudZ() * Unidad.getValor());
+
+			Apunte nuevoApunte_Multiplicar = new Apunte(
+					"Multiplicar Magnitud del vector \"" + Vector.getMagnitud() + "\" x \"" + Unidad.getValor() + "\"");
+
+			nuevoApunte_Multiplicar.AgregarParrafo(new Parrafo(
+					"\nDefinicion: Multiplicar un vector por una magnitud representa multiplicar su magnitud total por alguna unidad o multiplicar las magnitudes de cada eje por la unidad para dar como resultado un nuevo vector. "));
+
+			nuevoApunte_Multiplicar.AgregarParrafo(
+					new Parrafo("\nFormula: Vector x Unidad = (Vector Magnitud x Unidad) x ( Â(Vector) )"));
+
+			nuevoApunte_Multiplicar.AgregarParrafo(new Parrafo("\nProcedimiento:"));
+			nuevoApunte_Multiplicar.AgregarParrafo(new Parrafo("1.- Magnitud X = " + Vector.getMagnitudX() + " x "
+					+ Unidad.getValor() + " = " + Resultado.getMagnitudX()));
+			nuevoApunte_Multiplicar.AgregarParrafo(new Parrafo("2.- Magnitud Y = " + Vector.getMagnitudY() + " x "
+					+ Unidad.getValor() + " = " + Resultado.getMagnitudY()));
+			nuevoApunte_Multiplicar.AgregarParrafo(new Parrafo("3.- Magnitud Z = " + Vector.getMagnitudZ() + " x "
+					+ Unidad.getValor() + " = " + Resultado.getMagnitudZ()));
+			nuevoApunte_Multiplicar.AgregarParrafo(new Parrafo("4.- " + Vector.toStringReducido() + " x "
+					+ Unidad.getValor() + " = " + Resultado.toStringReducido()));
+
+			nuevoApunte_Multiplicar.AgregarParrafo(new Parrafo(
+					"\nFormula: Vector x Unidad = Vector( MagnitudX x Unidad, MagnitudY x Unidad, MagnitudZ x Unidad)"));
+
+			nuevoApunte_Multiplicar.AgregarParrafo(new Parrafo("\nProcedimiento 2:"));
+			nuevoApunte_Multiplicar.AgregarParrafo(
+					new Parrafo("1.- Magnitud x Unidad = " + Vector.getMagnitud() + " x " + Unidad.getValor()));
+			nuevoApunte_Multiplicar.AgregarParrafo(
+					new Parrafo("2.- Magnitud x Unidad = " + (Vector.getMagnitud() * Unidad.getValor())));
+			nuevoApunte_Multiplicar.AgregarParrafo(new Parrafo("3.- " + Vector.toStringReducido() + " x "
+					+ Unidad.getValor() + " = " + (Vector.getMagnitud() * Unidad.getValor()) + ""
+					+ ((new OperacionesVector.operacionVecUnitario()).calcularOperacion(Vector)).toStringReducido()));
+			nuevoApunte_Multiplicar.AgregarParrafo(new Parrafo("4.- " + Vector.toStringReducido() + " x "
+					+ Unidad.getValor() + " = " + Resultado.toStringReducido()));
+
+			MostrarInformacion(nuevoApunte_Multiplicar);
+			return Resultado;
+		}
+
+	}
+
+	private static class division extends OperacionMatematica {
+		static String[] operandos = { (new Vector3D("")).getNombre(), (new UnidadNumerosReales()).getNombre() };
+
+		public division() {
+			super(false, operandos, "Dividir", "Operacion para dividir la magnitud de un vector por una unidad.", 2);
+		}
+
+		@Override
+		public ObjetoAlgebraico calcularOperacion(ObjetoAlgebraico... args) {
+			Vector3D Vector = (Vector3D) args[0];
+			UnidadNumerosReales Unidad = (UnidadNumerosReales) args[0];
+			Vector3D Resultado = new Vector3D("Vector Dividir vector " + Vector.getNombre() + " / " + Unidad,
+					Vector.getMagnitudX() / Unidad.getValor(), Vector.getMagnitudY() / Unidad.getValor(),
+					Vector.getMagnitudZ() / Unidad.getValor());
+
+			Apunte nuevoApunte_DividirVector = new Apunte(
+					"Dividir vector \"" + Vector.toStringReducido() + "\" / \"" + Unidad.getValor() + "\"");
+
+			nuevoApunte_DividirVector.AgregarParrafo(new Parrafo(
+					"\nDefinicion: Dividir un vector representa dividir su magnitud total entre alguna unidad o dividir las magnitudes de cada eje entre la unidad para dar como resultado un nuevo vector. "));
+
+			nuevoApunte_DividirVector.AgregarParrafo(
+					new Parrafo("\nFormula: Vector / Unidad = (Vector Magnitud / Unidad) x ( Â(Vector) )"));
+
+			nuevoApunte_DividirVector.AgregarParrafo(new Parrafo("\nProcedimiento:"));
+			nuevoApunte_DividirVector.AgregarParrafo(new Parrafo("1.- Magnitud X = " + Vector.getMagnitudX() + " / "
+					+ Unidad.getValor() + " = " + Resultado.getMagnitudX()));
+			nuevoApunte_DividirVector.AgregarParrafo(new Parrafo("2.- Magnitud Y = " + Vector.getMagnitudY() + " / "
+					+ Unidad.getValor() + " = " + Resultado.getMagnitudY()));
+			nuevoApunte_DividirVector.AgregarParrafo(new Parrafo("3.- Magnitud Z = " + Vector.getMagnitudZ() + " / "
+					+ Unidad.getValor() + " = " + Resultado.getMagnitudZ()));
+			nuevoApunte_DividirVector.AgregarParrafo(new Parrafo("4.- " + Vector.toStringReducido() + " / "
+					+ Unidad.getValor() + " = " + Resultado.toStringReducido()));
+
+			nuevoApunte_DividirVector.AgregarParrafo(new Parrafo(
+					"\nFormula: Vector / Unidad = Vector( MagnitudX / Unidad, MagnitudY / Unidad, MagnitudZ / Unidad)"));
+
+			nuevoApunte_DividirVector.AgregarParrafo(new Parrafo("\nProcedimiento 2:"));
+			nuevoApunte_DividirVector.AgregarParrafo(
+					new Parrafo("1.- Magnitud / Unidad = " + Vector.getMagnitud() + " / " + Unidad.getValor()));
+			nuevoApunte_DividirVector.AgregarParrafo(
+					new Parrafo("2.- Magnitud / Unidad = " + (Vector.getMagnitud() / Unidad.getValor())));
+			nuevoApunte_DividirVector.AgregarParrafo(new Parrafo("3.- " + Vector.toStringReducido() + " / "
+					+ Unidad.getValor() + " = " + (Vector.getMagnitud() / Unidad.getValor()) + ""
+					+ ((new OperacionesVector.operacionVecUnitario()).calcularOperacion(Vector)).toStringReducido()));
+			nuevoApunte_DividirVector.AgregarParrafo(new Parrafo("4.- " + Vector.toStringReducido() + " / "
+					+ Unidad.getValor() + " = " + Resultado.toStringReducido()));
+
+			MostrarInformacion(nuevoApunte_DividirVector);
+			return Resultado;
+		}
+
+	}
+
 	private String NombreVector;
 
 	private double magnitud;
@@ -20,7 +208,6 @@ public class Vector3D extends UnidadMatematica {
 
 	private int Plano;
 
-
 	/* redondear la cantidad de decimales */
 	public static double redondeo(double Numero, int cantidadRedondeo) {
 		double scale = Math.pow(10, cantidadRedondeo);
@@ -31,15 +218,15 @@ public class Vector3D extends UnidadMatematica {
 	 * Vector 3D con nombre y direcciones creado a partir de 3 magnitudes en sus
 	 * ejes
 	 */
-	public Vector3D(String Nombre, double magnitudX, double magnitudY, double magnitudZ) {
-		super(Constantes.TipoObjetoAlgebraico.Unidad);
-		this.Nombre = Nombre;
+	public Vector3D(String NombreVector, double magnitudX, double magnitudY, double magnitudZ) {
+		super(new suma(), new resta(), new multiplicacion(), new division());
+		this.NombreVector = NombreVector;
 		this.magnitudX = magnitudX;
 		this.magnitudY = magnitudY;
 		this.magnitudZ = magnitudZ;
 		CalcularDatosTheta();
-		if (Nombre == null || Nombre.isEmpty()) {
-			Nombre = this.toStringReducido();
+		if (NombreVector== null || NombreVector.isEmpty()) {
+			NombreVector= this.toStringReducido();
 		}
 	}
 
@@ -47,9 +234,9 @@ public class Vector3D extends UnidadMatematica {
 	 * Vector 3D con nombre y direcciones creado a partir de 3 de sus angulos y una
 	 * magnitud
 	 */
-	public Vector3D(String Nombre, double ThetaX, double ThetaY, double ThetaZ, double Magnitud) {
-		super(Constantes.TipoObjetoAlgebraico.Unidad);
-		this.Nombre = Nombre;
+	public Vector3D(String NombreVector, double ThetaX, double ThetaY, double ThetaZ, double Magnitud) {
+		super(new suma(), new resta(), new multiplicacion(), new division());
+		this.NombreVector = NombreVector;
 		this.ThetaX = ThetaX;
 		this.ThetaY = ThetaY;
 		this.ThetaZ = ThetaZ;
@@ -58,17 +245,17 @@ public class Vector3D extends UnidadMatematica {
 
 		CalcularPlano();
 		CalcularDatosMagnitud(Plano);
-		if (Nombre == null || Nombre.isEmpty()) {
-			Nombre = this.toStringReducido();
+		if (NombreVector == null || NombreVector.isEmpty()) {
+			NombreVector = this.toStringReducido();
 		}
 	}
 
 	/* Vector 3D con nombre y variables vacias */
-	public Vector3D(String Nombre) {
-		super(Constantes.TipoObjetoAlgebraico.Unidad);
-		this.Nombre = Nombre;
-		if (Nombre == null || Nombre.isEmpty()) {
-			Nombre = this.toStringReducido();
+	public Vector3D(String NombreVector) {
+		super(new suma(), new resta(), new multiplicacion(), new division());
+		this.NombreVector = NombreVector;
+		if (NombreVector == null || NombreVector.isEmpty()) {
+			NombreVector = this.toStringReducido();
 		}
 	}
 
@@ -78,7 +265,8 @@ public class Vector3D extends UnidadMatematica {
 	}
 
 	/*
-	 * Calcula los angulos si se tienen de entrada todas las magnitudes o dependiendo el plano en el cual se encuentre
+	 * Calcula los angulos si se tienen de entrada todas las magnitudes o
+	 * dependiendo el plano en el cual se encuentre
 	 */
 	public void CalcularDatosTheta() {
 		if (magnitudX != 0 || magnitudY != 0 || magnitudZ != 0) {
@@ -128,7 +316,8 @@ public class Vector3D extends UnidadMatematica {
 	}
 
 	/*
-	 * Si alguna de las magnitudes es igual a 0 significa que es un plano 2D por tanto se manejara como tal 
+	 * Si alguna de las magnitudes es igual a 0 significa que es un plano 2D por
+	 * tanto se manejara como tal
 	 * Si se tienten todas las magnitudes se haran calculos de un plano 3D
 	 */
 	private void CalcularPlano() {
@@ -158,9 +347,9 @@ public class Vector3D extends UnidadMatematica {
 
 	}
 
-
 	/*
-	 * Calcula las magnitudes si se tienen de entrada todos los angulos y una magnitud o dependiendo los angulos que se encuentren
+	 * Calcula las magnitudes si se tienen de entrada todos los angulos y una
+	 * magnitud o dependiendo los angulos que se encuentren
 	 */
 	public void CalcularDatosMagnitud(int Plano) {
 
@@ -251,7 +440,6 @@ public class Vector3D extends UnidadMatematica {
 		ThetaZ = 0;
 	}
 
-
 	/*
 	 * limpieza de magnitudes
 	 */
@@ -271,7 +459,6 @@ public class Vector3D extends UnidadMatematica {
 
 	}
 
-
 	/*
 	 * comprobar que los angulos sean matematicamente correctos segun la formula
 	 * Cos de thetaX^2 + thetaY^2 + thetaZ^2 = 1
@@ -288,9 +475,9 @@ public class Vector3D extends UnidadMatematica {
 		return resultadoComprobatorio <= 1.01;
 	}
 
-
 	/*
-	 * retornar la descripcion del vector 3D a un tipo string legible a cualquier usuario
+	 * retornar la descripcion del vector 3D a un tipo string legible a cualquier
+	 * usuario
 	 */
 	public String toString() {
 		return "Nombre del Vector: " + NombreVector + "\n" +
@@ -304,14 +491,14 @@ public class Vector3D extends UnidadMatematica {
 
 	}
 
-		/*
-	 * retornar la descripcion del vector 3D a un tipo string legible a cualquier usuario de forma reducida
+	/*
+	 * retornar la descripcion del vector 3D a un tipo string legible a cualquier
+	 * usuario de forma reducida
 	 */
 	public String toStringReducido() {
 		return "Vector(" + redondeo(magnitudX, 3) + "," + redondeo(magnitudY, 3) + "," + redondeo(magnitudZ, 3) + ")";
 	}
 
-	
 	public String getNombreVector() {
 		return NombreVector;
 	}
@@ -344,8 +531,8 @@ public class Vector3D extends UnidadMatematica {
 		return redondeo(ThetaZ, 3);
 	}
 
-	public void setNombreVector(String nombre) {
-		NombreVector = nombre;
+	public void setNombreVector(String NombreVector) {
+		this.NombreVector = NombreVector;
 		if (NombreVector == null) {
 			NombreVector = "Vector Sin Nombre";
 		}
@@ -384,6 +571,12 @@ public class Vector3D extends UnidadMatematica {
 	public String getNombre() {
 		// TODO Auto-generated method stub
 		return "Vector3D";
+	}
+
+	@Override
+	public boolean crearUnidad() {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }

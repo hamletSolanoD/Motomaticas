@@ -16,6 +16,8 @@ public abstract class ObjetoAlgebraico  implements Serializable{
 	public TipoObjetoAlgebraico getTipoDeObjetoAlgebraico() {
 		return TipoDeObjetoAlgebraico;
 	}
+	public abstract String toStringReducido();
+	public abstract String toString();
 	
 	protected void setTipoDeObjetoAlgebraico(TipoObjetoAlgebraico TipoDeObjetoAlgebraico) {
 		this.TipoDeObjetoAlgebraico =  TipoDeObjetoAlgebraico;

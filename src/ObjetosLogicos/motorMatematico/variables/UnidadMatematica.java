@@ -26,4 +26,6 @@ public abstract class UnidadMatematica extends ObjetoAlgebraico {
 
 	public abstract String toStringReducido();
 
+	public abstract boolean crearUnidad();// metodo para que se sobrescriba y cree una jdialog de unidad aritmetica
+
 }
