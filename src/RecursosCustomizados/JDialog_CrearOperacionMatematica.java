@@ -11,7 +11,6 @@ import java.awt.event.ActionListener;
 import javax.swing.ScrollPaneConstants;
 
 import ObjetosLogicos.motorMatematico.operaciones.OperacionMatematica;
-import ObjetosLogicos.motorMatematico.variables.UnidadMatematica;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
@@ -23,7 +22,7 @@ import java.awt.event.ActionEvent;
 public class JDialog_CrearOperacionMatematica extends JDialog {
     private final JPanel contentPanel = new JPanel();
     private JFrame Padre;
-    private OperacionMatematica operacionMatematica;
+    private OperacionMatematica operacionMatematicaCreada;
 
     private void inicializarOpcionesOperacionMatematica() {
 
@@ -37,7 +36,8 @@ public class JDialog_CrearOperacionMatematica extends JDialog {
 
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                   
+                    operacionMatematicaCreada = operacionMatematica;
+                    System.out.println(operacionMatematicaCreada);
                 }
             });
 
@@ -76,7 +76,7 @@ public class JDialog_CrearOperacionMatematica extends JDialog {
     }
 
     public OperacionMatematica getOperacionMatematicaCreada() {
-        return operacionMatematica;
+        return operacionMatematicaCreada;
 
     }
 

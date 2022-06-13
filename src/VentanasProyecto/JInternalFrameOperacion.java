@@ -26,10 +26,14 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingUtilities;
 
 import ModulosImportados.NumerosReales.crearUnidadNumerosReales;
+import ObjetosLogicos.motorMatematico.operaciones.OperacionMatematica;
+import ObjetosLogicos.motorMatematico.operaciones.operacionesMatematicasGenericasInterface;
 import ModulosImportados.Vector3D.*;
 import ObjetosLogicos.motorMatematico.*;
 import ObjetosLogicos.motorMatematico.variables.UnidadMatematica;
 import RecursosCustomizados.BotonAritmetico;
+import RecursosCustomizados.JDialog_CrearOperacionMatematica;
+import RecursosCustomizados.JDialog_CrearUnidadMatematica;
 import RecursosCustomizados.Mensaje_EntradaDeDatos;
 import ValoresDefault.Constantes;
 import ValoresDefault.Constantes.Apunte;
@@ -52,8 +56,6 @@ import javax.swing.Box;
 import java.awt.GridBagLayout;
 import java.awt.Dimension;
 
-
-
 //suboperacion JFrame
 public class JInternalFrameOperacion extends JInternalFrame implements ActionListener, Serializable {
 
@@ -70,9 +72,7 @@ public class JInternalFrameOperacion extends JInternalFrame implements ActionLis
 	private JTextPane ConsolaOutput;
 	private JTextPane PropiedadesDisplay;
 
-
-
-	//crear el jframe panel de la sub operacion con todos sus componentes 
+	// crear el jframe panel de la sub operacion con todos sus componentes
 	public JInternalFrameOperacion(String Titulo) {
 		this.Titulo = Titulo;
 
@@ -116,17 +116,11 @@ public class JInternalFrameOperacion extends JInternalFrame implements ActionLis
 		panel_2.add(panel_3, BorderLayout.CENTER);
 		panel_3.setLayout(new GridLayout(1, 0, 0, 0));
 
-		JButton AgregarVector = Constantes.BotonCuadrado("Ā", Constantes.DetallesColor, Constantes.PrincipalColor);
-		AgregarVector.setActionCommand("++");
-		panel_3.add(AgregarVector);
-		AgregarVector.addActionListener(this);
-		AgregarVector.setFont(Constantes.textoNormal);
-
-		JButton EliminarVector = Constantes.BotonCuadrado("--", Constantes.DetallesColor, Constantes.PrincipalColor);
-		panel_3.add(EliminarVector);
-		EliminarVector.setActionCommand("--");
-		EliminarVector.addActionListener(this);
-		EliminarVector.setFont(Constantes.textoNormal);
+		JButton EliminarOperacion = Constantes.BotonCuadrado("--", Constantes.DetallesColor, Constantes.PrincipalColor);
+		panel_3.add(EliminarOperacion);
+		EliminarOperacion.setActionCommand("--");
+		EliminarOperacion.addActionListener(this);
+		EliminarOperacion.setFont(Constantes.textoNormal);
 
 		JButton JerarquiaDer = Constantes.BotonCuadrado("{", Constantes.DetallesColor, Constantes.PrincipalColor);
 		panel_3.add(JerarquiaDer);
@@ -139,86 +133,6 @@ public class JInternalFrameOperacion extends JInternalFrame implements ActionLis
 		JerarquiaIzq.setActionCommand("}");
 		JerarquiaIzq.addActionListener(this);
 		JerarquiaIzq.setFont(Constantes.textoNormal);
-
-		JButton AgregarUnidad = Constantes.BotonCuadrado("+U", Constantes.DetallesColor, Constantes.PrincipalColor);
-		panel_3.add(AgregarUnidad);
-		AgregarUnidad.setActionCommand("U");
-		AgregarUnidad.addActionListener(this);
-		AgregarUnidad.setFont(Constantes.textoNormal);
-
-		JPanel panel_4 = new JPanel();
-		panel_4.setBackground(Constantes.SecundarioColor);
-		panel_8.add(panel_4);
-		panel_4.setLayout(new BorderLayout(0, 0));
-
-		Component horizontalStrut_1 = Box.createHorizontalStrut(20);
-		panel_4.add(horizontalStrut_1, BorderLayout.EAST);
-
-		JPanel panel_5 = new JPanel();
-		panel_5.setBackground(Constantes.SecundarioColor);
-		panel_4.add(panel_5, BorderLayout.CENTER);
-		panel_5.setLayout(new GridLayout(1, 0, 0, 0));
-
-		JButton VectUnitario = Constantes.BotonCuadrado("Â", Constantes.DetallesColor, Constantes.PrincipalColor);
-		VectUnitario.setActionCommand("Â");
-		panel_5.add(VectUnitario);
-		VectUnitario.addActionListener(this);
-		VectUnitario.setFont(Constantes.textoNormal);
-
-		JButton VecMagnitud = Constantes.BotonCuadrado("|Ā|", Constantes.DetallesColor, Constantes.PrincipalColor);
-		VecMagnitud.setActionCommand("|A|");
-		panel_5.add(VecMagnitud);
-		VecMagnitud.addActionListener(this);
-		VecMagnitud.setFont(Constantes.textoNormal);
-
-		JButton VecProductoPunto = Constantes.BotonCuadrado("•", Constantes.DetallesColor, Constantes.PrincipalColor);
-		panel_5.add(VecProductoPunto);
-		VecProductoPunto.setActionCommand("•");
-		VecProductoPunto.addActionListener(this);
-		VecProductoPunto.setFont(Constantes.textoNormal);
-
-		JButton VecProductoCruz = Constantes.BotonCuadrado("X", Constantes.DetallesColor, Constantes.PrincipalColor);
-		panel_5.add(VecProductoCruz);
-		VecProductoCruz.setActionCommand("xx");
-		VecProductoCruz.addActionListener(this);
-		VecProductoCruz.setFont(Constantes.textoNormal);
-
-		JPanel panel_6 = new JPanel();
-		panel_6.setBackground(Constantes.SecundarioColor);
-		panel_8.add(panel_6);
-		panel_6.setLayout(new BorderLayout(0, 0));
-
-		Component horizontalStrut_3 = Box.createHorizontalStrut(20);
-		panel_6.add(horizontalStrut_3, BorderLayout.EAST);
-
-		JPanel panel_7 = new JPanel();
-		panel_7.setBackground(Constantes.SecundarioColor);
-		panel_6.add(panel_7);
-		panel_7.setLayout(new GridLayout(1, 0, 0, 0));
-
-		JButton Sumar = Constantes.BotonCuadrado("+", Constantes.DetallesColor, Constantes.PrincipalColor);
-		panel_7.add(Sumar);
-		Sumar.setActionCommand("+");
-		Sumar.addActionListener(this);
-		Sumar.setFont(Constantes.textoNormal);
-
-		JButton Restar = Constantes.BotonCuadrado("-", Constantes.DetallesColor, Constantes.PrincipalColor);
-		panel_7.add(Restar);
-		Restar.setActionCommand("-");
-		Restar.addActionListener(this);
-		Restar.setFont(Constantes.textoNormal);
-
-		JButton Multiplicar = Constantes.BotonCuadrado("x", Constantes.DetallesColor, Constantes.PrincipalColor);
-		panel_7.add(Multiplicar);
-		Multiplicar.setActionCommand("x");
-		Multiplicar.addActionListener(this);
-		Multiplicar.setFont(Constantes.textoNormal);
-
-		JButton Dividir = Constantes.BotonCuadrado("÷", Constantes.DetallesColor, Constantes.PrincipalColor);
-		panel_7.add(Dividir);
-		Dividir.setActionCommand("/");
-		Dividir.addActionListener(this);
-		Dividir.setFont(Constantes.textoNormal);
 
 		JSplitPane splitPane = new JSplitPane();
 		splitPane.setResizeWeight(0.50);
@@ -277,8 +191,8 @@ public class JInternalFrameOperacion extends JInternalFrame implements ActionLis
 		setVisible(true);
 	}
 
-
-	// Agregar boton aritmetico a la seccion de operaciones registradas o historial de operaciones
+	// Agregar boton aritmetico a la seccion de operaciones registradas o historial
+	// de operaciones
 	private void AgregarBotonAritmetico(BotonAritmetico botonAritmetico) {
 		botonAritmetico.setFont(Constantes.botones);
 		botonAritmetico.addActionListener(new ActionListener() {
@@ -326,14 +240,16 @@ public class JInternalFrameOperacion extends JInternalFrame implements ActionLis
 		getContentPane().paintAll(getContentPane().getGraphics());
 	}
 
-	// Quitar boton aritmetico a la seccion de operaciones registradas o historial de operaciones
+	// Quitar boton aritmetico a la seccion de operaciones registradas o historial
+	// de operaciones
 	private void QuitarBotonAritmetico(BotonAritmetico botonAritmetico) {
 		BotonesAritmeticos.remove(botonAritmetico);
 		JPanelOperaciones.remove(botonAritmetico);
 		getContentPane().paintAll(getContentPane().getGraphics());
 	}
 
-	//Calcular la salida general de la operacion para mostrarla en el cuadro de salida
+	// Calcular la salida general de la operacion para mostrarla en el cuadro de
+	// salida
 	public void CalcularConsolaOutput() {
 		ConsolaOutput.setText(""); /// reset output
 		OperacionGeneral.HardReset();
@@ -350,23 +266,16 @@ public class JInternalFrameOperacion extends JInternalFrame implements ActionLis
 				ConsolaOutput.setForeground(Constantes.DetallesSegundoColor);
 				ConsolaOutput.setText(ConsolaOutput.getText() + " = "
 						+ ((UnidadMatematica) OperacionGeneral.getResultado()).toStringReducido());
+
+				MainApunteFrame.panel_Visualizar.MostrarVectores(new Vector3D("", 90, 90, 90, 0));
+			} else { // si no hay un resultado que mostrar
+				ConsolaOutput.setForeground(Constantes.DetallesColor);
+				ConsolaOutput.setText("Error en la operacion: " + PosibleError.toString());
 				MainApunteFrame.panel_Visualizar.MostrarVectores(new Vector3D("", 90, 90, 90, 0));
 
-			} else if (OperacionGeneral.getResultado().getTipoDeObjetoAlgebraico() == TipoObjetoAlgebraico.Vector) {
-				ConsolaOutput.setForeground(Constantes.DetallesSegundoColor);
-				ConsolaOutput.setText(ConsolaOutput.getText() + " = "
-						+ ((Vector3D) OperacionGeneral.getResultado()).toStringReducido());
-				MainApunteFrame.panel_Visualizar.MostrarVectores(((Vector3D) OperacionGeneral.getResultado()));
-
 			}
-		} else { // si no hay un resultado que mostrar
-			ConsolaOutput.setForeground(Constantes.DetallesColor);
-			ConsolaOutput.setText("Error en la operacion: " + PosibleError.toString());
-			MainApunteFrame.panel_Visualizar.MostrarVectores(new Vector3D("", 90, 90, 90, 0));
-
 		}
 	}
-
 
 	/*
 	 * define las acciones a realizar por cada boton de operacion
@@ -375,17 +284,6 @@ public class JInternalFrameOperacion extends JInternalFrame implements ActionLis
 	public void actionPerformed(ActionEvent arg0) {
 		// TODO Auto-generated method stub
 		switch (arg0.getActionCommand()) {
-			case "++":
-				CrearVector3D creadorPanelVector = new CrearVector3D((JFrame) SwingUtilities.getRoot(this));
-				Vector3D NuevoVector = creadorPanelVector.GetVector();
-				if (NuevoVector != null) {
-					NuevoVector.setNombreVector(new Mensaje_EntradaDeDatos((JFrame) SwingUtilities.getRoot(this),
-							"Ingrese etiqueta del Vector").Respuesta());
-					AgregarBotonAritmetico(
-							new BotonAritmetico(NuevoVector, NuevoVector.toStringReducido(), NuevoVector.getNombre()));
-					CalcularConsolaOutput();
-				}
-				break;
 			case "--":
 				if (BotonAlgebraicoEnfocado != null) {
 					OperacionGeneral.getObjetosAlgebraicos().remove(BotonAlgebraicoEnfocado.getObjetoAlgebraico());
@@ -408,71 +306,33 @@ public class JInternalFrameOperacion extends JInternalFrame implements ActionLis
 
 				break;
 			case "{":
-				ObjetoAlgebraico parentesisIzquierdo = new OperacionesBasicas(TipoOperacion.Parentesis_Izquierdo);
-				AgregarBotonAritmetico(new BotonAritmetico(parentesisIzquierdo, "{", ""));
+				AgregarBotonAritmetico(
+						new BotonAritmetico(new operacionesMatematicasGenericasInterface.llaveIzquierda()));
 				CalcularConsolaOutput();
 				break;
 			case "}":
-				ObjetoAlgebraico parentesisDerecho = new OperacionesBasicas(TipoOperacion.Parentesis_Derecho);
-				AgregarBotonAritmetico(new BotonAritmetico(parentesisDerecho, "}", ""));
+				AgregarBotonAritmetico(
+						new BotonAritmetico(new operacionesMatematicasGenericasInterface.llaveDerecha()));
 				CalcularConsolaOutput();
 				break;
-			case "U":
-				crearUnidadNumerosReales creadorPanelUnidad = new crearUnidadNumerosReales(
-						(JFrame) SwingUtilities.getRoot(this));
-				UnidadMatematica NuevaUnidad = creadorPanelUnidad.getUnidadNueva();
-				if (NuevaUnidad != null) {
-					AgregarBotonAritmetico(new BotonAritmetico(NuevaUnidad, NuevaUnidad.toStringReducido(), ""));
+			case "+U":
+				JDialog_CrearUnidadMatematica creadorUnidad = new JDialog_CrearUnidadMatematica(
+						(JFrame) SwingUtilities.getRoot(this), "crear unidad matematica");
+				UnidadMatematica nuevaUnidad = creadorUnidad.getUnidadMatematicaCreada();
+				if (nuevaUnidad != null) {
+					AgregarBotonAritmetico(new BotonAritmetico(nuevaUnidad));
 					CalcularConsolaOutput();
 				}
 				break;
-			case "Â":
-				ObjetoAlgebraico VectorUnitario = new OperacionesBasicas(TipoOperacion.Vector_Unitario);
-				AgregarBotonAritmetico(new BotonAritmetico(VectorUnitario, "Â{", ""));
-				CalcularConsolaOutput();
+			case "...":
+				JDialog_CrearOperacionMatematica creadorOperacion = new JDialog_CrearOperacionMatematica(
+						(JFrame) SwingUtilities.getRoot(this), "crear operacion matematica");
+				OperacionMatematica operacionNueva = creadorOperacion.getOperacionMatematicaCreada();
+				if (operacionNueva != null) {
+					AgregarBotonAritmetico(new BotonAritmetico(operacionNueva));
+					CalcularConsolaOutput();
+				}
 				break;
-			case "|A|":
-				ObjetoAlgebraico VectorMagnitud = new OperacionesBasicas(TipoOperacion.Vector_Magnitud);
-				AgregarBotonAritmetico(new BotonAritmetico(VectorMagnitud, "|Ā|{", ""));
-				CalcularConsolaOutput();
-				break;
-
-			case "•":
-				ObjetoAlgebraico productoPunto = new OperacionesBasicas(TipoOperacion.Producto_Escalar);
-				AgregarBotonAritmetico(new BotonAritmetico(productoPunto, "•", ""));
-				CalcularConsolaOutput();
-				break;
-
-			case "xx":
-				ObjetoAlgebraico productoCruz = new OperacionesBasicas(TipoOperacion.Producto_Cruz);
-				AgregarBotonAritmetico(new BotonAritmetico(productoCruz, "X", ""));
-				CalcularConsolaOutput();
-				break;
-
-			case "+":
-				ObjetoAlgebraico Suma = new OperacionesBasicas(TipoOperacion.Sumar);
-				AgregarBotonAritmetico(new BotonAritmetico(Suma, "+", ""));
-				CalcularConsolaOutput();
-				break;
-
-			case "-":
-				ObjetoAlgebraico resta = new OperacionesBasicas(TipoOperacion.Restar);
-				AgregarBotonAritmetico(new BotonAritmetico(resta, "-", ""));
-				CalcularConsolaOutput();
-				break;
-
-			case "x":
-				ObjetoAlgebraico Multiplicar = new OperacionesBasicas(TipoOperacion.Multiplicar);
-				AgregarBotonAritmetico(new BotonAritmetico(Multiplicar, "x", ""));
-				CalcularConsolaOutput();
-				break;
-
-			case "/":
-				ObjetoAlgebraico dividir = new OperacionesBasicas(TipoOperacion.Dividir);
-				AgregarBotonAritmetico(new BotonAritmetico(dividir, "/", ""));
-				CalcularConsolaOutput();
-				break;
-
 		}
 
 	}

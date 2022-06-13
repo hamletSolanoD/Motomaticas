@@ -1,6 +1,5 @@
 package ObjetosLogicos.motorMatematico.operaciones;
 
-
 import java.util.ArrayList;
 
 import ObjetosLogicos.motorMatematico.ObjetoAlgebraico;
@@ -16,28 +15,67 @@ public abstract class OperacionMatematica extends ObjetoAlgebraico {
 	private int prioridadDeOperacion;
 	private String nombre;
 	private String[] TipoOperandosCorrecto;
-	private boolean Funcion;// booleano para saber si una operacion es una funcion con mas de un parametro de entrada o solo una operacion que utiliza 2 tipos de entrada y ya
+	private boolean Funcion;// booleano para saber si una operacion es una funcion con mas de un parametro
+
+	public String getDescripcionDeOperacion() {
+		return this.descripcionDeOperacion;
+	}
+
+	public int getPrioridadDeOperacion() {
+		return this.prioridadDeOperacion;
+	}
+
+	public String[] getTipoOperandosCorrecto() {
+		return this.TipoOperandosCorrecto;
+	}
+
+	public boolean getFuncion() {
+		return this.Funcion;
+	}
+
+	public boolean getConLlave() {
+		return this.conLlave;
+	}
+
+	// de entrada o solo una operacion que utiliza 2 tipos de entrada y ya
 	// constructor por defecto, usando operaciones basicas ya incluidas
-	private boolean conLlave;//si el operador hace uso de apertura y cierre de llaves
-	
-	public OperacionMatematica(boolean conLlave,String SimboloIdentificador,boolean Funcion, String[] TipoOperandosCorrecto, String nombre, String descripcionDeOperacion, int prioridadDeOperacion)
-	 {
-		super(SimboloIdentificador,Constantes.TipoObjetoAlgebraico.Operacion);
+	private boolean conLlave;// si el operador hace uso de apertura y cierre de
+	private static boolean primeraEjecucion = true;
+
+	public OperacionMatematica(boolean conLlave, String SimboloIdentificador, boolean Funcion,
+			String[] TipoOperandosCorrecto, String nombre, String descripcionDeOperacion, int prioridadDeOperacion) {
+		super(SimboloIdentificador, Constantes.TipoObjetoAlgebraico.Operacion);
 		this.conLlave = conLlave;
 		this.nombre = nombre;
 		this.prioridadDeOperacion = prioridadDeOperacion;
 		this.descripcionDeOperacion = descripcionDeOperacion;
 		this.TipoOperandosCorrecto = TipoOperandosCorrecto;
 		this.Funcion = Funcion;
-		if(TotalOperacionesMatematicas == null) TotalOperacionesMatematicas = new ArrayList<>();
+		inyectarPorCreacion();
+		// inyectarBases();
+	}
+
+	private void inyectarPorCreacion() {
+		if (TotalOperacionesMatematicas == null)
+			TotalOperacionesMatematicas = new ArrayList<>();
 		boolean repetido = false;
 		for (OperacionMatematica operacionMatematica : TotalOperacionesMatematicas) {
-			if(operacionMatematica.getNombre() == this.getNombre()){
+			if (operacionMatematica.getNombre() == this.getNombre()) {
 				repetido = true;
 				break;
 			}
 		}
-		if(!repetido) TotalOperacionesMatematicas.add(this);
+		if (!repetido)
+			TotalOperacionesMatematicas.add(this);
+	}
+
+	private static void inyectarBases() {
+		if (primeraEjecucion) {
+			inyectarFuncionesMatematicas(new operacionesMatematicasGenericasInterface.llaveIzquierda());
+			inyectarFuncionesMatematicas(new operacionesMatematicasGenericasInterface.llaveDerecha());
+			primeraEjecucion = false;
+		}
+
 	}
 
 	/*
@@ -52,6 +90,7 @@ public abstract class OperacionMatematica extends ObjetoAlgebraico {
 	public String toStringReducido() {
 		return this.nombre;
 	}
+
 	/*
 	 * retorna su tipo de operacion
 	 */
@@ -70,32 +109,34 @@ public abstract class OperacionMatematica extends ObjetoAlgebraico {
 		return nombre;
 	}
 
+	public boolean comprobarOperandosIguales(String[] ArrayTipos) {
+		try {
+			for (int e = 0; e < TipoOperandosCorrecto.length; e++) {
+				if (ArrayTipos[e] != TipoOperandosCorrecto[e])
+					return false;
 
-	public boolean comprobarOperandosIguales(String[] ArrayTipos){
-		try{
-		for(int e = 0; e < TipoOperandosCorrecto.length; e++){
-			if(ArrayTipos[e] != TipoOperandosCorrecto[e]) return false; 
-		
+			}
+		} catch (IndexOutOfBoundsException e) {
+			return false;
 		}
-	}catch(IndexOutOfBoundsException e){
-		return false;
-	}
 		return true;
 
 	}
 
 	public abstract ObjetoAlgebraico calcularOperacion(ObjetoAlgebraico... args);
 
-	public static void inyectarFuncionesMatematicas(OperacionMatematica OperacionMatematica){
-		if(TotalOperacionesMatematicas == null) TotalOperacionesMatematicas = new ArrayList<>();
+	public static void inyectarFuncionesMatematicas(OperacionMatematica OperacionMatematica) {
+		if (TotalOperacionesMatematicas == null)
+			TotalOperacionesMatematicas = new ArrayList<>();
 		boolean repetido = false;
 		for (OperacionMatematica opMatematica : TotalOperacionesMatematicas) {
-			if(opMatematica.getNombre() == OperacionMatematica.getNombre()){
+			if (opMatematica.getNombre() == OperacionMatematica.getNombre()) {
 				repetido = true;
 				break;
 			}
 		}
-		if(!repetido) TotalOperacionesMatematicas.add(OperacionMatematica);
+		if (!repetido)
+			TotalOperacionesMatematicas.add(OperacionMatematica);
 
 	}
 }

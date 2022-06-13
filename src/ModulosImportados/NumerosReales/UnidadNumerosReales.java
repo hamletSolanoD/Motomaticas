@@ -17,7 +17,7 @@ public class UnidadNumerosReales extends UnidadMatematica {
 
         public Multiplicacion() {
             super(false,"X",false, operandos, "Multiplicar Numeros Reales",
-                    " Operacion para multiplicar 2 numeros reales y retornar su producto", 2);
+                    "Operacion para multiplicar 2 numeros reales y retornar su producto", 2);
             // TODO Auto-generated constructor stub
         }
 
@@ -41,7 +41,7 @@ public class UnidadNumerosReales extends UnidadMatematica {
                 (new UnidadNumerosReales()).getNombre() };
 
         public Division() {
-            super(false,"/",false, operandos, "Dividir Numeros Reales", " Operacion para dividir 2 numeros reales y retornar su producto", 2);
+            super(false,"/",false, operandos, "Dividir Numeros Reales", "Operacion para dividir 2 numeros reales y retornar su producto", 2);
             // TODO Auto-generated constructor stub
         }
 
@@ -65,7 +65,7 @@ public class UnidadNumerosReales extends UnidadMatematica {
                 (new UnidadNumerosReales()).getNombre() };
 
         public Suma() {
-            super(false,"+",false, operandos, "Suma Numeros Reales", " Operacion para sumar 2 numeros reales y retornar su producto", 1);
+            super(false,"+",false, operandos, "Suma Numeros Reales", "Operacion para sumar 2 numeros reales y retornar su producto", 1);
         }
 
         @Override
@@ -88,7 +88,7 @@ public class UnidadNumerosReales extends UnidadMatematica {
                 (new UnidadNumerosReales()).getNombre() };
 
         public Resta() {
-            super(false,"-",false, operandos, "Resta Numeros Reales", " Operacion para restar 2 numeros reales y retornar su producto", 1);
+            super(false,"-",false, operandos, "Resta Numeros Reales", "Operacion para restar 2 numeros reales y retornar su producto", 1);
             // TODO Auto-generated constructor stub
         }
 

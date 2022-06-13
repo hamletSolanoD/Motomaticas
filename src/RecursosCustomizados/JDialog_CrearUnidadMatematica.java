@@ -27,7 +27,6 @@ public class JDialog_CrearUnidadMatematica extends JDialog {
     private void inicializarOpcionesUnidadesMatematicas() {
 
         for (UnidadMatematica unidadMatematicaInyectada : UnidadMatematica.TotalUnidadesMatematicas) {
-            System.out.println(unidadMatematicaInyectada);
 
             JPanel newUnidadMatematicaButton = new JPanel();
             newUnidadMatematicaButton.setBackground(Constantes.PrincipalColor);

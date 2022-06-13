@@ -13,7 +13,7 @@ public interface OperacionesVector {
         static String[] operandos = { (new Vector3D("")).getNombre(), (new Vector3D("")).getNombre() };
 
         public operacionVecUnitario() {
-            super(true,"Â",false, operandos, "Vector Unitario", " Operacion para calcular el vector unitario de un vector.", 4);
+            super(true,"Â",false, operandos, "Vector Unitario", "Operacion para calcular el vector unitario de un vector.", 4);
             // TODO Auto-generated constructor stub
         }
 
