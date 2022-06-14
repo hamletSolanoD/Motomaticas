@@ -12,11 +12,8 @@ public class UnidadNumerosReales extends UnidadMatematica {
 
     static class Multiplicacion extends OperacionMatematica {
 
-        static String[] operandos = { (new UnidadNumerosReales()).getNombre(),
-                (new UnidadNumerosReales()).getNombre() };
-
         public Multiplicacion() {
-            super(false,"X",false, operandos, "Multiplicar Numeros Reales",
+            super(false,"X",false, "Multiplicar Numeros Reales",
                     "Operacion para multiplicar 2 numeros reales y retornar su producto", 2);
             // TODO Auto-generated constructor stub
         }
@@ -33,15 +30,25 @@ public class UnidadNumerosReales extends UnidadMatematica {
             return new UnidadNumerosReales(A.getValor() * B.getValor());
         }
 
+        @Override
+        protected String[] definirTipoDeOperandoscorrectos() {
+            String[] operandos = { (new UnidadNumerosReales()).getNombre(),
+                (new UnidadNumerosReales()).getNombre() };
+            return operandos;
+        }
+
       
     }
 
     static class Division extends OperacionMatematica {
-        static String[] operandos = { (new UnidadNumerosReales()).getNombre(),
+        @Override
+        protected String[] definirTipoDeOperandoscorrectos() {
+            String[] operandos = { (new UnidadNumerosReales()).getNombre(),
                 (new UnidadNumerosReales()).getNombre() };
-
+            return operandos;
+        }
         public Division() {
-            super(false,"/",false, operandos, "Dividir Numeros Reales", "Operacion para dividir 2 numeros reales y retornar su producto", 2);
+            super(false,"/",false, "Dividir Numeros Reales", "Operacion para dividir 2 numeros reales y retornar su producto", 2);
             // TODO Auto-generated constructor stub
         }
 
@@ -61,11 +68,14 @@ public class UnidadNumerosReales extends UnidadMatematica {
     }
 
     static class Suma extends OperacionMatematica {
-        static String[] operandos = { (new UnidadNumerosReales()).getNombre(),
+        @Override
+        protected String[] definirTipoDeOperandoscorrectos() {
+            String[] operandos = { (new UnidadNumerosReales()).getNombre(),
                 (new UnidadNumerosReales()).getNombre() };
-
+            return operandos;
+        }
         public Suma() {
-            super(false,"+",false, operandos, "Suma Numeros Reales", "Operacion para sumar 2 numeros reales y retornar su producto", 1);
+            super(false,"+",false, "Suma Numeros Reales", "Operacion para sumar 2 numeros reales y retornar su producto", 1);
         }
 
         @Override
@@ -84,11 +94,14 @@ public class UnidadNumerosReales extends UnidadMatematica {
     }
 
     static class Resta extends OperacionMatematica {
-        static String[] operandos = { (new UnidadNumerosReales()).getNombre(),
+        @Override
+        protected String[] definirTipoDeOperandoscorrectos() {
+            String[] operandos = { (new UnidadNumerosReales()).getNombre(),
                 (new UnidadNumerosReales()).getNombre() };
-
+            return operandos;
+        }
         public Resta() {
-            super(false,"-",false, operandos, "Resta Numeros Reales", "Operacion para restar 2 numeros reales y retornar su producto", 1);
+            super(false,"-",false, "Resta Numeros Reales", "Operacion para restar 2 numeros reales y retornar su producto", 1);
             // TODO Auto-generated constructor stub
         }
 
@@ -108,7 +121,6 @@ public class UnidadNumerosReales extends UnidadMatematica {
 
     }
 
-    OperacionMatematica suma = new Suma();
 
     public UnidadNumerosReales() {
         super("U",new Suma(), new Resta(), new Multiplicacion(), new Division());

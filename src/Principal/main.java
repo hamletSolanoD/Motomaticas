@@ -23,8 +23,6 @@ public class main {
 		new Vector3D("");
 		new UnidadNumerosReales();
 
-
-
 		new Portada();
 	}
 

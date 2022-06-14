@@ -10,10 +10,15 @@ public interface OperacionesVector {
 
 
     public static class operacionVecUnitario extends OperacionMatematica {
-        static String[] operandos = { (new Vector3D("")).getNombre(), (new Vector3D("")).getNombre() };
+        @Override
+        protected String[] definirTipoDeOperandoscorrectos() {
+                String retorno[] = 	{ (new Vector3D("")).getNombre(),(new Vector3D("")).getNombre() };
+                return retorno;
+
+        }        
 
         public operacionVecUnitario() {
-            super(true,"Â",false, operandos, "Vector Unitario", "Operacion para calcular el vector unitario de un vector.", 4);
+            super(true,"Â",false, "Vector Unitario", "Operacion para calcular el vector unitario de un vector.", 4);
             // TODO Auto-generated constructor stub
         }
 
@@ -24,10 +29,10 @@ public interface OperacionesVector {
         public ObjetoAlgebraico calcularOperacion(ObjetoAlgebraico... args) {
             Vector3D Vector = (Vector3D) args[0];
 
-            Vector3D Resultado = new Vector3D("Vector unitario de " + Vector.getNombre(), Vector.getThetaX(),
+            Vector3D Resultado = new Vector3D("Vector unitario de " + Vector.getNombreVector(), Vector.getThetaX(),
                     Vector.getThetaY(), Vector.getThetaZ(), 1);
 
-            Apunte NuevoApunte_VectorUnitario = new Apunte("Vector Unitario de \"" + Vector.getNombre() + "\"");
+            Apunte NuevoApunte_VectorUnitario = new Apunte("Vector Unitario de \"" + Vector.getNombreVector() + "\"");
 
             NuevoApunte_VectorUnitario.AgregarParrafo(new Parrafo(
                     "\nDefinicion: El vector unitario representa un nuevo vector unicamente con la direccion del original y dejando su magnitud en 1"));
@@ -55,10 +60,15 @@ public interface OperacionesVector {
     }
 
     public static class operacionVecMagnitud extends OperacionMatematica {
-        static String[] operandos = { (new Vector3D("")).getNombre(), (new Vector3D("")).getNombre() };
+        
+        @Override
+        protected String[] definirTipoDeOperandoscorrectos() {
+                String retorno[] = 	{ (new Vector3D("")).getNombre(),(new Vector3D("")).getNombre() };
+                return retorno;
 
+        }     
         public operacionVecMagnitud() {
-            super(true,"|A|",false, operandos, "Vector Magnitud", "Operacion para calcular la magnitud de un vector.", 4);
+            super(true,"|A|",false, "Vector Magnitud", "Operacion para calcular la magnitud de un vector.", 4);
             // TODO Auto-generated constructor stub
         }
     
@@ -67,7 +77,7 @@ public interface OperacionesVector {
         public ObjetoAlgebraico calcularOperacion(ObjetoAlgebraico... args) {
             Vector3D Vector = (Vector3D) args[0];
 
-            Apunte NuevoApunte_Magnitud = new Apunte("Magnitud del vector \"" + Vector.getNombre() + "\"");
+            Apunte NuevoApunte_Magnitud = new Apunte("Magnitud del vector \"" + Vector.getNombreVector() + "\"");
 
             NuevoApunte_Magnitud.AgregarParrafo(new Parrafo(
                     "\nDefinicion: La magnitud de un vector respresenta la unidad de amplitud o cantidad que en union con la direccion representa un vector."));
@@ -91,10 +101,14 @@ public interface OperacionesVector {
     }
 
     public static class operacionVecProductoEscalar extends OperacionMatematica {
-        static String[] operandos = { (new Vector3D("")).getNombre(), (new Vector3D("")).getNombre() };
+        @Override
+        protected String[] definirTipoDeOperandoscorrectos() {
+                String retorno[] = 	{ (new Vector3D("")).getNombre(),(new Vector3D("")).getNombre() };
+                return retorno;
 
+        }  
         public operacionVecProductoEscalar() {
-            super(false,"•",false, operandos, "Producto Escalar", "Operacion para calcular el producto escalar entre 2 vectores.",
+            super(false,"•",false, "Producto Escalar", "Operacion para calcular el producto escalar entre 2 vectores.",
                     4);
             // TODO Auto-generated constructor stub
         }
@@ -109,7 +123,7 @@ public interface OperacionesVector {
                             + (Vector.getMagnitudZ() * Vector2.getMagnitudZ()));
 
             Apunte nuevoApunte_ProductoEscalar = new Apunte(
-                    "Producto Escalar de \"" + Vector.getNombre() + "\" y \"" + Vector2.getNombre() + "\"");
+                    "Producto Escalar de \"" + Vector.getNombreVector() + "\" y \"" + Vector2.getNombre() + "\"");
 
             nuevoApunte_ProductoEscalar.AgregarParrafo(new Parrafo(
                     "\nDefinicion: El producto escalar representa la proyeccion del vector A sobre el vector B y equivalentemente B sobre A. "));
@@ -135,14 +149,18 @@ public interface OperacionesVector {
     }
 
     public static class operacionVecProductoEscalar_v2 extends OperacionMatematica {
-        static String[] operandos = { "double", "double", "double" };
+        @Override
+        protected String[] definirTipoDeOperandoscorrectos() {
+                String retorno[] = 	{ (new UnidadNumerosReales()).getNombre(),(new UnidadNumerosReales()).getNombre(),(new UnidadNumerosReales()).getNombre()};
+                return retorno;
 
+        }  
         public operacionVecProductoEscalar_v2() {
             /*
              * tiene declarado una funcion por tanto obligatoriamente debe llevar un jdialog
              * de creacion
              */
-            super(false,"•",true, operandos, "Producto Escalar", "Operacion para calcular el producto escalar entre 2 vectores.",
+            super(false,"•",true, "Producto Escalar", "Operacion para calcular el producto escalar entre 2 vectores.",
                     4);
             // TODO Auto-generated constructor stub
         }
@@ -150,24 +168,28 @@ public interface OperacionesVector {
         @Override
         public ObjetoAlgebraico calcularOperacion(ObjetoAlgebraico... args) {
             UnidadNumerosReales MagnitudA = (UnidadNumerosReales) args[0];
-            UnidadNumerosReales MagnitudB = (UnidadNumerosReales) args[0];
-            UnidadNumerosReales Angulo = (UnidadNumerosReales) args[0];
+            UnidadNumerosReales MagnitudB = (UnidadNumerosReales) args[1];
+            UnidadNumerosReales Angulo = (UnidadNumerosReales) args[2];
             return new UnidadNumerosReales(MagnitudA.getValor() * MagnitudB.getValor() * Math.cos(Angulo.getValor()));
         }
     }
 
     public static class operacionVecCruz extends OperacionMatematica {
 
-        static String[] operandos = { (new Vector3D("")).getNombre(), (new Vector3D("")).getNombre() };
+        @Override
+        protected String[] definirTipoDeOperandoscorrectos() {
+                String retorno[] = 	{ (new Vector3D("")).getNombre(),(new Vector3D("")).getNombre()};
+                return retorno;
 
+        }  
         public operacionVecCruz() {
-            super(false,"X",false, operandos, "Producto Cruz", "Operacion para calcular el producto cruz entre 2 vectores", 4);
+            super(false,"X",false, "Producto Cruz", "Operacion para calcular el producto cruz entre 2 vectores", 4);
         }
 
         @Override
         public ObjetoAlgebraico calcularOperacion(ObjetoAlgebraico... args) {
             Vector3D VectorA = (Vector3D) args[0];
-            Vector3D VectorB = (Vector3D) args[0];
+            Vector3D VectorB = (Vector3D) args[1];
 
             double MagnitudX = (VectorA.getMagnitudY() * VectorB.getMagnitudZ())
                     - (VectorA.getMagnitudZ() * VectorB.getMagnitudY());
@@ -176,11 +198,11 @@ public interface OperacionesVector {
             double MagnitudZ = (VectorA.getMagnitudX() * VectorB.getMagnitudY())
                     - (VectorA.getMagnitudY() * VectorB.getMagnitudX());
             Vector3D Resultado = new Vector3D(
-                    "Vector producto cruz de " + VectorA.getNombre() + " y " + VectorB.getNombre(), MagnitudX,
+                    "Vector producto cruz de " + VectorA.getNombreVector() + " y " + VectorB.getNombreVector(), MagnitudX,
                     MagnitudY, MagnitudZ);
 
             Apunte nuevoApunte_VectorCruz = new Apunte(
-                    "Vector Cruz de \"" + VectorA.getNombre() + "\" x \"" + VectorB.getNombre() + "\"");
+                    "Vector Cruz de \"" + VectorA.getNombreVector() + "\" x \"" + VectorB.getNombreVector() + "\"");
 
             nuevoApunte_VectorCruz.AgregarParrafo(new Parrafo(
                     "\nDefinicion: El producto cruz representa la operacion entre 2 vectores multiplicandose en el mismo plano resultando en un nuevo vector producto de ambos."));

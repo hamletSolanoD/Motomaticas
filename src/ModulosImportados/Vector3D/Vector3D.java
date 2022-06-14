@@ -14,24 +14,25 @@ import ValoresDefault.Constantes.Apunte;;
 public class Vector3D extends UnidadMatematica implements OperacionesVector{
 
 	private static class suma extends OperacionMatematica {
-		static String[] operandos = { (new Vector3D("")).getNombre(), (new Vector3D("")).getNombre() };
+		
 
 		public suma() {
-			super(false,"+",false, operandos, "Suma Vectores 3D", "Operacion para sumar 2 vectores", 1);
+			super(false,"+",false, "Suma Vectores 3D", "Operacion para sumar 2 vectores", 1);
+
 		}
 
 		@Override
 		public ObjetoAlgebraico calcularOperacion(ObjetoAlgebraico... args) {
 			Vector3D VectorA = (Vector3D) args[0];
-			Vector3D VectorB = (Vector3D) args[0];
+			Vector3D VectorB = (Vector3D) args[1];
 			double MagnitudX = VectorA.getMagnitudX() + VectorB.getMagnitudX();
 			double MagnitudY = VectorA.getMagnitudY() + VectorB.getMagnitudY();
 			double MagnitudZ = VectorA.getMagnitudZ() + VectorB.getMagnitudZ();
-			Vector3D Resultado = new Vector3D("Vector suma de " + VectorA.getNombre() + " y " + VectorB.getNombre(),
+			Vector3D Resultado = new Vector3D("Vector suma de " + VectorA.getNombreVector() + " y " + VectorB.getNombreVector(),
 					MagnitudX, MagnitudY, MagnitudZ);
 
 			Apunte nuevoApunte_SumaVectores = new Apunte(
-					"Suma de los vectores \"" + VectorA.getNombre() + "\" + \"" + VectorB.getNombre() + "\"");
+					"Suma de los vectores \"" + VectorA.getNombreVector() + "\" + \"" + VectorB.getNombreVector() + "\"");
 			nuevoApunte_SumaVectores.AgregarParrafo(new Parrafo(
 					"\nDefinicion: La suma de vectores representa sumar individulmente las componentes de cada vector para dar resultado con ellas a uno nuevo."));
 			nuevoApunte_SumaVectores.AgregarParrafo(
@@ -47,27 +48,40 @@ public class Vector3D extends UnidadMatematica implements OperacionesVector{
 			return Resultado;
 		}
 
+		@Override
+		protected String[] definirTipoDeOperandoscorrectos() {
+			String retorno[] = 	{ (new Vector3D("")).getNombre(), (new Vector3D("")).getNombre() };
+			return retorno;
+
+		}
+
 	}
 
 	private static class resta extends OperacionMatematica {
-		static String[] operandos = { (new Vector3D("")).getNombre(), (new Vector3D("")).getNombre() };
 
 		public resta() {
-			super(false,"-",false, operandos, "Resta Vectores 3D", "Operacion para restar 2 vectores", 1);
+			super(false,"-",false, "Resta Vectores 3D", "Operacion para restar 2 vectores", 1);
 		}
+		@Override
+		protected String[] definirTipoDeOperandoscorrectos() {
+			String retorno[] = 	{ (new Vector3D("")).getNombre(), (new Vector3D("")).getNombre() };
+			return retorno;
+
+		}
+
 
 		@Override
 		public ObjetoAlgebraico calcularOperacion(ObjetoAlgebraico... args) {
 			Vector3D VectorA = (Vector3D) args[0];
-			Vector3D VectorB = (Vector3D) args[0];
+			Vector3D VectorB = (Vector3D) args[1];
 			double MagnitudX = VectorA.getMagnitudX() - VectorB.getMagnitudX();
 			double MagnitudY = VectorA.getMagnitudY() - VectorB.getMagnitudY();
 			double MagnitudZ = VectorA.getMagnitudZ() - VectorB.getMagnitudZ();
-			Vector3D Resultado = new Vector3D("Vector resta de " + VectorA.getNombre() + " y " + VectorB.getNombre(),
+			Vector3D Resultado = new Vector3D("Vector resta de " + VectorA.getNombreVector() + " y " + VectorB.getNombreVector(),
 					MagnitudX, MagnitudY, MagnitudZ);
 
 			Apunte nuevoApunte_RestaVectores = new Apunte(
-					"Resta de los vectores \"" + VectorA.getNombre() + "\" - \"" + VectorB.getNombre() + "\"");
+					"Resta de los vectores \"" + VectorA.getNombreVector() + "\" - \"" + VectorB.getNombreVector() + "\"");
 
 			nuevoApunte_RestaVectores.AgregarParrafo(new Parrafo(
 					"\nDefinicion: La resta de vectores representa restar individulmente las componentes de cada vector para dar resultado con ellas a uno nuevo."));
@@ -89,18 +103,24 @@ public class Vector3D extends UnidadMatematica implements OperacionesVector{
 	}
 
 	private static class multiplicacion extends OperacionMatematica {
-		static String[] operandos = { (new Vector3D("")).getNombre(), (new UnidadNumerosReales()).getNombre() };
-
+		
 		public multiplicacion() {
-			super(false,"X",false, operandos, "multiplicar Vectores 3D",
+			super(false,"X",false, "multiplicar Vectores 3D",
 					"Operacion para multiplicar la magnitud de un vector por una unidad.", 2);
+		}
+
+		@Override
+		protected String[] definirTipoDeOperandoscorrectos() {
+			String retorno[] = 	{ (new Vector3D("")).getNombre(), (new UnidadNumerosReales()).getNombre() };
+			return retorno;
+
 		}
 
 		@Override
 		public ObjetoAlgebraico calcularOperacion(ObjetoAlgebraico... args) {
 			Vector3D Vector = (Vector3D) args[0];
-			UnidadNumerosReales Unidad = (UnidadNumerosReales) args[0];
-			Vector3D Resultado = new Vector3D("Vector Multiplicar Magnitud de " + Vector.getNombre() + " y " + Unidad,
+			UnidadNumerosReales Unidad = (UnidadNumerosReales) args[1];
+			Vector3D Resultado = new Vector3D("Vector Multiplicar Magnitud de " + Vector.getNombreVector() + " y " + Unidad,
 					Vector.getMagnitudX() * Unidad.getValor(), Vector.getMagnitudY() * Unidad.getValor(),
 					Vector.getMagnitudZ() * Unidad.getValor());
 
@@ -147,14 +167,21 @@ public class Vector3D extends UnidadMatematica implements OperacionesVector{
 		static String[] operandos = { (new Vector3D("")).getNombre(), (new UnidadNumerosReales()).getNombre() };
 
 		public division() {
-			super(false,"/",false, operandos, "Dividir Vectores 3D", "Operacion para dividir la magnitud de un vector por una unidad.", 2);
+			super(false,"/",false, "Dividir Vectores 3D", "Operacion para dividir la magnitud de un vector por una unidad.", 2);
 		}
+		@Override
+		protected String[] definirTipoDeOperandoscorrectos() {
+			String retorno[] = 	{ (new Vector3D("")).getNombre(), (new UnidadNumerosReales()).getNombre() };
+			return retorno;
+
+		}
+
 
 		@Override
 		public ObjetoAlgebraico calcularOperacion(ObjetoAlgebraico... args) {
 			Vector3D Vector = (Vector3D) args[0];
-			UnidadNumerosReales Unidad = (UnidadNumerosReales) args[0];
-			Vector3D Resultado = new Vector3D("Vector Dividir vector " + Vector.getNombre() + " / " + Unidad,
+			UnidadNumerosReales Unidad = (UnidadNumerosReales) args[1];
+			Vector3D Resultado = new Vector3D("Vector Dividir vector " + Vector.getNombreVector() + " / " + Unidad,
 					Vector.getMagnitudX() / Unidad.getValor(), Vector.getMagnitudY() / Unidad.getValor(),
 					Vector.getMagnitudZ() / Unidad.getValor());
 
@@ -584,7 +611,6 @@ public class Vector3D extends UnidadMatematica implements OperacionesVector{
 
 	@Override
 	public String getNombre() {
-		// TODO Auto-generated method stub
 		return "Vector3D";
 	}
 

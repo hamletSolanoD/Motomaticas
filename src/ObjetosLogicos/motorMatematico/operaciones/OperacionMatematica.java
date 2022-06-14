@@ -28,6 +28,9 @@ public abstract class OperacionMatematica extends ObjetoAlgebraico {
 	public String[] getTipoOperandosCorrecto() {
 		return this.TipoOperandosCorrecto;
 	}
+	public void setTipoOperandosCorrecto() {
+		 this.TipoOperandosCorrecto = definirTipoDeOperandoscorrectos();
+	}
 
 	public boolean getFuncion() {
 		return this.Funcion;
@@ -42,19 +45,17 @@ public abstract class OperacionMatematica extends ObjetoAlgebraico {
 	private boolean conLlave;// si el operador hace uso de apertura y cierre de
 	private static boolean primeraEjecucion = true;
 
-	public OperacionMatematica(boolean conLlave, String SimboloIdentificador, boolean Funcion,
-			String[] TipoOperandosCorrecto, String nombre, String descripcionDeOperacion, int prioridadDeOperacion) {
+	public OperacionMatematica(boolean conLlave, String SimboloIdentificador, boolean Funcion, String nombre, String descripcionDeOperacion, int prioridadDeOperacion) {
 		super(SimboloIdentificador, Constantes.TipoObjetoAlgebraico.Operacion);
 		this.conLlave = conLlave;
 		this.nombre = nombre;
 		this.prioridadDeOperacion = prioridadDeOperacion;
 		this.descripcionDeOperacion = descripcionDeOperacion;
-		this.TipoOperandosCorrecto = TipoOperandosCorrecto;
 		this.Funcion = Funcion;
 		inyectarPorCreacion();
-	
 	}
-
+	
+	protected abstract String[] definirTipoDeOperandoscorrectos();
 	private void inyectarPorCreacion() {
 		if (TotalOperacionesMatematicas == null)
 			TotalOperacionesMatematicas = new ArrayList<>();
@@ -111,21 +112,14 @@ public abstract class OperacionMatematica extends ObjetoAlgebraico {
 	}
 
 	public boolean comprobarOperandosIguales(String[] ArrayTipos) {
-		System.out.println(TipoOperandosCorrecto);
-		System.out.println(ArrayTipos);
-
-
-
+		setTipoOperandosCorrecto();
 		try {
 			for (int e = 0; e < TipoOperandosCorrecto.length; e++) {
-				String var = TipoOperandosCorrecto[e];
 				if (ArrayTipos[e] != TipoOperandosCorrecto[e])
 					return false;
 
 			}
 		} catch (Throwable e) {
-			System.out.println(e);
-
 			return false;
 		}
 		return true;
