@@ -35,7 +35,7 @@ public class JDialog_CrearOperacionMatematica extends JDialog {
 
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    operacionMatematicaCreada = operacionMatematica;
+                    operacionMatematicaCreada = operacionMatematica.clonarNuevaInstanciaOperacionMatematica();
                     System.out.println(operacionMatematicaCreada);
                     dispose();
                 }
@@ -52,6 +52,7 @@ public class JDialog_CrearOperacionMatematica extends JDialog {
         }
 
     }
+    
 
     public JDialog_CrearOperacionMatematica(JFrame Padre, String Mensaje) {
         super(Padre, "Confirmar", Dialog.ModalityType.TOOLKIT_MODAL);

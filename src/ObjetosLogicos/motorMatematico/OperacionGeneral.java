@@ -37,18 +37,15 @@ public class OperacionGeneral implements Serializable {
 		return ObjetosAlgebraicos;
 	}
 
-	private List<ObjetoAlgebraico> SubdividirOperacion(List<ObjetoAlgebraico> ListaOriginal,
-			ObjetoAlgebraico PrimerObjeto, ObjetoAlgebraico UltimoObjeto) {
+	private List<ObjetoAlgebraico> SubdividirOperacion(List<ObjetoAlgebraico> ListaOriginal,ObjetoAlgebraico PrimerObjeto, ObjetoAlgebraico UltimoObjeto) {
 
-		List<ObjetoAlgebraico> SubLista = new CopyOnWriteArrayList<ObjetoAlgebraico>(
-				(ListaOriginal.subList(ListaOriginal.indexOf(PrimerObjeto) + 1, ListaOriginal.indexOf(UltimoObjeto))));
+		List<ObjetoAlgebraico> SubLista = new CopyOnWriteArrayList<ObjetoAlgebraico>((ListaOriginal.subList(ListaOriginal.indexOf(PrimerObjeto) + 1, ListaOriginal.indexOf(UltimoObjeto))));
 
 		Iterator<ObjetoAlgebraico> IteradorDeLista = ListaOriginal.iterator();
 
 		while (IteradorDeLista.hasNext()) {
 			ObjetoAlgebraico ObjetoABorrar = (ObjetoAlgebraico) IteradorDeLista.next();
-			if (ObjetoABorrar.equals(PrimerObjeto) || ObjetoABorrar.equals(UltimoObjeto)
-					|| SubLista.contains(ObjetoABorrar)) {// Iterador para un correcto eliminacion
+			if (ObjetoABorrar.equals(PrimerObjeto) || ObjetoABorrar.equals(UltimoObjeto) || SubLista.contains(ObjetoABorrar)) {// Iterador para un correcto eliminacion
 				ListaOriginal.remove(ObjetoABorrar);
 			}
 		}

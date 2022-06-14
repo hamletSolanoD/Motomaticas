@@ -8,7 +8,7 @@ import ValoresDefault.Constantes;
 import ValoresDefault.Constantes.Apunte;
 import VentanasProyecto.MainApunteFrame;
 
-public abstract class OperacionMatematica extends ObjetoAlgebraico {
+public abstract class OperacionMatematica extends ObjetoAlgebraico implements Cloneable {
 
 	public static ArrayList<OperacionMatematica> TotalOperacionesMatematicas;
 	private String descripcionDeOperacion;
@@ -16,6 +16,7 @@ public abstract class OperacionMatematica extends ObjetoAlgebraico {
 	private String nombre;
 	private String[] TipoOperandosCorrecto;
 	private boolean Funcion;// booleano para saber si una operacion es una funcion con mas de un parametro
+	
 
 	public String getDescripcionDeOperacion() {
 		return this.descripcionDeOperacion;
@@ -27,6 +28,16 @@ public abstract class OperacionMatematica extends ObjetoAlgebraico {
 
 	public String[] getTipoOperandosCorrecto() {
 		return this.TipoOperandosCorrecto;
+	}
+	public OperacionMatematica clonarNuevaInstanciaOperacionMatematica(){
+		try {
+			return (OperacionMatematica) this.clone();
+		} catch (CloneNotSupportedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+
 	}
 	public void setTipoOperandosCorrecto() {
 		 this.TipoOperandosCorrecto = definirTipoDeOperandoscorrectos();

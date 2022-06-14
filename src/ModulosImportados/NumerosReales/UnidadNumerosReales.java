@@ -58,7 +58,7 @@ public class UnidadNumerosReales extends UnidadMatematica {
             UnidadNumerosReales B = (UnidadNumerosReales) args[1];
 
             Apunte nuevoApunte_MultiplicarAritmetico = new Apunte(
-                    "Dividir " + A.getValor() + " / " + B.getValor() + " = " + (A.getValor() * B.getValor()));
+                    "Dividir " + A.getValor() + " / " + B.getValor() + " = " + (A.getValor() / B.getValor()));
             MostrarInformacion(nuevoApunte_MultiplicarAritmetico);
 
             return new UnidadNumerosReales(A.getValor() / B.getValor());
@@ -111,7 +111,7 @@ public class UnidadNumerosReales extends UnidadMatematica {
             UnidadNumerosReales B = (UnidadNumerosReales) args[1];
 
             Apunte nuevoApunte_SumaAritmetica = new Apunte(
-                    "Resta " + A.getValor() + " - " + B.getValor() + " = " + (A.getValor() + B.getValor()));
+                    "Resta " + A.getValor() + " - " + B.getValor() + " = " + (A.getValor() - B.getValor()));
 
             MostrarInformacion(nuevoApunte_SumaAritmetica);
             return new UnidadNumerosReales(A.getValor() - B.getValor());
