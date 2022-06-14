@@ -17,8 +17,8 @@ public abstract class UnidadMatematica extends ObjetoAlgebraico {
 	public static ArrayList<UnidadMatematica> TotalUnidadesMatematicas;
 
 
-	public UnidadMatematica(String SimboloIdentificador,OperacionMatematica Suma , OperacionMatematica Resta,OperacionMatematica Multiplicacion,OperacionMatematica Division) {
-		super(SimboloIdentificador,Constantes.TipoObjetoAlgebraico.Unidad);
+	public UnidadMatematica(String nombreObjetoMatematico,String SimboloIdentificador,OperacionMatematica Suma , OperacionMatematica Resta,OperacionMatematica Multiplicacion,OperacionMatematica Division) {
+		super(nombreObjetoMatematico,SimboloIdentificador,Constantes.TipoObjetoAlgebraico.Unidad);
 		this.Suma = Suma;
 		this.Resta = Resta;
 		this.Multiplicacion = Multiplicacion;
@@ -26,7 +26,7 @@ public abstract class UnidadMatematica extends ObjetoAlgebraico {
 		if(TotalUnidadesMatematicas == null) TotalUnidadesMatematicas = new ArrayList<>();
 		boolean repetido = false;
 		for (UnidadMatematica unidadMatematica : TotalUnidadesMatematicas) {
-			if(unidadMatematica.getNombre() == this.getNombre()){
+			if(unidadMatematica.getNombreObjetoMatematico() == this.getNombreObjetoMatematico()){
 				repetido = true;
 				break;
 			}
@@ -36,8 +36,6 @@ public abstract class UnidadMatematica extends ObjetoAlgebraico {
 	}
 	
 	public abstract String toString();
-
-	public abstract String getNombre();
 
 	public abstract String toStringReducido();
 

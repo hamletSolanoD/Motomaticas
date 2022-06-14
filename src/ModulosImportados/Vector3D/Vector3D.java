@@ -14,7 +14,10 @@ import ValoresDefault.Constantes.Apunte;;
 public class Vector3D extends UnidadMatematica implements OperacionesVector{
 
 	private static class suma extends OperacionMatematica {
-		
+		@Override
+        public String getCategoriaMatematica(){
+                return "Operaciones Entre Vectores 3D";
+        } 
 
 		public suma() {
 			super(false,"+",false, "Suma Vectores 3D", "Operacion para sumar 2 vectores", 1);
@@ -50,7 +53,7 @@ public class Vector3D extends UnidadMatematica implements OperacionesVector{
 
 		@Override
 		protected String[] definirTipoDeOperandoscorrectos() {
-			String retorno[] = 	{ (new Vector3D("")).getNombre(), (new Vector3D("")).getNombre() };
+			String retorno[] = 	{ (new Vector3D("")).getNombreObjetoMatematico(), (new Vector3D("")).getNombreObjetoMatematico() };
 			return retorno;
 
 		}
@@ -58,13 +61,16 @@ public class Vector3D extends UnidadMatematica implements OperacionesVector{
 	}
 
 	private static class resta extends OperacionMatematica {
-
+		@Override
+        public String getCategoriaMatematica(){
+                return "Operaciones Entre Vectores 3D";
+        } 
 		public resta() {
 			super(false,"-",false, "Resta Vectores 3D", "Operacion para restar 2 vectores", 1);
 		}
 		@Override
 		protected String[] definirTipoDeOperandoscorrectos() {
-			String retorno[] = 	{ (new Vector3D("")).getNombre(), (new Vector3D("")).getNombre() };
+			String retorno[] = 	{ (new Vector3D("")).getNombreObjetoMatematico(), (new Vector3D("")).getNombreObjetoMatematico() };
 			return retorno;
 
 		}
@@ -103,7 +109,10 @@ public class Vector3D extends UnidadMatematica implements OperacionesVector{
 	}
 
 	private static class multiplicacion extends OperacionMatematica {
-		
+		@Override
+        public String getCategoriaMatematica(){
+                return "Operaciones Entre Vectores 3D";
+        } 
 		public multiplicacion() {
 			super(false,"X",false, "multiplicar Vectores 3D",
 					"Operacion para multiplicar la magnitud de un vector por una unidad.", 2);
@@ -111,7 +120,7 @@ public class Vector3D extends UnidadMatematica implements OperacionesVector{
 
 		@Override
 		protected String[] definirTipoDeOperandoscorrectos() {
-			String retorno[] = 	{ (new Vector3D("")).getNombre(), (new UnidadNumerosReales()).getNombre() };
+			String retorno[] = 	{ (new Vector3D("")).getNombreObjetoMatematico(), (new UnidadNumerosReales()).getNombreObjetoMatematico() };
 			return retorno;
 
 		}
@@ -164,14 +173,18 @@ public class Vector3D extends UnidadMatematica implements OperacionesVector{
 	}
 
 	private static class division extends OperacionMatematica {
-		static String[] operandos = { (new Vector3D("")).getNombre(), (new UnidadNumerosReales()).getNombre() };
+		@Override
+        public String getCategoriaMatematica(){
+                return "Operaciones Entre Vectores 3D";
+        } 
+		static String[] operandos = { (new Vector3D("")).getNombreObjetoMatematico(), (new UnidadNumerosReales()).getNombreObjetoMatematico() };
 
 		public division() {
 			super(false,"/",false, "Dividir Vectores 3D", "Operacion para dividir la magnitud de un vector por una unidad.", 2);
 		}
 		@Override
 		protected String[] definirTipoDeOperandoscorrectos() {
-			String retorno[] = 	{ (new Vector3D("")).getNombre(), (new UnidadNumerosReales()).getNombre() };
+			String retorno[] = 	{ (new Vector3D("")).getNombreObjetoMatematico(), (new UnidadNumerosReales()).getNombreObjetoMatematico() };
 			return retorno;
 
 		}
@@ -258,7 +271,7 @@ public class Vector3D extends UnidadMatematica implements OperacionesVector{
 	 * ejes
 	 */
 	public Vector3D(String NombreVector, double magnitudX, double magnitudY, double magnitudZ) {
-		super("V",new suma(), new resta(), new multiplicacion(), new division());
+		super("Vector 3D","'V",new suma(), new resta(), new multiplicacion(), new division());
 		this.NombreVector = NombreVector;
 		this.magnitudX = magnitudX;
 		this.magnitudY = magnitudY;
@@ -275,7 +288,7 @@ public class Vector3D extends UnidadMatematica implements OperacionesVector{
 	 * magnitud
 	 */
 	public Vector3D(String NombreVector, double ThetaX, double ThetaY, double ThetaZ, double Magnitud) {
-		super("V",new suma(), new resta(), new multiplicacion(), new division());
+		super("Vector 3D","'V",new suma(), new resta(), new multiplicacion(), new division());
 		this.NombreVector = NombreVector;
 		this.ThetaX = ThetaX;
 		this.ThetaY = ThetaY;
@@ -293,7 +306,7 @@ public class Vector3D extends UnidadMatematica implements OperacionesVector{
 
 	/* Vector 3D con nombre y variables vacias */
 	public Vector3D(String NombreVector) {
-		super("V",new suma(), new resta(), new multiplicacion(), new division());
+		super("Vector 3D","'V",new suma(), new resta(), new multiplicacion(), new division());
 		this.NombreVector = NombreVector;
 		if (NombreVector == null || NombreVector.isEmpty()) {
 			NombreVector = this.toStringReducido();
@@ -607,11 +620,6 @@ public class Vector3D extends UnidadMatematica implements OperacionesVector{
 
 	public void setThetaZ(double thetaZ) {
 		ThetaZ = thetaZ;
-	}
-
-	@Override
-	public String getNombre() {
-		return "Vector3D";
 	}
 
 	@Override

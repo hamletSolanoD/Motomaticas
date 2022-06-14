@@ -12,14 +12,21 @@ public interface OperacionesVector {
     public static class operacionVecUnitario extends OperacionMatematica {
         @Override
         protected String[] definirTipoDeOperandoscorrectos() {
-                String retorno[] = 	{ (new Vector3D("")).getNombre(),(new Vector3D("")).getNombre() };
+                String retorno[] = 	{ (new Vector3D("")).getNombreObjetoMatematico(),(new Vector3D("")).getNombreObjetoMatematico() };
                 return retorno;
 
-        }        
+        } 
+        @Override
+        public String getCategoriaMatematica(){
+                return "Operaciones Entre Vectores 3D";
+        }  
+
+     
+             
 
         public operacionVecUnitario() {
             super(true,"Â",false, "Vector Unitario", "Operacion para calcular el vector unitario de un vector.", 4);
-            // TODO Auto-generated constructor stub
+          
         }
 
         /*
@@ -60,16 +67,19 @@ public interface OperacionesVector {
     }
 
     public static class operacionVecMagnitud extends OperacionMatematica {
-        
+        @Override
+        public String getCategoriaMatematica(){
+                return "Operaciones Entre Vectores 3D";
+        }  
         @Override
         protected String[] definirTipoDeOperandoscorrectos() {
-                String retorno[] = 	{ (new Vector3D("")).getNombre(),(new Vector3D("")).getNombre() };
+                String retorno[] = 	{ (new Vector3D("")).getNombreObjetoMatematico(),(new Vector3D("")).getNombreObjetoMatematico() };
                 return retorno;
 
         }     
         public operacionVecMagnitud() {
             super(true,"|A|",false, "Vector Magnitud", "Operacion para calcular la magnitud de un vector.", 4);
-            // TODO Auto-generated constructor stub
+           // setCategoriaMatematica((new Vector3D("")).getNombreObjetoMatematico());
         }
     
 
@@ -103,14 +113,18 @@ public interface OperacionesVector {
     public static class operacionVecProductoEscalar extends OperacionMatematica {
         @Override
         protected String[] definirTipoDeOperandoscorrectos() {
-                String retorno[] = 	{ (new Vector3D("")).getNombre(),(new Vector3D("")).getNombre() };
+                String retorno[] = 	{ (new Vector3D("")).getNombreObjetoMatematico(),(new Vector3D("")).getNombreObjetoMatematico() };
                 return retorno;
 
-        }  
+        } 
+        @Override
+        public String getCategoriaMatematica(){
+                return "Operaciones Entre Vectores 3D";
+        }   
         public operacionVecProductoEscalar() {
             super(false,"•",false, "Producto Escalar", "Operacion para calcular el producto escalar entre 2 vectores.",
                     3);
-            // TODO Auto-generated constructor stub
+
         }
 
         @Override
@@ -123,7 +137,7 @@ public interface OperacionesVector {
                             + (Vector.getMagnitudZ() * Vector2.getMagnitudZ()));
 
             Apunte nuevoApunte_ProductoEscalar = new Apunte(
-                    "Producto Escalar de \"" + Vector.getNombreVector() + "\" y \"" + Vector2.getNombre() + "\"");
+                    "Producto Escalar de \"" + Vector.getNombreVector() + "\" y \"" + Vector2.getNombreObjetoMatematico() + "\"");
 
             nuevoApunte_ProductoEscalar.AgregarParrafo(new Parrafo(
                     "\nDefinicion: El producto escalar representa la proyeccion del vector A sobre el vector B y equivalentemente B sobre A. "));
@@ -149,9 +163,14 @@ public interface OperacionesVector {
     }
 
     public static class operacionVecProductoEscalar_v2 extends OperacionMatematica {
+        
+        @Override
+        public String getCategoriaMatematica(){
+                return "Operaciones Entre Vectores 3D";
+        } 
         @Override
         protected String[] definirTipoDeOperandoscorrectos() {
-                String retorno[] = 	{ (new UnidadNumerosReales()).getNombre(),(new UnidadNumerosReales()).getNombre(),(new UnidadNumerosReales()).getNombre()};
+                String retorno[] = 	{ (new UnidadNumerosReales()).getNombreObjetoMatematico(),(new UnidadNumerosReales()).getNombreObjetoMatematico(),(new UnidadNumerosReales()).getNombreObjetoMatematico()};
                 return retorno;
 
         }  
@@ -162,7 +181,6 @@ public interface OperacionesVector {
              */
             super(false,"•",true, "Producto Escalar", "Operacion para calcular el producto escalar entre 2 vectores.",
                     4);
-            // TODO Auto-generated constructor stub
         }
 
         @Override
@@ -174,11 +192,16 @@ public interface OperacionesVector {
         }
     }
 
-    public static class operacionVecCruz extends OperacionMatematica {
 
+
+    public static class operacionVecCruz extends OperacionMatematica {
+        @Override
+        public String getCategoriaMatematica(){
+                return "Operaciones Entre Vectores 3D";
+        } 
         @Override
         protected String[] definirTipoDeOperandoscorrectos() {
-                String retorno[] = 	{ (new Vector3D("")).getNombre(),(new Vector3D("")).getNombre()};
+                String retorno[] = 	{ (new Vector3D("")).getNombreObjetoMatematico(),(new Vector3D("")).getNombreObjetoMatematico()};
                 return retorno;
 
         }  

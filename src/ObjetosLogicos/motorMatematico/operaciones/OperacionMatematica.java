@@ -13,10 +13,8 @@ public abstract class OperacionMatematica extends ObjetoAlgebraico implements Cl
 	public static ArrayList<OperacionMatematica> TotalOperacionesMatematicas;
 	private String descripcionDeOperacion;
 	private int prioridadDeOperacion;
-	private String nombre;
 	private String[] TipoOperandosCorrecto;
 	private boolean Funcion;// booleano para saber si una operacion es una funcion con mas de un parametro
-	
 
 	public String getDescripcionDeOperacion() {
 		return this.descripcionDeOperacion;
@@ -29,7 +27,8 @@ public abstract class OperacionMatematica extends ObjetoAlgebraico implements Cl
 	public String[] getTipoOperandosCorrecto() {
 		return this.TipoOperandosCorrecto;
 	}
-	public OperacionMatematica clonarNuevaInstanciaOperacionMatematica(){
+
+	public OperacionMatematica clonarNuevaInstanciaOperacionMatematica() {
 		try {
 			return (OperacionMatematica) this.clone();
 		} catch (CloneNotSupportedException e) {
@@ -39,8 +38,9 @@ public abstract class OperacionMatematica extends ObjetoAlgebraico implements Cl
 		return null;
 
 	}
+
 	public void setTipoOperandosCorrecto() {
-		 this.TipoOperandosCorrecto = definirTipoDeOperandoscorrectos();
+		this.TipoOperandosCorrecto = definirTipoDeOperandoscorrectos();
 	}
 
 	public boolean getFuncion() {
@@ -56,24 +56,29 @@ public abstract class OperacionMatematica extends ObjetoAlgebraico implements Cl
 	private boolean conLlave;// si el operador hace uso de apertura y cierre de
 	private static boolean primeraEjecucion = true;
 
-	public OperacionMatematica(boolean conLlave, String SimboloIdentificador, boolean Funcion, String nombre, String descripcionDeOperacion, int prioridadDeOperacion) {
-		super(SimboloIdentificador, Constantes.TipoObjetoAlgebraico.Operacion);
+	public OperacionMatematica(boolean conLlave, String SimboloIdentificador, boolean Funcion, String nombre,
+			String descripcionDeOperacion, int prioridadDeOperacion) {
+		super(nombre, SimboloIdentificador, Constantes.TipoObjetoAlgebraico.Operacion);
 		this.conLlave = conLlave;
-		this.nombre = nombre;
-		this.prioridadDeOperacion =   ((prioridadDeOperacion >= 4 && conLlave) || conLlave)? 4 :  ((prioridadDeOperacion >= 4)? 3 : prioridadDeOperacion ) ;
-		if(this.prioridadDeOperacion != prioridadDeOperacion) (new Exception("Error en asigniacion de prioridad de operacion para la operacion "+ getNombre())).printStackTrace();
+		this.prioridadDeOperacion = ((prioridadDeOperacion >= 4 && conLlave) || conLlave) ? 4
+				: ((prioridadDeOperacion >= 4) ? 3 : prioridadDeOperacion);
+		if (this.prioridadDeOperacion != prioridadDeOperacion)
+			(new Exception(
+					"Error en asigniacion de prioridad de operacion para la operacion " + getNombreObjetoMatematico()))
+					.printStackTrace();
 		this.descripcionDeOperacion = descripcionDeOperacion;
 		this.Funcion = Funcion;
 		inyectarPorCreacion();
 	}
-	
+
 	protected abstract String[] definirTipoDeOperandoscorrectos();
+
 	private void inyectarPorCreacion() {
 		if (TotalOperacionesMatematicas == null)
 			TotalOperacionesMatematicas = new ArrayList<>();
 		boolean repetido = false;
 		for (OperacionMatematica operacionMatematica : TotalOperacionesMatematicas) {
-			if (operacionMatematica.getNombre() == this.getNombre()) {
+			if (operacionMatematica.getNombreObjetoMatematico() == this.getNombreObjetoMatematico()) {
 				repetido = true;
 				break;
 			}
@@ -101,7 +106,8 @@ public abstract class OperacionMatematica extends ObjetoAlgebraico implements Cl
 
 	@Override
 	public String toStringReducido() {
-		if(conLlave) return SimboloIdentificador +"{";
+		if (conLlave)
+			return SimboloIdentificador + "{";
 		return this.SimboloIdentificador;
 	}
 
@@ -116,11 +122,6 @@ public abstract class OperacionMatematica extends ObjetoAlgebraico implements Cl
 	@Override
 	public String toString() {
 		return descripcionDeOperacion;
-	}
-
-	@Override
-	public String getNombre() {
-		return nombre;
 	}
 
 	public boolean comprobarOperandosIguales(String[] ArrayTipos) {
@@ -145,7 +146,7 @@ public abstract class OperacionMatematica extends ObjetoAlgebraico implements Cl
 			TotalOperacionesMatematicas = new ArrayList<>();
 		boolean repetido = false;
 		for (OperacionMatematica opMatematica : TotalOperacionesMatematicas) {
-			if (opMatematica.getNombre() == OperacionMatematica.getNombre()) {
+			if (opMatematica.getNombreObjetoMatematico() == OperacionMatematica.getNombreObjetoMatematico()) {
 				repetido = true;
 				break;
 			}
