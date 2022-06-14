@@ -36,7 +36,6 @@ public class JDialog_CrearOperacionMatematica extends JDialog {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     operacionMatematicaCreada = operacionMatematica.clonarNuevaInstanciaOperacionMatematica();
-                    System.out.println(operacionMatematicaCreada);
                     dispose();
                 }
             });

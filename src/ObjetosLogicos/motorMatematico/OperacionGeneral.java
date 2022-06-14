@@ -161,7 +161,7 @@ public class OperacionGeneral implements Serializable {
 								listaAuxiliar.addAll(ListaParResolverSegundoOrden.subList(Index + 2,
 										ListaParResolverSegundoOrden.size()));
 							} catch (EventException e) {
-								System.out.println("Lista mas pequenio de lo esperado");
+								e.printStackTrace();
 							}
 							listaAuxiliar.removeIf(n -> (n == null));// por si se agrego algun valor nulo
 							OperadorEncontrado = true;// Termina el bucle for
