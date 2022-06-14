@@ -37,4 +37,28 @@ public interface OperacionesNumerosReales {
         
     }
     
+    public class raices extends OperacionMatematica{
+
+        public raices() {
+            super(true, "√", false, "Raices", "Retorna el numero que cabe N veces si mismo dentro del numero dado", 3);
+            //TODO Auto-generated constructor stub
+        }
+
+        @Override
+        protected String[] definirTipoDeOperandoscorrectos() {
+            String[] operandos = {
+                (new UnidadNumerosReales()).getNombre(),
+            };
+            return operandos;
+        }
+
+        @Override
+        public ObjetoAlgebraico calcularOperacion(ObjetoAlgebraico... args) {
+            UnidadNumerosReales Numero = (UnidadNumerosReales)args[0];
+        
+            return new UnidadNumerosReales(Math.sqrt(Numero.getValor()));
+        }
+
+        
+    }
 }
