@@ -62,8 +62,8 @@ public class OperacionGeneral implements Serializable {
 			if (ObjetosAlgebraicos.get(Index).TipoDeObjetoAlgebraico == TipoObjetoAlgebraico.Operacion) {
 				OperacionMatematica operacion = (OperacionMatematica) ObjetosAlgebraicos.get(Index);
 				if (operacion.getConLlave()) {
-					if (operacion.getNombre()
-							.equals((new operacionesMatematicasGenericasInterface.llaveDerecha()).getNombre()))
+					if (operacion.getNombreObjetoMatematico()
+							.equals((new operacionesMatematicasGenericasInterface.llaveDerecha()).getNombreObjetoMatematico()))
 						NumeroDeParentesis--;
 
 					else
@@ -147,8 +147,8 @@ public class OperacionGeneral implements Serializable {
 						/////////// Si el try no arroja nada de operador incompleto o tampoco de
 						/////////// operador repitido, avanza
 						String[] OperandosResolver = {
-								((UnidadMatematica)objetoAlgebraicoIzquierdo).getNombre(),
-								((UnidadMatematica)objetoAlgebraicoDerecho).getNombre()
+								((UnidadMatematica)objetoAlgebraicoIzquierdo).getNombreObjetoMatematico(),
+								((UnidadMatematica)objetoAlgebraicoDerecho).getNombreObjetoMatematico()
 						};
 						if (((OperacionMatematica) ListaParResolverSegundoOrden.get(Index))
 								.comprobarOperandosIguales(OperandosResolver)) {

@@ -13,12 +13,16 @@ public interface OperacionesNumerosReales {
             super(false, "^", false, "Potencia", "Eleva un numero N a la M potencia", 3);
             //TODO Auto-generated constructor stub
         }
+        @Override
+        public String getCategoriaMatematica(){
+                return "prueba de categoria";
+        } 
 
         @Override
         protected String[] definirTipoDeOperandoscorrectos() {
             String[] operandos = {
-                (new UnidadNumerosReales()).getNombre(),
-                (new UnidadNumerosReales()).getNombre()
+                (new UnidadNumerosReales()).getNombreObjetoMatematico(),
+                (new UnidadNumerosReales()).getNombreObjetoMatematico()
             };
             return operandos;
         }
@@ -47,7 +51,7 @@ public interface OperacionesNumerosReales {
         @Override
         protected String[] definirTipoDeOperandoscorrectos() {
             String[] operandos = {
-                (new UnidadNumerosReales()).getNombre(),
+                (new UnidadNumerosReales()).getNombreObjetoMatematico(),
             };
             return operandos;
         }
