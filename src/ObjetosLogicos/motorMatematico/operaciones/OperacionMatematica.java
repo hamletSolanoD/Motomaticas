@@ -60,7 +60,8 @@ public abstract class OperacionMatematica extends ObjetoAlgebraico implements Cl
 		super(SimboloIdentificador, Constantes.TipoObjetoAlgebraico.Operacion);
 		this.conLlave = conLlave;
 		this.nombre = nombre;
-		this.prioridadDeOperacion = prioridadDeOperacion;
+		this.prioridadDeOperacion =   ((prioridadDeOperacion >= 4 && conLlave) || conLlave)? 4 :  ((prioridadDeOperacion >= 4)? 3 : prioridadDeOperacion ) ;
+		if(this.prioridadDeOperacion != prioridadDeOperacion) (new Exception("Error en asigniacion de prioridad de operacion para la operacion "+ getNombre())).printStackTrace();
 		this.descripcionDeOperacion = descripcionDeOperacion;
 		this.Funcion = Funcion;
 		inyectarPorCreacion();

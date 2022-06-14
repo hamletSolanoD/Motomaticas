@@ -38,7 +38,6 @@ public class JDialog_CrearUnidadMatematica extends JDialog {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     unidadMatematicaCreada = unidadMatematicaInyectada.crearUnidad(Padre);
-                    System.out.println(unidadMatematicaCreada);
                     dispose();
                 }
             });

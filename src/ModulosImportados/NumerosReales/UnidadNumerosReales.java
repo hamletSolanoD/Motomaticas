@@ -7,9 +7,10 @@ import ObjetosLogicos.motorMatematico.operaciones.OperacionMatematica;
 import ObjetosLogicos.motorMatematico.variables.UnidadMatematica;
 import ValoresDefault.Constantes.Apunte;
 
-public class UnidadNumerosReales extends UnidadMatematica {
+public class UnidadNumerosReales extends UnidadMatematica implements OperacionesNumerosReales {
     private double Valor;
 
+    
     static class Multiplicacion extends OperacionMatematica {
 
         public Multiplicacion() {
@@ -124,13 +125,19 @@ public class UnidadNumerosReales extends UnidadMatematica {
 
     public UnidadNumerosReales() {
         super("U",new Suma(), new Resta(), new Multiplicacion(), new Division());
+        InyectarFunciones();
     }
 
     public UnidadNumerosReales(double Valor) {
         super("U",new Suma(), new Resta(), new Multiplicacion(), new Division());
+        InyectarFunciones();
         this.Valor = Valor;
     }
 
+
+    private void InyectarFunciones(){
+        OperacionMatematica.inyectarFuncionesMatematicas(new potencias());
+    }
     public void setValor(double valor) {
         Valor = valor;
     }

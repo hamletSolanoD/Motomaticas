@@ -109,7 +109,7 @@ public interface OperacionesVector {
         }  
         public operacionVecProductoEscalar() {
             super(false,"•",false, "Producto Escalar", "Operacion para calcular el producto escalar entre 2 vectores.",
-                    4);
+                    3);
             // TODO Auto-generated constructor stub
         }
 
@@ -183,7 +183,7 @@ public interface OperacionesVector {
 
         }  
         public operacionVecCruz() {
-            super(false,"X",false, "Producto Cruz", "Operacion para calcular el producto cruz entre 2 vectores", 4);
+            super(false,"X",false, "Producto Cruz", "Operacion para calcular el producto cruz entre 2 vectores", 3);
         }
 
         @Override
