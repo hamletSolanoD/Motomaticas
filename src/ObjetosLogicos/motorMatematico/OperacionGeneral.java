@@ -21,6 +21,7 @@ public class OperacionGeneral implements Serializable {
 	private List<ObjetoAlgebraico> ObjetosAlgebraicos = new LinkedList<ObjetoAlgebraico>();
 	private List<ObjetoAlgebraico> ObjetosAlgebraicos_PrimerOrden = new LinkedList<ObjetoAlgebraico>();
 	private List<ObjetoAlgebraico> ObjetosAlgebraicos_SegundoOrden = new LinkedList<ObjetoAlgebraico>();
+	private List<ObjetoAlgebraico> ObjetosAlgebraicos_TercerOrden = new LinkedList<ObjetoAlgebraico>();
 
 	private ObjetoAlgebraico Resultado = null;
 	private TipoDeErrorAlgebraico Error = null;
@@ -126,13 +127,15 @@ public class OperacionGeneral implements Serializable {
 	}
 
 	private TipoDeErrorAlgebraico ResolverSegundoOrden(List<ObjetoAlgebraico> ListaParResolverSegundoOrden,
-			List<ObjetoAlgebraico> listaDeResultado[]) {
+			List<ObjetoAlgebraico> listaDeResultado[], int prioridad) {
+
 
 		List<ObjetoAlgebraico> listaAuxiliar = new CopyOnWriteArrayList<ObjetoAlgebraico>(ListaParResolverSegundoOrden);
 		boolean OperadorEncontrado = false;
 		TipoDeErrorAlgebraico posibleError = null;
+		
 		for (int Index = 0; Index < ListaParResolverSegundoOrden.size(); Index++) {
-			if (ListaParResolverSegundoOrden.get(Index).getTipoDeObjetoAlgebraico() == TipoObjetoAlgebraico.Operacion) {
+			if (ListaParResolverSegundoOrden.get(Index).getTipoDeObjetoAlgebraico() == TipoObjetoAlgebraico.Operacion && ((OperacionMatematica)ListaParResolverSegundoOrden.get(Index)).getPrioridadDeOperacion() == prioridad ) {
 				try {
 					ObjetoAlgebraico objetoAlgebraicoIzquierdo = ListaParResolverSegundoOrden.get(Index - 1);
 					ObjetoAlgebraico objetoAlgebraicoDerecho = ListaParResolverSegundoOrden.get(Index + 1);
@@ -183,19 +186,25 @@ public class OperacionGeneral implements Serializable {
 		if (OperadorEncontrado == false) {
 			listaDeResultado[0] = listaAuxiliar;
 		} else {
-			posibleError = ResolverSegundoOrden(listaAuxiliar, listaDeResultado);
+			posibleError = ResolverSegundoOrden(listaAuxiliar, listaDeResultado,prioridad);
 		}
 		return posibleError;
 	}
+	
 
-	private TipoDeErrorAlgebraico ResolverSegundoOrden() {
+	private TipoDeErrorAlgebraico ResolverOrdenN(List<ObjetoAlgebraico> ListaDeOrdenPrevia,List<ObjetoAlgebraico> ListaDeOrdenN[],int prioridad) {
 
-		List<ObjetoAlgebraico>[] ListaArraySegundoOrden = new List[1];
+		List<ObjetoAlgebraico>[] ListaArraySegundoOrden = new List[1];//puesto como array para poder usarlo como un apuntador y
+		//asignarle su valor aun durante las iteaciones recursivas
 		ListaArraySegundoOrden[0] = new CopyOnWriteArrayList<ObjetoAlgebraico>();
-		TipoDeErrorAlgebraico posibleError = ResolverSegundoOrden(ObjetosAlgebraicos_PrimerOrden,
-				ListaArraySegundoOrden);
-		ObjetosAlgebraicos_SegundoOrden.clear();
-		ObjetosAlgebraicos_SegundoOrden.addAll(ListaArraySegundoOrden[0]);
+
+		TipoDeErrorAlgebraico posibleError = ResolverSegundoOrden(ListaDeOrdenPrevia,ListaArraySegundoOrden,prioridad);	
+
+
+		ListaDeOrdenN[0].clear();
+		ListaDeOrdenN[0].addAll(ListaArraySegundoOrden[0]);
+
+
 		return posibleError;
 	}
 
@@ -204,7 +213,7 @@ public class OperacionGeneral implements Serializable {
 		ObjetoAlgebraico ObjetoUltimo = null;
 		ObjetoAlgebraico ObjetoPenultimo = null;
 
-		for (ObjetoAlgebraico ObjetoActual : ObjetosAlgebraicos_SegundoOrden) {
+		for (ObjetoAlgebraico ObjetoActual : ObjetosAlgebraicos_TercerOrden) {
 			if (ObjetoUltimo != null) {
 				if (ObjetoActual.getTipoDeObjetoAlgebraico() == TipoObjetoAlgebraico.Unidad) { /// IDENTIFICAR EL TIPO DE OBJETO ACTUAL
 						if (ObjetoUltimo.getTipoDeObjetoAlgebraico() == TipoObjetoAlgebraico.Operacion) {
@@ -258,16 +267,26 @@ public class OperacionGeneral implements Serializable {
 			return PrimerOrdenError;
 		}
 
-		TipoDeErrorAlgebraico SegundoOrdenError = ResolverSegundoOrden();
+		List<ObjetoAlgebraico>[] punteroDeLista = new List[1];
+		punteroDeLista[0] = ObjetosAlgebraicos_SegundoOrden;
+		TipoDeErrorAlgebraico SegundoOrdenError = ResolverOrdenN(ObjetosAlgebraicos_PrimerOrden,punteroDeLista,3);
 		if (SegundoOrdenError != null) {
 			Error = SegundoOrdenError;
 			return SegundoOrdenError;
 		}
 
-		TipoDeErrorAlgebraico TercerOrden = ResolverTercerOrden();
+		List<ObjetoAlgebraico>[] punteroDeLista2 = new List[1];
+		punteroDeLista2[0] = ObjetosAlgebraicos_TercerOrden;
+		TipoDeErrorAlgebraico TercerOrden = ResolverOrdenN(ObjetosAlgebraicos_SegundoOrden,punteroDeLista2 ,2);
 		if (TercerOrden != null) {
 			Error = TercerOrden;
 			return TercerOrden;
+		}
+
+		TipoDeErrorAlgebraico CuartoOrden = ResolverTercerOrden();
+		if (CuartoOrden != null) {
+			Error = CuartoOrden;
+			return CuartoOrden;
 		}
 
 		if (Resultado == null) {
