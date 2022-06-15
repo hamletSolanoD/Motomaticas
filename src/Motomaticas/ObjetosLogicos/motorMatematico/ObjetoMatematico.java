@@ -1,4 +1,4 @@
-package Motomaticas;
+package Motomaticas.ObjetosLogicos.motorMatematico;
 
 import java.io.Serializable;
 import java.util.UUID;
@@ -7,7 +7,7 @@ import Motomaticas.ValoresDefault.Constantes.TipoObjetoMatematico;
 
  public abstract class ObjetoMatematico implements Serializable {
 	protected String ID;
-	protected TipoObjetoMatematico TipoDeObjetoMatematico;
+	public TipoObjetoMatematico TipoDeObjetoMatematico;
 	private String NombreObjetoMatematico;
 	protected String SimboloIdentificador;
 

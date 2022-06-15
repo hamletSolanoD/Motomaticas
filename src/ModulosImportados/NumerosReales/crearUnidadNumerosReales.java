@@ -14,9 +14,9 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
 
-import ObjetosLogicos.motorMatematico.variables.UnidadMatematica;
-import RecursosCustomizados.MensajeConfirmar;
-import ValoresDefault.Constantes;
+import Motomaticas.ObjetosLogicos.motorMatematico.variables.UnidadMatematica;
+import Motomaticas.RecursosCustomizados.MensajeConfirmar;
+import Motomaticas.ValoresDefault.Constantes;
 
 import javax.swing.JLabel;
 
@@ -73,7 +73,7 @@ public class crearUnidadNumerosReales extends JDialog implements ActionListener 
 			@Override
 			public void insertUpdate(DocumentEvent e) {
 				// TODO Auto-generated method stub
-				UnidadNueva.setValor(Constantes.ComprobarEntradas(e,FramePrincipal));
+				UnidadNueva = (new UnidadNumerosReales(Constantes.ComprobarEntradas(e,FramePrincipal)));
 				
 				
 			}
@@ -119,7 +119,7 @@ public class crearUnidadNumerosReales extends JDialog implements ActionListener 
 		
 	}
 
-	public UnidadMatematica getUnidadNueva() {
+	public UnidadNumerosReales getUnidadNueva() {
 		return UnidadNueva;
 	}
 

@@ -9,7 +9,6 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 import org.w3c.dom.events.EventException;
 
-import  Motomaticas.ObjetoMatematico;
 import  Motomaticas.ObjetosLogicos.motorMatematico.operaciones.OperacionMatematica;
 import  Motomaticas.ObjetosLogicos.motorMatematico.operaciones.operacionesMatematicasGenericasInterface;
 import  Motomaticas.ObjetosLogicos.motorMatematico.variables.UnidadMatematica;
@@ -106,7 +105,7 @@ public class OperacionGeneral implements Serializable {
 								TipoDeErrorMatematico PosibleError = subOperacion.CalcularOperacion();
 								if (PosibleError == null) {
 									ObjetosMatematicos_PrimerOrden.add(((OperacionMatematica) ObjetoActual)
-											.calcularOperacion(subOperacion.getResultado()));
+											.calcularOperacion((UnidadMatematica)subOperacion.getResultado()));
 									continue Repetidor;
 								} else {/// si si tiene regresar el error
 									return PosibleError;
@@ -156,8 +155,8 @@ public class OperacionGeneral implements Serializable {
 							listaAuxiliar.clear();
 							listaAuxiliar.addAll(ListaParResolverSegundoOrden.subList(0, Index - 1));
 							listaAuxiliar.add(((OperacionMatematica) ListaParResolverSegundoOrden.get(Index))
-									.calcularOperacion(objetoMatematicoIzquierdo,
-									objetoMatematicoDerecho));
+									.calcularOperacion((UnidadMatematica)objetoMatematicoIzquierdo,
+									(UnidadMatematica)objetoMatematicoDerecho));
 							try {
 								listaAuxiliar.addAll(ListaParResolverSegundoOrden.subList(Index + 2,
 										ListaParResolverSegundoOrden.size()));

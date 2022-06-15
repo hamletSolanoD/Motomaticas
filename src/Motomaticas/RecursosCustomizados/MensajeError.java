@@ -20,7 +20,7 @@ import javax.swing.text.SimpleAttributeSet;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
 
-import ValoresDefault.Constantes;
+import Motomaticas.ValoresDefault.Constantes;
 import javax.swing.JLabel;
 
 public class MensajeError extends JDialog {

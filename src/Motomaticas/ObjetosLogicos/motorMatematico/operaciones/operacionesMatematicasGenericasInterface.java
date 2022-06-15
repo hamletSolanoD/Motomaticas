@@ -1,6 +1,7 @@
 package Motomaticas.ObjetosLogicos.motorMatematico.operaciones;
 
-import Motomaticas.ObjetoMatematico;
+import Motomaticas.ObjetosLogicos.motorMatematico.ObjetoMatematico;
+import Motomaticas.ObjetosLogicos.motorMatematico.variables.UnidadMatematica;
 public interface operacionesMatematicasGenericasInterface{
     public class llaveDerecha extends OperacionMatematica{
 
@@ -16,7 +17,7 @@ public interface operacionesMatematicasGenericasInterface{
 
         }
         @Override
-        public ObjetoMatematico calcularOperacion(ObjetoMatematico... args) {
+        public UnidadMatematica calcularOperacion(UnidadMatematica... args) {
             // TODO Auto-generated method stub
             return null;
         }
@@ -46,7 +47,7 @@ public interface operacionesMatematicasGenericasInterface{
         }
 
         @Override
-        public ObjetoMatematico calcularOperacion(ObjetoMatematico... args) {
+        public UnidadMatematica calcularOperacion(UnidadMatematica... args) {
             // TODO Auto-generated method stub
             return args[0];
         }

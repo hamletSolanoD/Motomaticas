@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 import javax.swing.JButton;
 
-import Motomaticas.ObjetoMatematico;
+import Motomaticas.ObjetosLogicos.motorMatematico.ObjetoMatematico;
 import Motomaticas.ValoresDefault.Constantes;
 
 public class BotonAritmetico extends JButton implements Serializable {

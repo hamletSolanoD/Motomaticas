@@ -3,11 +3,11 @@ package ModulosImportados.Vector3D;
 import javax.swing.JFrame;
 
 import ModulosImportados.NumerosReales.UnidadNumerosReales;
-import ObjetosLogicos.motorMatematico.ObjetoMatematico;
-import ObjetosLogicos.motorMatematico.funciones.FuncionMatematica;
-import ObjetosLogicos.motorMatematico.operaciones.OperacionMatematica;
-import ObjetosLogicos.motorMatematico.variables.UnidadMatematica;
-import ValoresDefault.Constantes.*;
+import Motomaticas.ObjetosLogicos.motorMatematico.ObjetoMatematico;
+import Motomaticas.ObjetosLogicos.motorMatematico.funciones.FuncionMatematica;
+import Motomaticas.ObjetosLogicos.motorMatematico.operaciones.OperacionMatematica;
+import Motomaticas.ObjetosLogicos.motorMatematico.variables.UnidadMatematica;
+import Motomaticas.ValoresDefault.Constantes.*;
 
 public interface OperacionesVector {
 
@@ -35,7 +35,7 @@ public interface OperacionesVector {
                  * @Vector3D
                  */
                 @Override
-                public ObjetoMatematico calcularOperacion(ObjetoMatematico... args) {
+                public UnidadMatematica calcularOperacion(UnidadMatematica... args) {
                         Vector3D Vector = (Vector3D) args[0];
 
                         Vector3D Resultado = new Vector3D("Vector unitario de " + Vector.getNombreVector(),
@@ -97,7 +97,7 @@ public interface OperacionesVector {
                 }
 
                 @Override
-                public ObjetoMatematico calcularOperacion(ObjetoMatematico... args) {
+                public UnidadMatematica calcularOperacion(UnidadMatematica... args) {
                         Vector3D Vector = (Vector3D) args[0];
 
                         Apunte NuevoApunte_Magnitud = new Apunte(
@@ -152,7 +152,7 @@ public interface OperacionesVector {
                 }
 
                 @Override
-                public ObjetoMatematico calcularOperacion(ObjetoMatematico... args) {
+                public UnidadMatematica calcularOperacion(UnidadMatematica... args) {
 
                         Vector3D Vector = (Vector3D) args[0];
                         Vector3D Vector2 = (Vector3D) args[1];
@@ -215,7 +215,7 @@ public interface OperacionesVector {
                 }
 
                 @Override
-                public ObjetoMatematico calcularOperacion(ObjetoMatematico... args) {
+                public UnidadMatematica calcularOperacion(UnidadMatematica... args) {
                         Vector3D VectorA = (Vector3D) args[0];
                         Vector3D VectorB = (Vector3D) args[1];
 
@@ -271,7 +271,7 @@ public interface OperacionesVector {
                 }
 
                 @Override
-                public ObjetoMatematico calcularOperacion(ObjetoMatematico... args) {
+                public UnidadMatematica calcularOperacion(UnidadMatematica... args) {
                         UnidadNumerosReales MagnitudA = (UnidadNumerosReales) args[0];
                         UnidadNumerosReales MagnitudB = (UnidadNumerosReales) args[1];
                         UnidadNumerosReales Angulo = (UnidadNumerosReales) args[2];
@@ -282,7 +282,7 @@ public interface OperacionesVector {
                 protected String[] definirEntradasCorrectas() {
                         String[] entradasCorrectas = {
                               (new  UnidadNumerosReales()).getNombreObjetoMatematico()
-                        }
+                        };
                         return null;
                 }
 
@@ -297,6 +297,7 @@ public interface OperacionesVector {
                         // TODO Auto-generated method stub
                         return null;
                 }
+
         }
 
 }

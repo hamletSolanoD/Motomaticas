@@ -5,11 +5,11 @@ import java.lang.Math;
 import javax.swing.JFrame;
 
 import ModulosImportados.NumerosReales.UnidadNumerosReales;
-import ValoresDefault.Constantes.Parrafo;
-import ObjetosLogicos.motorMatematico.ObjetoMatematico;
-import ObjetosLogicos.motorMatematico.operaciones.OperacionMatematica;
-import ObjetosLogicos.motorMatematico.variables.UnidadMatematica;
-import ValoresDefault.Constantes.Apunte;;
+import Motomaticas.ValoresDefault.Constantes.Parrafo;
+import Motomaticas.ObjetosLogicos.motorMatematico.ObjetoMatematico;
+import Motomaticas.ObjetosLogicos.motorMatematico.operaciones.OperacionMatematica;
+import Motomaticas.ObjetosLogicos.motorMatematico.variables.UnidadMatematica;
+import Motomaticas.ValoresDefault.Constantes.Apunte;;
 
 public class Vector3D extends UnidadMatematica implements OperacionesVector{
 
@@ -25,7 +25,7 @@ public class Vector3D extends UnidadMatematica implements OperacionesVector{
 		}
 
 		@Override
-		public ObjetoMatematico calcularOperacion(ObjetoMatematico... args) {
+		public UnidadMatematica calcularOperacion(UnidadMatematica... args) {
 			Vector3D VectorA = (Vector3D) args[0];
 			Vector3D VectorB = (Vector3D) args[1];
 			double MagnitudX = VectorA.getMagnitudX() + VectorB.getMagnitudX();
@@ -77,7 +77,7 @@ public class Vector3D extends UnidadMatematica implements OperacionesVector{
 
 
 		@Override
-		public ObjetoMatematico calcularOperacion(ObjetoMatematico... args) {
+		public UnidadMatematica calcularOperacion(UnidadMatematica... args) {
 			Vector3D VectorA = (Vector3D) args[0];
 			Vector3D VectorB = (Vector3D) args[1];
 			double MagnitudX = VectorA.getMagnitudX() - VectorB.getMagnitudX();
@@ -126,7 +126,7 @@ public class Vector3D extends UnidadMatematica implements OperacionesVector{
 		}
 
 		@Override
-		public ObjetoMatematico calcularOperacion(ObjetoMatematico... args) {
+		public UnidadMatematica calcularOperacion(UnidadMatematica... args) {
 			Vector3D Vector = (Vector3D) args[0];
 			UnidadNumerosReales Unidad = (UnidadNumerosReales) args[1];
 			Vector3D Resultado = new Vector3D("Vector Multiplicar Magnitud de " + Vector.getNombreVector() + " y " + Unidad,
@@ -191,7 +191,7 @@ public class Vector3D extends UnidadMatematica implements OperacionesVector{
 
 
 		@Override
-		public ObjetoMatematico calcularOperacion(ObjetoMatematico... args) {
+		public UnidadMatematica calcularOperacion(UnidadMatematica... args) {
 			Vector3D Vector = (Vector3D) args[0];
 			UnidadNumerosReales Unidad = (UnidadNumerosReales) args[1];
 			Vector3D Resultado = new Vector3D("Vector Dividir vector " + Vector.getNombreVector() + " / " + Unidad,

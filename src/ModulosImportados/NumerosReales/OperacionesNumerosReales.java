@@ -1,9 +1,10 @@
 package ModulosImportados.NumerosReales;
 
-import ObjetosLogicos.motorMatematico.ObjetoMatematico;
-import ObjetosLogicos.motorMatematico.operaciones.OperacionMatematica;
-import ValoresDefault.Constantes.Apunte;
-import ValoresDefault.Constantes.Parrafo;;
+import Motomaticas.ObjetosLogicos.motorMatematico.ObjetoMatematico;
+import Motomaticas.ObjetosLogicos.motorMatematico.operaciones.OperacionMatematica;
+import Motomaticas.ObjetosLogicos.motorMatematico.variables.UnidadMatematica;
+import Motomaticas.ValoresDefault.Constantes.Apunte;
+import Motomaticas.ValoresDefault.Constantes.Parrafo;;
 
 
 public interface OperacionesNumerosReales {
@@ -28,7 +29,7 @@ public interface OperacionesNumerosReales {
         }
 
         @Override
-        public ObjetoMatematico calcularOperacion(ObjetoMatematico... args) {
+        public UnidadMatematica calcularOperacion(UnidadMatematica... args) {
             UnidadNumerosReales Numero = (UnidadNumerosReales)args[0];
             UnidadNumerosReales Potencia = (UnidadNumerosReales)args[1];
             Apunte apunte = new Apunte("Potencia de "+Numero.getValor()+" a la "+ Potencia.getValor());
@@ -57,11 +58,13 @@ public interface OperacionesNumerosReales {
         }
 
         @Override
-        public ObjetoMatematico calcularOperacion(ObjetoMatematico... args) {
+        public UnidadMatematica calcularOperacion(UnidadMatematica... args) {
             UnidadNumerosReales Numero = (UnidadNumerosReales)args[0];
         
             return new UnidadNumerosReales(Math.sqrt(Numero.getValor()));
         }
+
+  
 
         
     }

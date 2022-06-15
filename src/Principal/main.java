@@ -1,4 +1,4 @@
-package Motomaticas.Principal;
+package Principal;
 
 import ModulosImportados.NumerosReales.UnidadNumerosReales;
 import ModulosImportados.Vector3D.Vector3D;

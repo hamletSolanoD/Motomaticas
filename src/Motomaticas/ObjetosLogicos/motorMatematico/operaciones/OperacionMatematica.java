@@ -3,6 +3,7 @@ package Motomaticas.ObjetosLogicos.motorMatematico.operaciones;
 import java.util.ArrayList;
 
 import Motomaticas.ObjetosLogicos.motorMatematico.ObjetoMatematico;
+import Motomaticas.ObjetosLogicos.motorMatematico.variables.UnidadMatematica;
 import Motomaticas.RecursosCustomizados.BotonApuntes;
 import Motomaticas.ValoresDefault.Constantes;
 import Motomaticas.ValoresDefault.Constantes.Apunte;
@@ -128,7 +129,7 @@ public abstract class OperacionMatematica extends ObjetoMatematico implements Cl
 
 	}
 
-	public abstract ObjetoMatematico calcularOperacion(ObjetoMatematico... args);
+	public abstract UnidadMatematica calcularOperacion(UnidadMatematica... args);
 
 	public static void inyectarOperacionMatematica(OperacionMatematica OperacionMatematica) {
 		if (TotalOperacionesMatematicas == null)

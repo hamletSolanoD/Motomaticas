@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import javax.swing.JFrame;
 
-import Motomaticas.ObjetoMatematico;
+import Motomaticas.ObjetosLogicos.motorMatematico.ObjetoMatematico;
 import Motomaticas.ObjetosLogicos.motorMatematico.variables.UnidadMatematica;
 import Motomaticas.ValoresDefault.Constantes;
 
@@ -60,7 +60,7 @@ public abstract class FuncionMatematica extends ObjetoMatematico {
 
     }
 
-    public abstract ObjetoMatematico calcularOperacion(ObjetoMatematico... args);
+    public abstract UnidadMatematica calcularOperacion(UnidadMatematica... args);
 
     protected abstract String[] definirEntradasCorrectas();
 

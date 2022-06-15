@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import javax.swing.JFrame;
 
-import  Motomaticas.ObjetoMatematico;
+import Motomaticas.ObjetosLogicos.motorMatematico.ObjetoMatematico;
 import  Motomaticas.ObjetosLogicos.motorMatematico.operaciones.OperacionMatematica;
 import  Motomaticas.ValoresDefault.Constantes;
 
