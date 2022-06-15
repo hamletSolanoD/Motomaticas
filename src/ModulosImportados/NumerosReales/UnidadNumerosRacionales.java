@@ -6,7 +6,7 @@ import Motomaticas.ObjetosLogicos.motorMatematico.operaciones.OperacionMatematic
 import Motomaticas.ObjetosLogicos.motorMatematico.variables.UnidadMatematica;
 import Motomaticas.ValoresDefault.Constantes.Apunte;
 
-public class UnidadNumerosReales extends UnidadMatematica implements OperacionesNumerosReales {
+public class UnidadNumerosRacionales extends UnidadMatematica implements OperacionesNumerosRacionales {
     private double Valor;
 
     static class Multiplicacion extends OperacionMatematica {
@@ -19,20 +19,20 @@ public class UnidadNumerosReales extends UnidadMatematica implements Operaciones
 
         @Override
         public UnidadMatematica calcularOperacion(UnidadMatematica... args) {
-            UnidadNumerosReales A = (UnidadNumerosReales) args[0];
-            UnidadNumerosReales B = (UnidadNumerosReales) args[1];
+            UnidadNumerosRacionales A = (UnidadNumerosRacionales) args[0];
+            UnidadNumerosRacionales B = (UnidadNumerosRacionales) args[1];
 
             Apunte nuevoApunte_MultiplicarAritmetico = new Apunte(
                     "Multiplicar " + A.getValor() + " x " + B.getValor() + " = " + (A.getValor() * B.getValor()));
             MostrarInformacion(nuevoApunte_MultiplicarAritmetico);
 
-            return new UnidadNumerosReales(A.getValor() * B.getValor());
+            return new UnidadNumerosRacionales(A.getValor() * B.getValor());
         }
 
         @Override
         protected String[] definirTipoDeOperandoscorrectos() {
-            String[] operandos = { (new UnidadNumerosReales()).getNombreObjetoMatematico(),
-                    (new UnidadNumerosReales()).getNombreObjetoMatematico() };
+            String[] operandos = { (new UnidadNumerosRacionales()).getNombreObjetoMatematico(),
+                    (new UnidadNumerosRacionales()).getNombreObjetoMatematico() };
             return operandos;
         }
 
@@ -41,8 +41,8 @@ public class UnidadNumerosReales extends UnidadMatematica implements Operaciones
     static class Division extends OperacionMatematica {
         @Override
         protected String[] definirTipoDeOperandoscorrectos() {
-            String[] operandos = { (new UnidadNumerosReales()).getNombreObjetoMatematico(),
-                    (new UnidadNumerosReales()).getNombreObjetoMatematico() };
+            String[] operandos = { (new UnidadNumerosRacionales()).getNombreObjetoMatematico(),
+                    (new UnidadNumerosRacionales()).getNombreObjetoMatematico() };
             return operandos;
         }
 
@@ -54,14 +54,14 @@ public class UnidadNumerosReales extends UnidadMatematica implements Operaciones
 
         @Override
         public UnidadMatematica calcularOperacion(UnidadMatematica... args) {
-            UnidadNumerosReales A = (UnidadNumerosReales) args[0];
-            UnidadNumerosReales B = (UnidadNumerosReales) args[1];
+            UnidadNumerosRacionales A = (UnidadNumerosRacionales) args[0];
+            UnidadNumerosRacionales B = (UnidadNumerosRacionales) args[1];
 
             Apunte nuevoApunte_MultiplicarAritmetico = new Apunte(
                     "Dividir " + A.getValor() + " / " + B.getValor() + " = " + (A.getValor() / B.getValor()));
             MostrarInformacion(nuevoApunte_MultiplicarAritmetico);
 
-            return new UnidadNumerosReales(A.getValor() / B.getValor());
+            return new UnidadNumerosRacionales(A.getValor() / B.getValor());
         }
 
     }
@@ -69,8 +69,8 @@ public class UnidadNumerosReales extends UnidadMatematica implements Operaciones
     static class Suma extends OperacionMatematica {
         @Override
         protected String[] definirTipoDeOperandoscorrectos() {
-            String[] operandos = { (new UnidadNumerosReales()).getNombreObjetoMatematico(),
-                    (new UnidadNumerosReales()).getNombreObjetoMatematico() };
+            String[] operandos = { (new UnidadNumerosRacionales()).getNombreObjetoMatematico(),
+                    (new UnidadNumerosRacionales()).getNombreObjetoMatematico() };
             return operandos;
         }
 
@@ -80,14 +80,14 @@ public class UnidadNumerosReales extends UnidadMatematica implements Operaciones
 
         @Override
         public UnidadMatematica calcularOperacion(UnidadMatematica... args) {
-            UnidadNumerosReales A = (UnidadNumerosReales) args[0];
-            UnidadNumerosReales B = (UnidadNumerosReales) args[1];
+            UnidadNumerosRacionales A = (UnidadNumerosRacionales) args[0];
+            UnidadNumerosRacionales B = (UnidadNumerosRacionales) args[1];
 
             Apunte nuevoApunte_SumaAritmetica = new Apunte(
                     "Suma " + A.getValor() + " + " + B.getValor() + " = " + (A.getValor() + B.getValor()));
 
             MostrarInformacion(nuevoApunte_SumaAritmetica);
-            return new UnidadNumerosReales(A.getValor() + B.getValor());
+            return new UnidadNumerosRacionales(A.getValor() + B.getValor());
         }
 
     }
@@ -95,8 +95,8 @@ public class UnidadNumerosReales extends UnidadMatematica implements Operaciones
     static class Resta extends OperacionMatematica {
         @Override
         protected String[] definirTipoDeOperandoscorrectos() {
-            String[] operandos = { (new UnidadNumerosReales()).getNombreObjetoMatematico(),
-                    (new UnidadNumerosReales()).getNombreObjetoMatematico() };
+            String[] operandos = { (new UnidadNumerosRacionales()).getNombreObjetoMatematico(),
+                    (new UnidadNumerosRacionales()).getNombreObjetoMatematico() };
             return operandos;
         }
 
@@ -108,24 +108,24 @@ public class UnidadNumerosReales extends UnidadMatematica implements Operaciones
 
         @Override
         public UnidadMatematica calcularOperacion(UnidadMatematica... args) {
-            UnidadNumerosReales A = (UnidadNumerosReales) args[0];
-            UnidadNumerosReales B = (UnidadNumerosReales) args[1];
+            UnidadNumerosRacionales A = (UnidadNumerosRacionales) args[0];
+            UnidadNumerosRacionales B = (UnidadNumerosRacionales) args[1];
 
             Apunte nuevoApunte_SumaAritmetica = new Apunte(
                     "Resta " + A.getValor() + " - " + B.getValor() + " = " + (A.getValor() - B.getValor()));
 
             MostrarInformacion(nuevoApunte_SumaAritmetica);
-            return new UnidadNumerosReales(A.getValor() - B.getValor());
+            return new UnidadNumerosRacionales(A.getValor() - B.getValor());
         }
 
     }
 
-    public UnidadNumerosReales() {
+    public UnidadNumerosRacionales() {
         super("Numero Real", "U", new Suma(), new Resta(), new Multiplicacion(), new Division());
         InyectarFunciones();
     }
 
-    public UnidadNumerosReales(double Valor) {
+    public UnidadNumerosRacionales(double Valor) {
         super("Numero Real", "U", new Suma(), new Resta(), new Multiplicacion(), new Division());
         InyectarFunciones();
         this.Valor = Valor;
@@ -155,7 +155,7 @@ public class UnidadNumerosReales extends UnidadMatematica implements Operaciones
 
     @Override
     public UnidadMatematica crearUnidad(JFrame Padre) {
-        crearUnidadNumerosReales CrearUnidadJDialog = new crearUnidadNumerosReales(Padre);
+        crearUnidadNumerosRacionales CrearUnidadJDialog = new crearUnidadNumerosRacionales(Padre);
         return CrearUnidadJDialog.getUnidadNueva();
 
     }

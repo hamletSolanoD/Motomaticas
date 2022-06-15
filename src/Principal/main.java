@@ -1,6 +1,6 @@
 package Principal;
 
-import ModulosImportados.NumerosReales.UnidadNumerosReales;
+import ModulosImportados.NumerosReales.UnidadNumerosRacionales;
 import ModulosImportados.Vector3D.Vector3D;
 import Motomaticas.ObjetosLogicos.motorMatematico.operaciones.OperacionMatematica;
 
@@ -12,7 +12,7 @@ public class main {
 		// TODO Auto-generated method stub
 		OperacionMatematica.inyectarBases();
 		new Vector3D("");
-		new UnidadNumerosReales();
+		new UnidadNumerosRacionales();
 
 		new Portada();
 	}

@@ -31,14 +31,14 @@ import java.awt.Dialog;
 
 import javax.swing.Box;
 
-public class crearUnidadNumerosReales extends JDialog implements ActionListener {
+public class crearUnidadNumerosRacionales extends JDialog implements ActionListener {
 
 	private final JPanel contentPanel = new JPanel();
-	UnidadNumerosReales UnidadNueva = new UnidadNumerosReales();
+	UnidadNumerosRacionales UnidadNueva = new UnidadNumerosRacionales();
 	private JTextField JtextField_NuevaUnidad;
 	private JFrame FramePrincipal;
 	
-	public crearUnidadNumerosReales(JFrame FramePrincipal) {
+	public crearUnidadNumerosRacionales(JFrame FramePrincipal) {
 		super(FramePrincipal,Dialog.ModalityType.TOOLKIT_MODAL);
 		this.FramePrincipal = FramePrincipal;
 		setBounds(100, 100, 450, 300);
@@ -73,7 +73,7 @@ public class crearUnidadNumerosReales extends JDialog implements ActionListener 
 			@Override
 			public void insertUpdate(DocumentEvent e) {
 				// TODO Auto-generated method stub
-				UnidadNueva = (new UnidadNumerosReales(Constantes.ComprobarEntradas(e,FramePrincipal)));
+				UnidadNueva = (new UnidadNumerosRacionales(Constantes.ComprobarEntradas(e,FramePrincipal)));
 				
 				
 			}
@@ -119,7 +119,7 @@ public class crearUnidadNumerosReales extends JDialog implements ActionListener 
 		
 	}
 
-	public UnidadNumerosReales getUnidadNueva() {
+	public UnidadNumerosRacionales getUnidadNueva() {
 		return UnidadNueva;
 	}
 

@@ -4,7 +4,7 @@ import java.lang.Math;
 
 import javax.swing.JFrame;
 
-import ModulosImportados.NumerosReales.UnidadNumerosReales;
+import ModulosImportados.NumerosReales.UnidadNumerosRacionales;
 import Motomaticas.ValoresDefault.Constantes.Parrafo;
 import Motomaticas.ObjetosLogicos.motorMatematico.ObjetoMatematico;
 import Motomaticas.ObjetosLogicos.motorMatematico.operaciones.OperacionMatematica;
@@ -120,7 +120,7 @@ public class Vector3D extends UnidadMatematica implements OperacionesVector{
 
 		@Override
 		protected String[] definirTipoDeOperandoscorrectos() {
-			String retorno[] = 	{ (new Vector3D("")).getNombreObjetoMatematico(), (new UnidadNumerosReales()).getNombreObjetoMatematico() };
+			String retorno[] = 	{ (new Vector3D("")).getNombreObjetoMatematico(), (new UnidadNumerosRacionales()).getNombreObjetoMatematico() };
 			return retorno;
 
 		}
@@ -128,7 +128,7 @@ public class Vector3D extends UnidadMatematica implements OperacionesVector{
 		@Override
 		public UnidadMatematica calcularOperacion(UnidadMatematica... args) {
 			Vector3D Vector = (Vector3D) args[0];
-			UnidadNumerosReales Unidad = (UnidadNumerosReales) args[1];
+			UnidadNumerosRacionales Unidad = (UnidadNumerosRacionales) args[1];
 			Vector3D Resultado = new Vector3D("Vector Multiplicar Magnitud de " + Vector.getNombreVector() + " y " + Unidad,
 					Vector.getMagnitudX() * Unidad.getValor(), Vector.getMagnitudY() * Unidad.getValor(),
 					Vector.getMagnitudZ() * Unidad.getValor());
@@ -177,14 +177,14 @@ public class Vector3D extends UnidadMatematica implements OperacionesVector{
         public String getCategoriaMatematica(){
                 return "Operaciones Entre Vectores 3D";
         } 
-		static String[] operandos = { (new Vector3D("")).getNombreObjetoMatematico(), (new UnidadNumerosReales()).getNombreObjetoMatematico() };
+		static String[] operandos = { (new Vector3D("")).getNombreObjetoMatematico(), (new UnidadNumerosRacionales()).getNombreObjetoMatematico() };
 
 		public division() {
 			super(false,"/", "Dividir Vectores 3D", "Operacion para dividir la magnitud de un vector por una unidad.", 2);
 		}
 		@Override
 		protected String[] definirTipoDeOperandoscorrectos() {
-			String retorno[] = 	{ (new Vector3D("")).getNombreObjetoMatematico(), (new UnidadNumerosReales()).getNombreObjetoMatematico() };
+			String retorno[] = 	{ (new Vector3D("")).getNombreObjetoMatematico(), (new UnidadNumerosRacionales()).getNombreObjetoMatematico() };
 			return retorno;
 
 		}
@@ -193,7 +193,7 @@ public class Vector3D extends UnidadMatematica implements OperacionesVector{
 		@Override
 		public UnidadMatematica calcularOperacion(UnidadMatematica... args) {
 			Vector3D Vector = (Vector3D) args[0];
-			UnidadNumerosReales Unidad = (UnidadNumerosReales) args[1];
+			UnidadNumerosRacionales Unidad = (UnidadNumerosRacionales) args[1];
 			Vector3D Resultado = new Vector3D("Vector Dividir vector " + Vector.getNombreVector() + " / " + Unidad,
 					Vector.getMagnitudX() / Unidad.getValor(), Vector.getMagnitudY() / Unidad.getValor(),
 					Vector.getMagnitudZ() / Unidad.getValor());

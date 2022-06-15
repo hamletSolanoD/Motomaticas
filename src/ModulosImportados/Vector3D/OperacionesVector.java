@@ -2,7 +2,7 @@ package ModulosImportados.Vector3D;
 
 import javax.swing.JFrame;
 
-import ModulosImportados.NumerosReales.UnidadNumerosReales;
+import ModulosImportados.NumerosReales.UnidadNumerosRacionales;
 import Motomaticas.ObjetosLogicos.motorMatematico.ObjetoMatematico;
 import Motomaticas.ObjetosLogicos.motorMatematico.funciones.FuncionMatematica;
 import Motomaticas.ObjetosLogicos.motorMatematico.operaciones.OperacionMatematica;
@@ -125,7 +125,7 @@ public interface OperacionesVector {
                         NuevoApunte_Magnitud.AgregarParrafo(new Parrafo("4.- Magnitud  = " + Vector.getMagnitud()));
 
                         MostrarInformacion(NuevoApunte_Magnitud);
-                        return new UnidadNumerosReales(Vector.getMagnitud());
+                        return new UnidadNumerosRacionales(Vector.getMagnitud());
                 }
 
         }
@@ -156,7 +156,7 @@ public interface OperacionesVector {
 
                         Vector3D Vector = (Vector3D) args[0];
                         Vector3D Vector2 = (Vector3D) args[1];
-                        UnidadNumerosReales Resultado = new UnidadNumerosReales(
+                        UnidadNumerosRacionales Resultado = new UnidadNumerosRacionales(
                                         (Vector.getMagnitudX() * Vector2.getMagnitudX())
                                                         + (Vector.getMagnitudY() * Vector2.getMagnitudY())
                                                         + (Vector.getMagnitudZ() * Vector2.getMagnitudZ()));
@@ -272,16 +272,16 @@ public interface OperacionesVector {
 
                 @Override
                 public UnidadMatematica calcularOperacion(UnidadMatematica... args) {
-                        UnidadNumerosReales MagnitudA = (UnidadNumerosReales) args[0];
-                        UnidadNumerosReales MagnitudB = (UnidadNumerosReales) args[1];
-                        UnidadNumerosReales Angulo = (UnidadNumerosReales) args[2];
-                        return new UnidadNumerosReales(MagnitudA.getValor() * MagnitudB.getValor() * Math.cos(Angulo.getValor()));
+                        UnidadNumerosRacionales MagnitudA = (UnidadNumerosRacionales) args[0];
+                        UnidadNumerosRacionales MagnitudB = (UnidadNumerosRacionales) args[1];
+                        UnidadNumerosRacionales Angulo = (UnidadNumerosRacionales) args[2];
+                        return new UnidadNumerosRacionales(MagnitudA.getValor() * MagnitudB.getValor() * Math.cos(Angulo.getValor()));
                 }
 
                 @Override
                 protected String[] definirEntradasCorrectas() {
                         String[] entradasCorrectas = {
-                              (new  UnidadNumerosReales()).getNombreObjetoMatematico()
+                              (new  UnidadNumerosRacionales()).getNombreObjetoMatematico()
                         };
                         return null;
                 }

@@ -7,7 +7,7 @@ import Motomaticas.ValoresDefault.Constantes.Apunte;
 import Motomaticas.ValoresDefault.Constantes.Parrafo;;
 
 
-public interface OperacionesNumerosReales {
+public interface OperacionesNumerosRacionales {
     public class potencias extends OperacionMatematica{
 
         public potencias() {
@@ -22,21 +22,21 @@ public interface OperacionesNumerosReales {
         @Override
         protected String[] definirTipoDeOperandoscorrectos() {
             String[] operandos = {
-                (new UnidadNumerosReales()).getNombreObjetoMatematico(),
-                (new UnidadNumerosReales()).getNombreObjetoMatematico()
+                (new UnidadNumerosRacionales()).getNombreObjetoMatematico(),
+                (new UnidadNumerosRacionales()).getNombreObjetoMatematico()
             };
             return operandos;
         }
 
         @Override
         public UnidadMatematica calcularOperacion(UnidadMatematica... args) {
-            UnidadNumerosReales Numero = (UnidadNumerosReales)args[0];
-            UnidadNumerosReales Potencia = (UnidadNumerosReales)args[1];
+            UnidadNumerosRacionales Numero = (UnidadNumerosRacionales)args[0];
+            UnidadNumerosRacionales Potencia = (UnidadNumerosRacionales)args[1];
             Apunte apunte = new Apunte("Potencia de "+Numero.getValor()+" a la "+ Potencia.getValor());
             apunte.AgregarParrafo(new Parrafo("La potencia es la multiplicacion del numero N, M veces por si mismo"));
             apunte.AgregarParrafo(new Parrafo("Ejemplo: 4^6 = 4*4*4*4*4*4"));
             MostrarInformacion(apunte);
-            return new UnidadNumerosReales(Math.pow(Numero.getValor(), Potencia.getValor()));
+            return new UnidadNumerosRacionales(Math.pow(Numero.getValor(), Potencia.getValor()));
         }
 
         
@@ -52,16 +52,16 @@ public interface OperacionesNumerosReales {
         @Override
         protected String[] definirTipoDeOperandoscorrectos() {
             String[] operandos = {
-                (new UnidadNumerosReales()).getNombreObjetoMatematico(),
+                (new UnidadNumerosRacionales()).getNombreObjetoMatematico(),
             };
             return operandos;
         }
 
         @Override
         public UnidadMatematica calcularOperacion(UnidadMatematica... args) {
-            UnidadNumerosReales Numero = (UnidadNumerosReales)args[0];
+            UnidadNumerosRacionales Numero = (UnidadNumerosRacionales)args[0];
         
-            return new UnidadNumerosReales(Math.sqrt(Numero.getValor()));
+            return new UnidadNumerosRacionales(Math.sqrt(Numero.getValor()));
         }
 
   

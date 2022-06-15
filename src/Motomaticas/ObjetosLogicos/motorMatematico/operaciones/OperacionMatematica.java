@@ -14,7 +14,6 @@ public abstract class OperacionMatematica extends ObjetoMatematico implements Cl
 	public static ArrayList<OperacionMatematica> TotalOperacionesMatematicas;
 	private String descripcionDeOperacion;
 	private int prioridadDeOperacion;
-	private String[] TipoOperandosCorrecto;
 
 	public String getDescripcionDeOperacion() {
 		return this.descripcionDeOperacion;
@@ -24,9 +23,6 @@ public abstract class OperacionMatematica extends ObjetoMatematico implements Cl
 		return this.prioridadDeOperacion;
 	}
 
-	public String[] getTipoOperandosCorrecto() {
-		return this.TipoOperandosCorrecto;
-	}
 
 	public OperacionMatematica clonarNuevaInstanciaOperacionMatematica() {
 		try {
@@ -115,7 +111,7 @@ public abstract class OperacionMatematica extends ObjetoMatematico implements Cl
 	}
 
 	public boolean comprobarOperandosIguales(String[] ArrayTipos) {
-		this.TipoOperandosCorrecto  = getTipoOperandosCorrecto();
+		String[] TipoOperandosCorrecto  = definirTipoDeOperandoscorrectos();
 		try {
 			for (int e = 0; e < TipoOperandosCorrecto.length; e++) {
 				if (ArrayTipos[e] != TipoOperandosCorrecto[e])
