@@ -2,7 +2,7 @@ package ModulosImportados.NumerosReales;
 
 import javax.swing.JFrame;
 
-import ObjetosLogicos.motorMatematico.ObjetoAlgebraico;
+import ObjetosLogicos.motorMatematico.ObjetoMatematico;
 import ObjetosLogicos.motorMatematico.operaciones.OperacionMatematica;
 import ObjetosLogicos.motorMatematico.variables.UnidadMatematica;
 import ValoresDefault.Constantes.Apunte;
@@ -14,13 +14,13 @@ public class UnidadNumerosReales extends UnidadMatematica implements Operaciones
     static class Multiplicacion extends OperacionMatematica {
        
         public Multiplicacion() {
-            super(false,"X",false, "Multiplicar Numeros Reales",
+            super(false,"X", "Multiplicar Numeros Reales",
                     "Operacion para multiplicar 2 numeros reales y retornar su producto", 2);
             // TODO Auto-generated constructor stub
         }
 
         @Override
-        public ObjetoAlgebraico calcularOperacion(ObjetoAlgebraico... args) {
+        public ObjetoMatematico calcularOperacion(ObjetoMatematico... args) {
             UnidadNumerosReales A = (UnidadNumerosReales) args[0];
             UnidadNumerosReales B = (UnidadNumerosReales) args[1];
 
@@ -49,12 +49,12 @@ public class UnidadNumerosReales extends UnidadMatematica implements Operaciones
             return operandos;
         }
         public Division() {
-            super(false,"/",false, "Dividir Numeros Reales", "Operacion para dividir 2 numeros reales y retornar su producto", 2);
+            super(false,"/", "Dividir Numeros Reales", "Operacion para dividir 2 numeros reales y retornar su producto", 2);
             // TODO Auto-generated constructor stub
         }
 
         @Override
-        public ObjetoAlgebraico calcularOperacion(ObjetoAlgebraico... args) {
+        public ObjetoMatematico calcularOperacion(ObjetoMatematico... args) {
             UnidadNumerosReales A = (UnidadNumerosReales) args[0];
             UnidadNumerosReales B = (UnidadNumerosReales) args[1];
 
@@ -76,11 +76,11 @@ public class UnidadNumerosReales extends UnidadMatematica implements Operaciones
             return operandos;
         }
         public Suma() {
-            super(false,"+",false, "Suma Numeros Reales", "Operacion para sumar 2 numeros reales y retornar su producto", 1);
+            super(false,"+", "Suma Numeros Reales", "Operacion para sumar 2 numeros reales y retornar su producto", 1);
         }
 
         @Override
-        public ObjetoAlgebraico calcularOperacion(ObjetoAlgebraico... args) {
+        public ObjetoMatematico calcularOperacion(ObjetoMatematico... args) {
             UnidadNumerosReales A = (UnidadNumerosReales) args[0];
             UnidadNumerosReales B = (UnidadNumerosReales) args[1];
 
@@ -102,12 +102,12 @@ public class UnidadNumerosReales extends UnidadMatematica implements Operaciones
             return operandos;
         }
         public Resta() {
-            super(false,"-",false, "Resta Numeros Reales", "Operacion para restar 2 numeros reales y retornar su producto", 1);
+            super(false,"-", "Resta Numeros Reales", "Operacion para restar 2 numeros reales y retornar su producto", 1);
             // TODO Auto-generated constructor stub
         }
 
         @Override
-        public ObjetoAlgebraico calcularOperacion(ObjetoAlgebraico... args) {
+        public ObjetoMatematico calcularOperacion(ObjetoMatematico... args) {
             UnidadNumerosReales A = (UnidadNumerosReales) args[0];
             UnidadNumerosReales B = (UnidadNumerosReales) args[1];
 
@@ -136,7 +136,7 @@ public class UnidadNumerosReales extends UnidadMatematica implements Operaciones
 
 
     private void InyectarFunciones(){
-        OperacionMatematica.inyectarFuncionesMatematicas(new potencias());
+        OperacionMatematica.inyectarOperacionMatematica(new potencias());
     }
     public void setValor(double valor) {
         Valor = valor;

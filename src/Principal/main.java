@@ -1,10 +1,10 @@
-package Principal;
+package Motomaticas.Principal;
 
 import ModulosImportados.NumerosReales.UnidadNumerosReales;
 import ModulosImportados.Vector3D.Vector3D;
-import ObjetosLogicos.motorMatematico.operaciones.OperacionMatematica;
+import Motomaticas.ObjetosLogicos.motorMatematico.operaciones.OperacionMatematica;
 
-import VentanasProyecto.Portada;
+import Motomaticas.VentanasProyecto.Portada;
 
 public class main {
 

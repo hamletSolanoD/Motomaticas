@@ -1,6 +1,6 @@
 package ModulosImportados.NumerosReales;
 
-import ObjetosLogicos.motorMatematico.ObjetoAlgebraico;
+import ObjetosLogicos.motorMatematico.ObjetoMatematico;
 import ObjetosLogicos.motorMatematico.operaciones.OperacionMatematica;
 import ValoresDefault.Constantes.Apunte;
 import ValoresDefault.Constantes.Parrafo;;
@@ -10,7 +10,7 @@ public interface OperacionesNumerosReales {
     public class potencias extends OperacionMatematica{
 
         public potencias() {
-            super(false, "^", false, "Potencia", "Eleva un numero N a la M potencia", 3);
+            super(false, "^", "Potencia", "Eleva un numero N a la M potencia", 3);
             //TODO Auto-generated constructor stub
         }
         @Override
@@ -28,7 +28,7 @@ public interface OperacionesNumerosReales {
         }
 
         @Override
-        public ObjetoAlgebraico calcularOperacion(ObjetoAlgebraico... args) {
+        public ObjetoMatematico calcularOperacion(ObjetoMatematico... args) {
             UnidadNumerosReales Numero = (UnidadNumerosReales)args[0];
             UnidadNumerosReales Potencia = (UnidadNumerosReales)args[1];
             Apunte apunte = new Apunte("Potencia de "+Numero.getValor()+" a la "+ Potencia.getValor());
@@ -44,7 +44,7 @@ public interface OperacionesNumerosReales {
     public class raices extends OperacionMatematica{
 
         public raices() {
-            super(true, "√", false, "Raices", "Retorna el numero que cabe N veces si mismo dentro del numero dado", 3);
+            super(true, "√", "Raices", "Retorna el numero que cabe N veces si mismo dentro del numero dado", 3);
             //TODO Auto-generated constructor stub
         }
 
@@ -57,7 +57,7 @@ public interface OperacionesNumerosReales {
         }
 
         @Override
-        public ObjetoAlgebraico calcularOperacion(ObjetoAlgebraico... args) {
+        public ObjetoMatematico calcularOperacion(ObjetoMatematico... args) {
             UnidadNumerosReales Numero = (UnidadNumerosReales)args[0];
         
             return new UnidadNumerosReales(Math.sqrt(Numero.getValor()));
