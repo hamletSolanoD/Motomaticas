@@ -1,8 +1,10 @@
 package ModulosImportados.Vector3D;
 
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 
 import ModulosImportados.NumerosReales.UnidadNumerosRacionales;
+import Motomaticas.DefaultCrearPlantillas.EstandarNparamsJDialog;
 import Motomaticas.ObjetosLogicos.motorMatematico.ObjetoMatematico;
 import Motomaticas.ObjetosLogicos.motorMatematico.funciones.FuncionMatematica;
 import Motomaticas.ObjetosLogicos.motorMatematico.operaciones.OperacionMatematica;
@@ -266,7 +268,8 @@ public interface OperacionesVector {
         public static class funcionVecProductoEscalar extends FuncionMatematica {
 
                 public funcionVecProductoEscalar() {
-                        super("Proyeccion Escalar", "•", "Es el producto de las magnitudes de ambos vectores y el coseno del ángulo.");
+                        super("Proyeccion Escalar", "•",
+                                        "Es el producto de las magnitudes de ambos vectores y el coseno del ángulo.");
                         // TODO Auto-generated constructor stub
                 }
 
@@ -275,27 +278,23 @@ public interface OperacionesVector {
                         UnidadNumerosRacionales MagnitudA = (UnidadNumerosRacionales) args[0];
                         UnidadNumerosRacionales MagnitudB = (UnidadNumerosRacionales) args[1];
                         UnidadNumerosRacionales Angulo = (UnidadNumerosRacionales) args[2];
-                        return new UnidadNumerosRacionales(MagnitudA.getValor() * MagnitudB.getValor() * Math.cos(Angulo.getValor()));
-                }
 
-                @Override
-                protected String[] definirEntradasCorrectas() {
-                        String[] entradasCorrectas = {
-                              (new  UnidadNumerosRacionales()).getNombreObjetoMatematico()
-                        };
-                        return null;
-                }
-
-                @Override
-                protected String definirSalidaCorrecta() {
-                        // TODO Auto-generated method stub
-                        return null;
+                        return new UnidadNumerosRacionales(
+                                        MagnitudA.getValor() * MagnitudB.getValor() * Math.cos(Angulo.getValor()));
                 }
 
                 @Override
                 public UnidadMatematica llamarFuncionMatematica(JFrame padre) {
-                        // TODO Auto-generated method stub
-                        return null;
+
+                        String[] EntradasNombres = { "Magnitud Vector A", "Magnitud Vector B", "Angulo Entre A y B" };
+                        EstandarNparamsJDialog entradas = new EstandarNparamsJDialog(padre, toString(), EntradasNombres,
+                                        true);
+
+                                        Float[] Salidas = entradas.getValoresRespuestaNumerica();
+                        return calcularOperacion(new UnidadNumerosRacionales(Salidas[0]),
+                                        new UnidadNumerosRacionales(Salidas[1]),
+                                        new UnidadNumerosRacionales(Salidas[0]));
+
                 }
 
         }

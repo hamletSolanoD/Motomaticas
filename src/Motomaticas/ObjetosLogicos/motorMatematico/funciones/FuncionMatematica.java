@@ -44,31 +44,12 @@ public abstract class FuncionMatematica extends ObjetoMatematico {
         return toStringReducido() + ":" + descripcionDeOperacion;
     }
 
-    public boolean comprobarEntradasYSalidasCorrectas(String[] ArrayTiposEntrada, String TipoSalida) {
-        String[] entradasCorrectas = definirEntradasCorrectas();
-        if (TipoSalida != definirSalidaCorrecta())
-            return false;
-        try {
-            for (int e = 0; e < entradasCorrectas.length; e++) {
-                if (ArrayTiposEntrada[e] != entradasCorrectas[e])
-                    return false;
-            }
-        } catch (Throwable e) {
-            return false;
-        }
-        return true;
 
-    }
 
     public abstract UnidadMatematica calcularOperacion(UnidadMatematica... args);
 
-    protected abstract String[] definirEntradasCorrectas();
-
-    protected abstract String definirSalidaCorrecta();
-
     public abstract UnidadMatematica llamarFuncionMatematica(JFrame padre);// metodo para que se sobrescriba y cree una
                                                                            // jdialog de unidad aritmetica
-
     public static void inyectarFuncionMatematica(FuncionMatematica OperacionMatematica) {
         if (TotalFuncionesMatematicas == null)
             TotalFuncionesMatematicas = new ArrayList<>();

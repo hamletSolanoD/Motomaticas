@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import ModulosImportados.NumerosReales.UnidadNumerosRacionales;
 import Motomaticas.ValoresDefault.Constantes.Parrafo;
 import Motomaticas.ObjetosLogicos.motorMatematico.ObjetoMatematico;
+import Motomaticas.ObjetosLogicos.motorMatematico.funciones.FuncionMatematica;
 import Motomaticas.ObjetosLogicos.motorMatematico.operaciones.OperacionMatematica;
 import Motomaticas.ObjetosLogicos.motorMatematico.variables.UnidadMatematica;
 import Motomaticas.ValoresDefault.Constantes.Apunte;;
@@ -260,6 +261,8 @@ public class Vector3D extends UnidadMatematica implements OperacionesVector{
 		OperacionMatematica.inyectarOperacionMatematica(new operacionVecMagnitud());
 		OperacionMatematica.inyectarOperacionMatematica(new operacionVecProductoEscalar());
 		OperacionMatematica.inyectarOperacionMatematica(new operacionVecCruz());
+		FuncionMatematica.inyectarFuncionMatematica(new funcionVecProductoEscalar());
+
 
 
 

@@ -27,6 +27,8 @@ import ModulosImportados.Vector3D.*;
 import Motomaticas.ObjetosLogicos.motorMatematico.*;
 import Motomaticas.ObjetosLogicos.motorMatematico.variables.UnidadMatematica;
 import Motomaticas.RecursosCustomizados.BotonAritmetico;
+import Motomaticas.RecursosCustomizados.JDialog_CrearFuncionMatematica;
+import Motomaticas.RecursosCustomizados.JDialog_CrearOperacionMatematica;
 import Motomaticas.RecursosCustomizados.JDialog_CrearUnidadMatematica;
 import Motomaticas.ValoresDefault.Constantes;
 import Motomaticas.ValoresDefault.Constantes.TipoDeErrorMatematico;
@@ -103,18 +105,24 @@ public class JInternalFrameOperacion extends JInternalFrame implements ActionLis
 		panel_2.add(panel_3, BorderLayout.CENTER);
 		panel_3.setLayout(new GridLayout(1, 0, 0, 0));
 
-		JButton EliminarOperacion = Constantes.BotonCuadrado("--", Constantes.DetallesColor, Constantes.PrincipalColor);
-		panel_3.add(EliminarOperacion);
-		EliminarOperacion.setActionCommand("--");
-		EliminarOperacion.addActionListener(this);
-		EliminarOperacion.setFont(Constantes.textoNormal);
-
 		JButton AgregarUnidades = Constantes.BotonCuadrado("+U", Constantes.DetallesColor, Constantes.PrincipalColor);
 		panel_3.add(AgregarUnidades);
 		AgregarUnidades.setActionCommand("+U");
 		AgregarUnidades.addActionListener(this);
 		AgregarUnidades.setFont(Constantes.textoNormal);
 
+		JButton AgregarFuncionCompleja = Constantes.BotonCuadrado("F", Constantes.DetallesColor, Constantes.PrincipalColor);
+		panel_3.add(AgregarFuncionCompleja);
+		AgregarFuncionCompleja.setActionCommand("F");
+		AgregarFuncionCompleja.addActionListener(this);
+		AgregarFuncionCompleja.setFont(Constantes.textoNormal);
+
+		JButton AgregarOperacion = Constantes.BotonCuadrado("...", Constantes.DetallesColor, Constantes.PrincipalColor);
+		panel_3.add(AgregarOperacion);
+		AgregarOperacion.setActionCommand("...");
+		AgregarOperacion.addActionListener(this);
+		AgregarOperacion.setFont(Constantes.textoNormal);
+		
 		JButton JerarquiaDer = Constantes.BotonCuadrado("{", Constantes.DetallesColor, Constantes.PrincipalColor);
 		panel_3.add(JerarquiaDer);
 		JerarquiaDer.setActionCommand("{");
@@ -127,11 +135,11 @@ public class JInternalFrameOperacion extends JInternalFrame implements ActionLis
 		JerarquiaIzq.addActionListener(this);
 		JerarquiaIzq.setFont(Constantes.textoNormal);
 
-		JButton AgregarOperacion = Constantes.BotonCuadrado("...", Constantes.DetallesColor, Constantes.PrincipalColor);
-		panel_3.add(AgregarOperacion);
-		AgregarOperacion.setActionCommand("...");
-		AgregarOperacion.addActionListener(this);
-		AgregarOperacion.setFont(Constantes.textoNormal);
+		JButton EliminarOperacion = Constantes.BotonCuadrado("--", Constantes.DetallesColor, Constantes.PrincipalColor);
+		panel_3.add(EliminarOperacion);
+		EliminarOperacion.setActionCommand("--");
+		EliminarOperacion.addActionListener(this);
+		EliminarOperacion.setFont(Constantes.textoNormal);
 
 		JSplitPane splitPane = new JSplitPane();
 		splitPane.setResizeWeight(0.50);
@@ -266,16 +274,17 @@ public class JInternalFrameOperacion extends JInternalFrame implements ActionLis
 				ConsolaOutput.setText(ConsolaOutput.getText() + " = "
 						+ ((UnidadMatematica) OperacionGeneral.getResultado()).toStringReducido());
 
-				// MainApunteFrame.panel_Visualizar.MostrarVectores(new Vector3D("", 90, 90, 90, 0));
-			} 
-		}else { // si no hay un resultado que mostrar
-				ConsolaOutput.setForeground(Constantes.DetallesColor);
-				ConsolaOutput.setText("Error en la operacion: " + PosibleError.toString());
-				// MainApunteFrame.panel_Visualizar.MostrarVectores(new Vector3D("", 90, 90, 90, 0));
-
+				// MainApunteFrame.panel_Visualizar.MostrarVectores(new Vector3D("", 90, 90, 90,
+				// 0));
 			}
+		} else { // si no hay un resultado que mostrar
+			ConsolaOutput.setForeground(Constantes.DetallesColor);
+			ConsolaOutput.setText("Error en la operacion: " + PosibleError.toString());
+			// MainApunteFrame.panel_Visualizar.MostrarVectores(new Vector3D("", 90, 90, 90,
+			// 0));
+
 		}
-	
+	}
 
 	/*
 	 * define las acciones a realizar por cada boton de operacion
@@ -330,6 +339,15 @@ public class JInternalFrameOperacion extends JInternalFrame implements ActionLis
 				OperacionMatematica operacionNueva = creadorOperacion.getOperacionMatematicaCreada();
 				if (operacionNueva != null) {
 					AgregarBotonAritmetico(new BotonAritmetico(operacionNueva));
+					CalcularConsolaOutput();
+				}
+				break;
+				case "F":
+				JDialog_CrearFuncionMatematica creadorFunciones = new JDialog_CrearFuncionMatematica(
+						(JFrame) SwingUtilities.getRoot(this), "crear operacion matematica");
+				UnidadMatematica  resultadoFuncion = creadorFunciones.getUnidadMatematicaResultadoFuncion();
+				if (resultadoFuncion != null) {
+					AgregarBotonAritmetico(new BotonAritmetico(resultadoFuncion));
 					CalcularConsolaOutput();
 				}
 				break;
