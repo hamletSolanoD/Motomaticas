@@ -259,7 +259,6 @@ public class Vector3D extends UnidadMatematica implements OperacionesVector{
 		OperacionMatematica.inyectarFuncionesMatematicas(new operacionVecUnitario());
 		OperacionMatematica.inyectarFuncionesMatematicas(new operacionVecMagnitud());
 		OperacionMatematica.inyectarFuncionesMatematicas(new operacionVecProductoEscalar());
-		OperacionMatematica.inyectarFuncionesMatematicas(new operacionVecProductoEscalar_v2());
 		OperacionMatematica.inyectarFuncionesMatematicas(new operacionVecCruz());
 
 

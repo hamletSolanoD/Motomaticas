@@ -25,6 +25,7 @@ import java.awt.event.ActionEvent;
 
 public class JDialog_CrearUnidadMatematica extends JDialog {
     private final JPanel contentPanel = new JPanel();
+    private JFrame padre;
     private UnidadMatematica unidadMatematicaCreada;
     private HashMap<String, JPanel> categoriasContenido = new HashMap<String, JPanel>();// Contenidos
     private HashMap<String, JPanel> categoriasSeccionCompleta = new HashMap<String, JPanel>();// panel con contenido y
@@ -45,7 +46,7 @@ public class JDialog_CrearUnidadMatematica extends JDialog {
 
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    unidadMatematicaCreada = unidadMatematica;
+                    unidadMatematicaCreada = unidadMatematica.crearUnidad(padre);
                     dispose();
                 }
             });
@@ -104,6 +105,7 @@ public class JDialog_CrearUnidadMatematica extends JDialog {
 
     public JDialog_CrearUnidadMatematica(JFrame Padre, String Mensaje) {
         super(Padre, "Confirmar", Dialog.ModalityType.TOOLKIT_MODAL);
+        this.padre = Padre;
         gridBagLayourPanelCategorias.gridx = 0;
         gridBagLayourPanelCategorias.gridy = GridBagConstraints.RELATIVE;
         gridBagLayourPanelCategorias.fill = GridBagConstraints.HORIZONTAL;
