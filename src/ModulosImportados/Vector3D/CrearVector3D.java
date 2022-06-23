@@ -14,11 +14,11 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
-import RecursosCustomizados.MensajeConfirmar;
-import RecursosCustomizados.MensajeError;
-import RecursosCustomizados.Mensaje_EntradaDeDatos;
-import RecursosCustomizados.MyJPanel_ConFondo;
-import ValoresDefault.Constantes;
+import Motomaticas.RecursosCustomizados.MensajeConfirmar;
+import Motomaticas.RecursosCustomizados.MensajeError;
+import Motomaticas.RecursosCustomizados.Mensaje_EntradaDeDatos;
+import Motomaticas.RecursosCustomizados.MyJPanel_ConFondo;
+import Motomaticas.ValoresDefault.Constantes;
 
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
