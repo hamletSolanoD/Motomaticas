@@ -14,6 +14,8 @@ public abstract class OperacionMatematica extends ObjetoMatematico implements Cl
 	public static ArrayList<OperacionMatematica> TotalOperacionesMatematicas;
 	private String descripcionDeOperacion;
 	private int prioridadDeOperacion;
+	private boolean conmutativa;
+
 
 	public String getDescripcionDeOperacion() {
 		return this.descripcionDeOperacion;
@@ -35,6 +37,7 @@ public abstract class OperacionMatematica extends ObjetoMatematico implements Cl
 
 	}
 
+	public boolean getIsConmutativa(){return conmutativa;}
 	public boolean getConLlave() {
 		return this.conLlave;
 	}
@@ -45,9 +48,10 @@ public abstract class OperacionMatematica extends ObjetoMatematico implements Cl
 	private static boolean primeraEjecucion = true;
 
 	public OperacionMatematica(boolean conLlave, String SimboloIdentificador, String nombre,
-			String descripcionDeOperacion, int prioridadDeOperacion) {
+			String descripcionDeOperacion, int prioridadDeOperacion, boolean conmutativa) {
 		super(nombre, SimboloIdentificador, Constantes.TipoObjetoMatematico.Operacion);
 		this.conLlave = conLlave;
+		this.conmutativa = conmutativa;
 		this.prioridadDeOperacion = ((prioridadDeOperacion >= 4 && conLlave) || conLlave) ? 4
 				: ((prioridadDeOperacion >= 4) ? 3 : prioridadDeOperacion);
 		if (this.prioridadDeOperacion != prioridadDeOperacion)

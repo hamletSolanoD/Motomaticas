@@ -29,7 +29,7 @@ public interface OperacionesVector {
 
                 public operacionVecUnitario() {
                         super(true, "Â", "Vector Unitario", "Operacion para calcular el vector unitario de un vector.",
-                                        4);
+                                        4,false);
 
                 }
 
@@ -94,7 +94,7 @@ public interface OperacionesVector {
                 }
 
                 public operacionVecMagnitud() {
-                        super(true, "|A|", "Vector Magnitud", "Operacion para calcular la magnitud de un vector.", 4);
+                        super(true, "|A|", "Vector Magnitud", "Operacion para calcular la magnitud de un vector.", 4,false);
                         // setCategoriaMatematica((new Vector3D("")).getNombreObjetoMatematico());
                 }
 
@@ -149,7 +149,7 @@ public interface OperacionesVector {
                 public operacionVecProductoEscalar() {
                         super(false, "•", "Producto Escalar",
                                         "Operacion para calcular el producto escalar entre 2 vectores.",
-                                        3);
+                                        3,true);
 
                 }
 
@@ -213,7 +213,7 @@ public interface OperacionesVector {
 
                 public operacionVecCruz() {
                         super(false, "X", "Producto Cruz", "Operacion para calcular el producto cruz entre 2 vectores",
-                                        3);
+                                        3,false);
                 }
 
                 @Override

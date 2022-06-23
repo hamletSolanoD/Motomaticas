@@ -21,7 +21,7 @@ public class Vector3D extends UnidadMatematica implements OperacionesVector{
         } 
 
 		public suma() {
-			super(false,"+", "Suma Vectores 3D", "Operacion para sumar 2 vectores", 1);
+			super(false,"+", "Suma Vectores 3D", "Operacion para sumar 2 vectores", 1,true);
 
 		}
 
@@ -67,7 +67,7 @@ public class Vector3D extends UnidadMatematica implements OperacionesVector{
                 return "Operaciones Entre Vectores 3D";
         } 
 		public resta() {
-			super(false,"-", "Resta Vectores 3D", "Operacion para restar 2 vectores", 1);
+			super(false,"-", "Resta Vectores 3D", "Operacion para restar 2 vectores", 1,false);
 		}
 		@Override
 		protected String[] definirTipoDeOperandoscorrectos() {
@@ -116,7 +116,7 @@ public class Vector3D extends UnidadMatematica implements OperacionesVector{
         } 
 		public multiplicacion() {
 			super(false,"X", "multiplicar Vectores 3D",
-					"Operacion para multiplicar la magnitud de un vector por una unidad.", 2);
+					"Operacion para multiplicar la magnitud de un vector por una unidad.", 2,true);
 		}
 
 		@Override
@@ -181,7 +181,7 @@ public class Vector3D extends UnidadMatematica implements OperacionesVector{
 		static String[] operandos = { (new Vector3D("")).getNombreObjetoMatematico(), (new UnidadNumerosRacionales()).getNombreObjetoMatematico() };
 
 		public division() {
-			super(false,"/", "Dividir Vectores 3D", "Operacion para dividir la magnitud de un vector por una unidad.", 2);
+			super(false,"/", "Dividir Vectores 3D", "Operacion para dividir la magnitud de un vector por una unidad.", 2,false);
 		}
 		@Override
 		protected String[] definirTipoDeOperandoscorrectos() {

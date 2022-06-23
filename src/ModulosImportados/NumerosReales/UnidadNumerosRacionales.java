@@ -13,7 +13,7 @@ public class UnidadNumerosRacionales extends UnidadMatematica implements Operaci
 
         public Multiplicacion() {
             super(false, "X", "Multiplicar Numeros Reales",
-                    "Operacion para multiplicar 2 numeros reales y retornar su producto", 2);
+                    "Operacion para multiplicar 2 numeros reales y retornar su producto", 2,true);
             // TODO Auto-generated constructor stub
         }
 
@@ -48,7 +48,7 @@ public class UnidadNumerosRacionales extends UnidadMatematica implements Operaci
 
         public Division() {
             super(false, "/", "Dividir Numeros Reales",
-                    "Operacion para dividir 2 numeros reales y retornar su producto", 2);
+                    "Operacion para dividir 2 numeros reales y retornar su producto", 2,false);
             // TODO Auto-generated constructor stub
         }
 
@@ -75,7 +75,7 @@ public class UnidadNumerosRacionales extends UnidadMatematica implements Operaci
         }
 
         public Suma() {
-            super(false, "+", "Suma Numeros Reales", "Operacion para sumar 2 numeros reales y retornar su producto", 1);
+            super(false, "+", "Suma Numeros Reales", "Operacion para sumar 2 numeros reales y retornar su producto", 1,true);
         }
 
         @Override
@@ -102,7 +102,7 @@ public class UnidadNumerosRacionales extends UnidadMatematica implements Operaci
 
         public Resta() {
             super(false, "-", "Resta Numeros Reales", "Operacion para restar 2 numeros reales y retornar su producto",
-                    1);
+                    1,false);
             // TODO Auto-generated constructor stub
         }
 

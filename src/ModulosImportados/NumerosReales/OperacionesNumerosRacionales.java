@@ -11,7 +11,7 @@ public interface OperacionesNumerosRacionales {
     public class potencias extends OperacionMatematica{
 
         public potencias() {
-            super(false, "^", "Potencia", "Eleva un numero N a la M potencia", 3);
+            super(false, "^", "Potencia", "Eleva un numero N a la M potencia", 3,false);
             //TODO Auto-generated constructor stub
         }
         @Override
@@ -45,7 +45,7 @@ public interface OperacionesNumerosRacionales {
     public class raices extends OperacionMatematica{
 
         public raices() {
-            super(true, "√", "Raices", "Retorna el numero que cabe N veces si mismo dentro del numero dado", 3);
+            super(true, "√", "Raices", "Retorna el numero que cabe N veces si mismo dentro del numero dado", 3,false);
             //TODO Auto-generated constructor stub
         }
 

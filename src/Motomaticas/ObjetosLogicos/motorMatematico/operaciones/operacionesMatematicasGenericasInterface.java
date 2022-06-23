@@ -7,7 +7,7 @@ public interface operacionesMatematicasGenericasInterface{
 
         public llaveDerecha() {
             super(true, "}", "llave derecha", "Establece la jerarquia de operaciones con encapsulamiento de llaves",
-                    4);
+                    4,false);
             //TODO Auto-generated constructor stub
         }
 
@@ -32,7 +32,7 @@ public interface operacionesMatematicasGenericasInterface{
     public class llaveIzquierda extends OperacionMatematica{
 
         public llaveIzquierda() {
-            super(true, "{", "llave izquierda", "Establece la jerarquia de operaciones con encapsulamiento de llaves",4);
+            super(true, "{", "llave izquierda", "Establece la jerarquia de operaciones con encapsulamiento de llaves",4,false);
             //TODO Auto-generated constructor stub
         }
         @Override
