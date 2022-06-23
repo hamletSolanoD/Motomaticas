@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingUtilities;
+import javax.swing.border.Border;
 
 import Motomaticas.ObjetosLogicos.motorMatematico.operaciones.OperacionMatematica;
 import Motomaticas.ObjetosLogicos.motorMatematico.operaciones.operacionesMatematicasGenericasInterface;
@@ -56,10 +57,88 @@ public class JInternalFrameOperacion extends JInternalFrame implements ActionLis
 	private BotonAritmetico BotonMatematicoEnfocado;
 
 	////////// GRAFICA ///////////
-	private ArrayList<BotonAritmetico> BotonesAritmeticos = new ArrayList<BotonAritmetico>();
 	private JPanel JPanelOperaciones;
 	private JTextPane ConsolaOutput;
 	private JTextPane PropiedadesDisplay;
+
+	private JPanel OperacionesMatematicasAreaDeTrabajo;
+
+	private void crearPanelIzquierdo(JPanel panel) {
+		panel.setBackground(Constantes.PrincipalColor);
+		panel.setLayout(new BorderLayout());
+
+
+
+		//Seccion de Botones para definir la vista de detalles lateral derecha 
+		JPanel Titular = new JPanel(new BorderLayout());
+		Titular.setBackground(Constantes.PrincipalColor);
+		JPanel SeccionesBotones = new JPanel(new GridLayout());
+		JButton Unidades = Constantes.BotonCuadrado("Unidades", Constantes.SecundarioColor, Constantes.TerciarioColor);
+		JButton Operaciones = Constantes.BotonCuadrado("Operaciones", Constantes.SecundarioColor,
+				Constantes.TerciarioColor);
+		JButton Funciones = Constantes.BotonCuadrado("Funciones", Constantes.SecundarioColor,
+				Constantes.TerciarioColor);
+		Unidades.setActionCommand("Unidadeds");
+		Operaciones.setActionCommand("Operaciones");
+		Funciones.setActionCommand("Funciones");
+		Unidades.addActionListener(this);
+		Operaciones.addActionListener(this);
+		Funciones.addActionListener(this);
+		SeccionesBotones.add(Unidades);
+		SeccionesBotones.add(Operaciones);
+		SeccionesBotones.add(Funciones);
+		Titular.add(SeccionesBotones,BorderLayout.EAST);
+		
+
+
+
+		//seccion de operaciones y de resultados
+
+		JPanel OperacionesYDetalles = new JPanel(new GridLayout(0,1));
+
+		OperacionesMatematicasAreaDeTrabajo = new JPanel();
+		
+
+		
+
+
+
+
+
+		JPanel TerminalJPanel = new JPanel(new GridLayout(1,0));
+		JPanel DetallesOperacion = new JPanel();
+		JPanel resultadoOperacion = new JPanel();
+		
+
+		TerminalJPanel.add(DetallesOperacion);
+		TerminalJPanel.add(resultadoOperacion);
+
+
+
+
+
+
+		OperacionesYDetalles.add(OperacionesMatematicasAreaDeTrabajo);
+		OperacionesYDetalles.add(TerminalJPanel);
+		
+
+
+
+
+
+
+
+
+
+		panel.add(Titular, BorderLayout.NORTH);
+		panel.add(OperacionesYDetalles, BorderLayout.CENTER);
+
+	}
+
+	private void crearPanelDerecho(JPanel panel) {
+		panel.setBackground(Constantes.PrincipalColor);
+
+	}
 
 	// crear el jframe panel de la sub operacion con todos sus componentes
 	public JInternalFrameOperacion(String Titulo) {
@@ -70,182 +149,25 @@ public class JInternalFrameOperacion extends JInternalFrame implements ActionLis
 		setResizable(true);
 		setMaximizable(true);
 		setIconifiable(true);
-
 		setBounds(100, 100, 450, 300);
 		getContentPane().setLayout(new BorderLayout(0, 0));
 
-		JToolBar toolBar = new JToolBar();
-		toolBar.setBackground(Constantes.SecundarioColor);
-		getContentPane().add(toolBar, BorderLayout.NORTH);
+		JSplitPane JGeneralSplitPanel = new JSplitPane();
+		getContentPane().add(JGeneralSplitPanel, BorderLayout.CENTER);
 
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBackground(Constantes.SecundarioColor);
-		toolBar.add(scrollPane);
-		scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
-		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+		JPanel GeneralDetallesPanelDerecho = new JPanel();
+		crearPanelDerecho(GeneralDetallesPanelDerecho);
+		JPanel GeneralOperacionPanelIzquierdo = new JPanel();
+		crearPanelIzquierdo(GeneralOperacionPanelIzquierdo);
 
-		JPanel panel_8 = new JPanel();
-		panel_8.setBackground(Constantes.SecundarioColor);
-		panel_8.setLayout(new GridLayout(1, 0, 0, 0));
-		scrollPane.setViewportView(panel_8);
+		JGeneralSplitPanel.setLeftComponent(GeneralOperacionPanelIzquierdo);
+		JGeneralSplitPanel.setRightComponent(GeneralDetallesPanelDerecho);
+		JGeneralSplitPanel.setResizeWeight(0.78);
 
-		JPanel panel_2 = new JPanel();
-		panel_2.setBackground(Constantes.SecundarioColor);
-		panel_8.add(panel_2);
-		panel_2.setLayout(new BorderLayout(0, 0));
-
-		Component horizontalStrut_2 = Box.createHorizontalStrut(20);
-		panel_2.add(horizontalStrut_2, BorderLayout.WEST);
-
-		Component horizontalStrut = Box.createHorizontalStrut(20);
-		panel_2.add(horizontalStrut, BorderLayout.EAST);
-
-		JPanel panel_3 = new JPanel();
-		panel_3.setBackground(Constantes.SecundarioColor);
-		panel_2.add(panel_3, BorderLayout.CENTER);
-		panel_3.setLayout(new GridLayout(1, 0, 0, 0));
-
-		JButton AgregarUnidades = Constantes.BotonCuadrado("+U", Constantes.DetallesColor, Constantes.PrincipalColor);
-		panel_3.add(AgregarUnidades);
-		AgregarUnidades.setActionCommand("+U");
-		AgregarUnidades.addActionListener(this);
-		AgregarUnidades.setFont(Constantes.textoNormal);
-
-		JButton AgregarFuncionCompleja = Constantes.BotonCuadrado("F", Constantes.DetallesColor, Constantes.PrincipalColor);
-		panel_3.add(AgregarFuncionCompleja);
-		AgregarFuncionCompleja.setActionCommand("F");
-		AgregarFuncionCompleja.addActionListener(this);
-		AgregarFuncionCompleja.setFont(Constantes.textoNormal);
-
-		JButton AgregarOperacion = Constantes.BotonCuadrado("...", Constantes.DetallesColor, Constantes.PrincipalColor);
-		panel_3.add(AgregarOperacion);
-		AgregarOperacion.setActionCommand("...");
-		AgregarOperacion.addActionListener(this);
-		AgregarOperacion.setFont(Constantes.textoNormal);
-		
-		JButton JerarquiaDer = Constantes.BotonCuadrado("{", Constantes.DetallesColor, Constantes.PrincipalColor);
-		panel_3.add(JerarquiaDer);
-		JerarquiaDer.setActionCommand("{");
-		JerarquiaDer.addActionListener(this);
-		JerarquiaDer.setFont(Constantes.textoNormal);
-
-		JButton JerarquiaIzq = Constantes.BotonCuadrado("}", Constantes.DetallesColor, Constantes.PrincipalColor);
-		panel_3.add(JerarquiaIzq);
-		JerarquiaIzq.setActionCommand("}");
-		JerarquiaIzq.addActionListener(this);
-		JerarquiaIzq.setFont(Constantes.textoNormal);
-
-		JButton EliminarOperacion = Constantes.BotonCuadrado("--", Constantes.DetallesColor, Constantes.PrincipalColor);
-		panel_3.add(EliminarOperacion);
-		EliminarOperacion.setActionCommand("--");
-		EliminarOperacion.addActionListener(this);
-		EliminarOperacion.setFont(Constantes.textoNormal);
-
-		JSplitPane splitPane = new JSplitPane();
-		splitPane.setResizeWeight(0.50);
-		splitPane.setDividerLocation(0.50);
-		getContentPane().add(splitPane, BorderLayout.CENTER);
-
-		JScrollPane Operaciones = new JScrollPane();
-		Operaciones.setBackground(Constantes.PrincipalColor);
-		Operaciones.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-		Operaciones.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-		splitPane.setLeftComponent(Operaciones);
-
-		JPanelOperaciones = new JPanel();
-		JPanelOperaciones.setBackground(Constantes.PrincipalColor);
-		Operaciones.setViewportView(JPanelOperaciones);
-		GridBagLayout gbl_JPanelOperaciones = new GridBagLayout();
-		JPanelOperaciones.setLayout(gbl_JPanelOperaciones);
-
-		JPanel JPanel_Output = new JPanel();
-		splitPane.setRightComponent(JPanel_Output);
-		JPanel_Output.setLayout(new GridLayout(0, 1, 0, 0));
-
-		JScrollPane JScroll_Editor = new JScrollPane();
-		JScroll_Editor.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-		JScroll_Editor.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-		JPanel_Output.add(JScroll_Editor);
-
-		PropiedadesDisplay = new JTextPane();
-		PropiedadesDisplay.setBackground(Constantes.PrincipalColor);
-
-		PropiedadesDisplay.setFont(Constantes.textoNormal);
-		PropiedadesDisplay.setEditable(false);
-		JScroll_Editor.setViewportView(PropiedadesDisplay);
-
-		JScrollPane JScroll_Consola = new JScrollPane();
-		JPanel_Output.add(JScroll_Consola);
-		JScroll_Consola.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-		JScroll_Consola.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-
-		JPanel JPanel_Consola = new JPanel();
-		JScroll_Consola.setViewportView(JPanel_Consola);
-		JPanel_Consola.setLayout(new BorderLayout(0, 0));
-
-		ConsolaOutput = new JTextPane();
-		ConsolaOutput.setBackground(Constantes.PrincipalColor);
-		ConsolaOutput.setEditable(false);
-		ConsolaOutput.setFont(Constantes.textoNormal);
-		ConsolaOutput.setPreferredSize(JPanel_Consola.getSize());
-		JPanel_Consola.addComponentListener(new ComponentAdapter() {
-			public void componentResized(ComponentEvent componentEvent) {
-				ConsolaOutput.setPreferredSize(JPanel_Consola.getSize());
-			}
-		});
-		JPanel_Consola.add(ConsolaOutput, BorderLayout.CENTER);
-		// test();
 		setVisible(true);
 	}
 
-	// Agregar boton aritmetico a la seccion de operaciones registradas o historial
-	// de operaciones
-	private void AgregarBotonAritmetico(BotonAritmetico botonAritmetico) {
-		botonAritmetico.setFont(Constantes.botones);
-		botonAritmetico.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
 
-				if (!botonAritmetico.isSeleccionado()) {
-					for (BotonAritmetico f : BotonesAritmeticos) {
-						f.setSeleccionado(false);
-						f.setBackground(Constantes.SecundarioColor);
-						f.setForeground(Constantes.DetallesSegundoColor);
-						f.setFont(Constantes.botones);
-					}
-					botonAritmetico.setSeleccionado(true);
-					botonAritmetico.setBackground(Constantes.DetallesColor);
-					botonAritmetico.setForeground(Constantes.PrincipalColor);
-					botonAritmetico.setFont(Constantes.botones);
-					BotonMatematicoEnfocado = botonAritmetico;
-					PropiedadesDisplay.setText(BotonMatematicoEnfocado.getObjetoMatematico().toString());
-				} else {
-					BotonMatematicoEnfocado = null;
-					botonAritmetico.setSeleccionado(false);
-					botonAritmetico.setBackground(Constantes.SecundarioColor);
-					botonAritmetico.setForeground(Constantes.DetallesSegundoColor);
-					botonAritmetico.setFont(Constantes.botones);
-					if (OperacionGeneral.getError() == null) {
-						PropiedadesDisplay.setText(OperacionGeneral.getResultado().toString());
-					} else {
-						PropiedadesDisplay.setText("Sin resultado");
-					}
-				}
-
-			}
-		});
-
-		BotonesAritmeticos.add(botonAritmetico);
-
-		GridBagConstraints Constrains = new GridBagConstraints();
-		Constrains.fill = GridBagConstraints.HORIZONTAL;
-		Constrains.gridx = 0;
-		Constrains.weightx = 1;
-		Constrains.weighty = 1;
-		Constrains.insets = new Insets(5, 5, 5, 5);
-		JPanelOperaciones.add(botonAritmetico, Constrains);
-		getContentPane().paintAll(getContentPane().getGraphics());
-	}
 
 	// Quitar boton aritmetico a la seccion de operaciones registradas o historial
 	// de operaciones
@@ -342,10 +264,10 @@ public class JInternalFrameOperacion extends JInternalFrame implements ActionLis
 					CalcularConsolaOutput();
 				}
 				break;
-				case "F":
+			case "F":
 				JDialog_CrearFuncionMatematica creadorFunciones = new JDialog_CrearFuncionMatematica(
 						(JFrame) SwingUtilities.getRoot(this), "crear operacion matematica");
-				UnidadMatematica  resultadoFuncion = creadorFunciones.getUnidadMatematicaResultadoFuncion();
+				UnidadMatematica resultadoFuncion = creadorFunciones.getUnidadMatematicaResultadoFuncion();
 				if (resultadoFuncion != null) {
 					AgregarBotonAritmetico(new BotonAritmetico(resultadoFuncion));
 					CalcularConsolaOutput();
