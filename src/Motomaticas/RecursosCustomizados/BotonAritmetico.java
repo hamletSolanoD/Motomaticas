@@ -18,8 +18,6 @@ public class BotonAritmetico extends JButton implements Serializable {
     private ObjetoMatematico ObjetoMatematico;
 	private String Informacion;
 	private boolean Seleccionado;
-	private boolean Adentro;
-	private boolean Arrastrado;
 
 	
 	public BotonAritmetico(ObjetoMatematico objetoMatematico) {
@@ -57,13 +55,6 @@ public class BotonAritmetico extends JButton implements Serializable {
 	public boolean isSeleccionado() {
 		return Seleccionado;
 	}
-	public boolean isAdentro(){
-		return Adentro;
-	}
-	public boolean isArrastrado(){
-		return Arrastrado;
-	}
-
 
 
 

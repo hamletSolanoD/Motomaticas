@@ -7,12 +7,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.BorderLayout;
-
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.imageio.ImageIO;
 import javax.management.ConstructorParameters;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComponent;
+import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SpringLayout.Constraints;
@@ -25,17 +27,21 @@ import java.awt.event.MouseListener;
 import java.io.IOException;
 
 import Motomaticas.ValoresDefault.Constantes;
+import Motomaticas.VentanasProyecto.JInternalFrameOperacion;
 
 public class JPanelDragAndDropBotonesAritmeticos extends JPanel implements MouseListener {
 
 	ArrayList<BotonAritmetico> botonesAritmeticos = new ArrayList<BotonAritmetico>();
 	BotonAritmetico BotonMatematicoEnfocado;
+
 	GridBagConstraints constrainForNewButtons = new GridBagConstraints();
+	JInternalFrameOperacion ventanaDeOperacionesPadre;
 	BotonAritmetico BotonAritmeticoArrastrado, BotonAritmeticoEnPosicionActual;
 	private int X, Y;// posicion de insercion en la consola
 	private int CeldasDeAncho = 10;
 
-	public JPanelDragAndDropBotonesAritmeticos(int CeldasDeAncho) {
+	public JPanelDragAndDropBotonesAritmeticos(int CeldasDeAncho, JInternalFrameOperacion ventanaDeOperacionesPadre) {
+		this.ventanaDeOperacionesPadre = ventanaDeOperacionesPadre;
 		this.setBackground(Constantes.PrincipalColor);
 		this.addMouseListener(this);
 		this.setLayout(new GridBagLayout());
@@ -48,6 +54,35 @@ public class JPanelDragAndDropBotonesAritmeticos extends JPanel implements Mouse
 
 		botonAritmetico.setFont(Constantes.botones);
 		botonAritmetico.addMouseListener(this);
+		botonAritmetico.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+
+				boolean Seleccionado = !botonAritmetico.isSeleccionado();
+				for (BotonAritmetico btnAritmetico : botonesAritmeticos) {
+					btnAritmetico.setBackground(Constantes.SecundarioColor);
+					btnAritmetico.setForeground(Constantes.DetallesSegundoColor);
+					btnAritmetico.setSeleccionado(false);
+
+				}
+				botonAritmetico.setSeleccionado(Seleccionado);
+
+				if (Seleccionado) {
+					botonAritmetico.setBackground(Constantes.DetallesColor);
+					botonAritmetico.setForeground(Constantes.PrincipalColor);
+					ventanaDeOperacionesPadre.setDetallesDisplayText(botonAritmetico.getObjetoMatematico().toString());
+				} else {
+					botonAritmetico.setBackground(Constantes.SecundarioColor);
+					botonAritmetico.setForeground(Constantes.DetallesSegundoColor);
+					ventanaDeOperacionesPadre.setDetallesDisplayText(null);
+
+				}
+
+			}
+
+		});
 		botonesAritmeticos.add(botonAritmetico);
 		refrescarPanel();
 
@@ -70,8 +105,6 @@ public class JPanelDragAndDropBotonesAritmeticos extends JPanel implements Mouse
 		for (BotonAritmetico btnAritmetico : botonesAritmeticos) {
 			JPanel JbuttonConDeleteOption = new JPanel(new BorderLayout());
 
-			
-
 			constrainForNewButtons.gridheight = 1;
 			constrainForNewButtons.insets = new Insets(2, 2, 2, 2);
 			constrainForNewButtons.fill = GridBagConstraints.HORIZONTAL;
@@ -86,24 +119,30 @@ public class JPanelDragAndDropBotonesAritmeticos extends JPanel implements Mouse
 			constrainForNewButtons.gridy = Y;
 			// constrainForNewButtons.anchor = GridBagConstraints.CENTER;
 
-			JbuttonConDeleteOption.add(btnAritmetico,BorderLayout.CENTER);
+			JbuttonConDeleteOption.add(btnAritmetico, BorderLayout.CENTER);
 			JButton btnCerrar = null;
 			try {
 				btnCerrar = new JButton(
-					new ImageIcon(
-						(ImageIO.read
-						(this.getClass().getResource("/borrar.png")).
-						getScaledInstance(getWidth()/50, getWidth()/50, 
-						Image.SCALE_SMOOTH))));
+						new ImageIcon(
+								(ImageIO.read(this.getClass().getResource("/borrar.png")).getScaledInstance(
+										getWidth() / 50, getWidth() / 50,
+										Image.SCALE_SMOOTH))));
+				btnCerrar.addActionListener(new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						// TODO Auto-generated method stub
+						QuitarBotonAritmetico(btnAritmetico);
+						ventanaDeOperacionesPadre.CalcularConsolaOutput();
+
+					}
+
+				});
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 
-			JbuttonConDeleteOption.add(btnCerrar,BorderLayout.NORTH);
-
-
-
+			JbuttonConDeleteOption.add(btnCerrar, BorderLayout.NORTH);
 
 			this.add(JbuttonConDeleteOption, constrainForNewButtons);
 			X += ancho;
@@ -114,13 +153,12 @@ public class JPanelDragAndDropBotonesAritmeticos extends JPanel implements Mouse
 
 		}
 		this.paintAll(this.getGraphics());
+		ventanaDeOperacionesPadre.CalcularConsolaOutput();
+		
 	}
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		if (e.getComponent().getClass() == BotonAritmetico.class) {
-
-		}
 
 	}
 
@@ -131,15 +169,9 @@ public class JPanelDragAndDropBotonesAritmeticos extends JPanel implements Mouse
 			// System.out.println("Mouse pressed btn");
 			BotonAritmeticoArrastrado = (BotonAritmetico) e.getSource();
 
-			for (BotonAritmetico btnAritmetico : botonesAritmeticos) {
-				btnAritmetico.setBackground(Constantes.SecundarioColor);
-				btnAritmetico.setForeground(Constantes.DetallesSegundoColor);
-			}
-			BotonAritmeticoArrastrado.setBackground(Constantes.DetallesColor);
-			BotonAritmeticoArrastrado.setForeground(Constantes.PrincipalColor);
-
 		} else {
 			BotonAritmeticoArrastrado = null;
+			BotonAritmeticoEnPosicionActual = null;
 			// System.out.println("Mouse pressed panel");
 		}
 	}
@@ -148,13 +180,15 @@ public class JPanelDragAndDropBotonesAritmeticos extends JPanel implements Mouse
 	public void mouseReleased(MouseEvent e) {
 
 		// System.out.println("Mouse relesed");
-		if (BotonAritmeticoEnPosicionActual != null && BotonAritmeticoArrastrado != null) {
+		if (BotonAritmeticoEnPosicionActual != null && BotonAritmeticoArrastrado != null
+				&& BotonAritmeticoEnPosicionActual != BotonAritmeticoArrastrado) {
 
 			botonesAritmeticos.remove(BotonAritmeticoArrastrado);
 			int desface = (botonesAritmeticos.indexOf(BotonAritmeticoEnPosicionActual) > botonesAritmeticos
 					.indexOf(BotonAritmeticoArrastrado)) ? 1 : 0;
+			int indice = (botonesAritmeticos.indexOf(BotonAritmeticoEnPosicionActual) + desface);
 
-			botonesAritmeticos.add(botonesAritmeticos.indexOf(BotonAritmeticoEnPosicionActual) + desface,
+			botonesAritmeticos.add(indice,
 					BotonAritmeticoArrastrado);
 
 			refrescarPanel();
@@ -172,7 +206,7 @@ public class JPanelDragAndDropBotonesAritmeticos extends JPanel implements Mouse
 		// System.out.println(e.getComponent().getClass());
 		if (e.getComponent().getClass() == BotonAritmetico.class) {
 			BotonAritmeticoEnPosicionActual = (BotonAritmetico) e.getSource();
-			// System.out.println("Mouse entered in bttn");
+			// //System.out.println("Mouse entered in bttn");
 
 		} else {
 			// System.out.println("Mouse entered in Panel");
