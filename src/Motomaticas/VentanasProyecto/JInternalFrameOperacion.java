@@ -1,12 +1,16 @@
 package Motomaticas.VentanasProyecto;
 
 import java.awt.GridBagConstraints;
+import javax.swing.JScrollPane;
 
 import javax.swing.JInternalFrame;
+import javax.swing.JLabel;
+
 import java.awt.BorderLayout;
 
 import javax.swing.JToolBar;
 import javax.swing.JSplitPane;
+import javax.swing.JTabbedPane;
 import javax.swing.JPanel;
 import java.awt.GridLayout;
 import java.awt.Insets;
@@ -16,21 +20,26 @@ import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Vector;
 
 import javax.swing.JScrollPane;
 import javax.swing.ScrollPaneConstants;
+import javax.swing.ScrollPaneLayout;
 import javax.swing.SwingUtilities;
 import javax.swing.border.Border;
 
 import Motomaticas.ObjetosLogicos.motorMatematico.operaciones.OperacionMatematica;
 import Motomaticas.ObjetosLogicos.motorMatematico.operaciones.operacionesMatematicasGenericasInterface;
+import ModulosImportados.NumerosReales.UnidadNumerosRacionales;
 import ModulosImportados.Vector3D.*;
 import Motomaticas.ObjetosLogicos.motorMatematico.*;
+import Motomaticas.ObjetosLogicos.motorMatematico.funciones.FuncionMatematica;
 import Motomaticas.ObjetosLogicos.motorMatematico.variables.UnidadMatematica;
 import Motomaticas.RecursosCustomizados.BotonAritmetico;
-import Motomaticas.RecursosCustomizados.JDialog_CrearFuncionMatematica;
-import Motomaticas.RecursosCustomizados.JDialog_CrearOperacionMatematica;
-import Motomaticas.RecursosCustomizados.JDialog_CrearUnidadMatematica;
+import Motomaticas.RecursosCustomizados.JPanelDragAndDropBotonesAritmeticos;
+import Motomaticas.RecursosCustomizados.JPanelInspector.JPanel_CrearFuncionMatematica;
+import Motomaticas.RecursosCustomizados.JPanelInspector.JPanel_CrearOperacionMatematica;
+import Motomaticas.RecursosCustomizados.JPanelInspector.JPanel_CrearUnidadMatematica;
 import Motomaticas.ValoresDefault.Constantes;
 import Motomaticas.ValoresDefault.Constantes.TipoDeErrorMatematico;
 import Motomaticas.ValoresDefault.Constantes.TipoObjetoMatematico;
@@ -57,93 +66,82 @@ public class JInternalFrameOperacion extends JInternalFrame implements ActionLis
 	private BotonAritmetico BotonMatematicoEnfocado;
 
 	////////// GRAFICA ///////////
-	private JPanel JPanelOperaciones;
 	private JTextPane ConsolaOutput;
 	private JTextPane PropiedadesDisplay;
+	private JPanelDragAndDropBotonesAritmeticos JPanelOperacionesAreaDeTrabajo;
 
-	private JPanel OperacionesMatematicasAreaDeTrabajo;
+	private JTabbedPane InspectorPanel;
 
 	private void crearPanelIzquierdo(JPanel panel) {
 		panel.setBackground(Constantes.PrincipalColor);
 		panel.setLayout(new BorderLayout());
 
 
+		JPanel OperacionesYDetalles = new JPanel(new GridLayout(0, 1));
 
-		//Seccion de Botones para definir la vista de detalles lateral derecha 
-		JPanel Titular = new JPanel(new BorderLayout());
-		Titular.setBackground(Constantes.PrincipalColor);
-		JPanel SeccionesBotones = new JPanel(new GridLayout());
-		JButton Unidades = Constantes.BotonCuadrado("Unidades", Constantes.SecundarioColor, Constantes.TerciarioColor);
-		JButton Operaciones = Constantes.BotonCuadrado("Operaciones", Constantes.SecundarioColor,
-				Constantes.TerciarioColor);
-		JButton Funciones = Constantes.BotonCuadrado("Funciones", Constantes.SecundarioColor,
-				Constantes.TerciarioColor);
-		Unidades.setActionCommand("Unidadeds");
-		Operaciones.setActionCommand("Operaciones");
-		Funciones.setActionCommand("Funciones");
-		Unidades.addActionListener(this);
-		Operaciones.addActionListener(this);
-		Funciones.addActionListener(this);
-		SeccionesBotones.add(Unidades);
-		SeccionesBotones.add(Operaciones);
-		SeccionesBotones.add(Funciones);
-		Titular.add(SeccionesBotones,BorderLayout.EAST);
+		// Area de Trabajo
+		JPanelOperacionesAreaDeTrabajo = new JPanelDragAndDropBotonesAritmeticos(13);
+	
+		// VIsualizacion
+		JSplitPane TerminalJPanel = new JSplitPane();
+
+		JScrollPane JScrollEditorPropiedadesDisplay = new JScrollPane();
+		JScrollEditorPropiedadesDisplay.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		JScrollEditorPropiedadesDisplay.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+		PropiedadesDisplay = new JTextPane();
+		PropiedadesDisplay.setBackground(Constantes.PrincipalColor);
+		PropiedadesDisplay.setFont(Constantes.textoNormal);
+		PropiedadesDisplay.setEditable(false);
+		JScrollEditorPropiedadesDisplay.setViewportView(PropiedadesDisplay);
+
+
+		JScrollPane JScroll_Consola = new JScrollPane();
+		JScroll_Consola.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		JScroll_Consola.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+
+		JPanel JPanel_Consola = new JPanel();
+		JScroll_Consola.setViewportView(JPanel_Consola);
+		JPanel_Consola.setLayout(new BorderLayout(0, 0));
+
+		ConsolaOutput = new JTextPane();
+		ConsolaOutput.setBackground(Constantes.PrincipalColor);
+		ConsolaOutput.setEditable(false);
+		ConsolaOutput.setFont(Constantes.textoNormal);
+		ConsolaOutput.setPreferredSize(JPanel_Consola.getSize());
+		JPanel_Consola.addComponentListener(new ComponentAdapter() {
+			public void componentResized(ComponentEvent componentEvent) {
+				ConsolaOutput.setPreferredSize(JPanel_Consola.getSize());
+			}
+		});
+		JPanel_Consola.add(ConsolaOutput, BorderLayout.CENTER);
+
+
 		
 
 
 
-		//seccion de operaciones y de resultados
 
-		JPanel OperacionesYDetalles = new JPanel(new GridLayout(0,1));
+		// Agregar al panel tipo consola
 
-		OperacionesMatematicasAreaDeTrabajo = new JPanel();
-		
+		TerminalJPanel.setLeftComponent(JScroll_Consola);
+		TerminalJPanel.setRightComponent(JScrollEditorPropiedadesDisplay);
+		TerminalJPanel.setResizeWeight(0.5);
 
-		
-
-
-
-
-
-		JPanel TerminalJPanel = new JPanel(new GridLayout(1,0));
-		JPanel DetallesOperacion = new JPanel();
-		JPanel resultadoOperacion = new JPanel();
-		
-
-		TerminalJPanel.add(DetallesOperacion);
-		TerminalJPanel.add(resultadoOperacion);
-
-
-
-
-
-
-		OperacionesYDetalles.add(OperacionesMatematicasAreaDeTrabajo);
+		// Agregar al panel general izquierdo
+		JScrollPane scrollForAreaDeOperaciones = new JScrollPane();
+		scrollForAreaDeOperaciones.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+		scrollForAreaDeOperaciones.setViewportView(JPanelOperacionesAreaDeTrabajo);
+		OperacionesYDetalles.add(scrollForAreaDeOperaciones);
 		OperacionesYDetalles.add(TerminalJPanel);
-		
 
-
-
-
-
-
-
-
-
-		panel.add(Titular, BorderLayout.NORTH);
 		panel.add(OperacionesYDetalles, BorderLayout.CENTER);
 
 	}
 
-	private void crearPanelDerecho(JPanel panel) {
-		panel.setBackground(Constantes.PrincipalColor);
-
-	}
 
 	// crear el jframe panel de la sub operacion con todos sus componentes
 	public JInternalFrameOperacion(String Titulo) {
 		this.Titulo = Titulo;
-
 		setBounds(0, 0, getParent().WIDTH / 6, getParent().HEIGHT / 4);
 		setTitle(Titulo);
 		setResizable(true);
@@ -155,26 +153,29 @@ public class JInternalFrameOperacion extends JInternalFrame implements ActionLis
 		JSplitPane JGeneralSplitPanel = new JSplitPane();
 		getContentPane().add(JGeneralSplitPanel, BorderLayout.CENTER);
 
-		JPanel GeneralDetallesPanelDerecho = new JPanel();
-		crearPanelDerecho(GeneralDetallesPanelDerecho);
+		InspectorPanel = new JTabbedPane(JTabbedPane.NORTH);
+		InspectorPanel.setBorder(null);
+		InspectorPanel.addTab("Unidades", null, new JPanel_CrearUnidadMatematica(this), null);
+		InspectorPanel.addTab("Operaciones", null, new JPanel_CrearOperacionMatematica(this), null);
+		InspectorPanel.addTab("Funciones", null, new JPanel_CrearFuncionMatematica(this), null);
+
+
+
+
+
+
+
+
 		JPanel GeneralOperacionPanelIzquierdo = new JPanel();
 		crearPanelIzquierdo(GeneralOperacionPanelIzquierdo);
 
+		
+
 		JGeneralSplitPanel.setLeftComponent(GeneralOperacionPanelIzquierdo);
-		JGeneralSplitPanel.setRightComponent(GeneralDetallesPanelDerecho);
-		JGeneralSplitPanel.setResizeWeight(0.78);
+		JGeneralSplitPanel.setRightComponent(InspectorPanel);
+		JGeneralSplitPanel.setResizeWeight(0.7);
 
 		setVisible(true);
-	}
-
-
-
-	// Quitar boton aritmetico a la seccion de operaciones registradas o historial
-	// de operaciones
-	private void QuitarBotonAritmetico(BotonAritmetico botonAritmetico) {
-		BotonesAritmeticos.remove(botonAritmetico);
-		JPanelOperaciones.remove(botonAritmetico);
-		getContentPane().paintAll(getContentPane().getGraphics());
 	}
 
 	// Calcular la salida general de la operacion para mostrarla en el cuadro de
@@ -184,7 +185,7 @@ public class JInternalFrameOperacion extends JInternalFrame implements ActionLis
 		OperacionGeneral.HardReset();
 		MainApunteFrame.panel_Matematico.HardReset_JPanelMatematico();
 
-		for (BotonAritmetico i : BotonesAritmeticos) {
+		for (BotonAritmetico i : JPanelOperacionesAreaDeTrabajo.getListaBotonesAritmeticos()) {
 			ConsolaOutput.setText(ConsolaOutput.getText() + i.getEtiqueta());
 			OperacionGeneral.getObjetosMatematicos().add(i.getObjetoMatematico());
 		} //// mostrar los botones en el lado de operaciones
@@ -218,7 +219,7 @@ public class JInternalFrameOperacion extends JInternalFrame implements ActionLis
 			case "--":
 				if (BotonMatematicoEnfocado != null) {
 					OperacionGeneral.getObjetosMatematicos().remove(BotonMatematicoEnfocado.getObjetoMatematico());
-					QuitarBotonAritmetico(BotonMatematicoEnfocado);
+					JPanelOperacionesAreaDeTrabajo.QuitarBotonAritmetico(BotonMatematicoEnfocado);
 					BotonMatematicoEnfocado = null;
 					CalcularConsolaOutput();
 
@@ -236,43 +237,27 @@ public class JInternalFrameOperacion extends JInternalFrame implements ActionLis
 				}
 
 				break;
-			case "{":
-				AgregarBotonAritmetico(
-						new BotonAritmetico(new operacionesMatematicasGenericasInterface.llaveIzquierda()));
-				CalcularConsolaOutput();
-				break;
-			case "}":
-				AgregarBotonAritmetico(
-						new BotonAritmetico(new operacionesMatematicasGenericasInterface.llaveDerecha()));
-				CalcularConsolaOutput();
-				break;
-			case "+U":
-				JDialog_CrearUnidadMatematica creadorUnidad = new JDialog_CrearUnidadMatematica(
-						(JFrame) SwingUtilities.getRoot(this), "crear unidad matematica");
-				UnidadMatematica nuevaUnidad = creadorUnidad.getUnidadMatematicaCreada();
-				if (nuevaUnidad != null) {
-					AgregarBotonAritmetico(new BotonAritmetico(nuevaUnidad));
-					CalcularConsolaOutput();
+	
+			case "CreadoDesdeInspector":  
+				ObjetoMatematico nueObjetoMatematico = ((BotonAritmetico)arg0.getSource()).getObjetoMatematico();
+				ObjetoMatematico ObjetoAJButton = null;
+
+				switch(nueObjetoMatematico.getTipoDeObjetoMatematico()){
+					case Unidad:ObjetoAJButton = ((UnidadMatematica)nueObjetoMatematico).crearUnidad((JFrame) SwingUtilities.getRoot(this)); break;
+					case Operacion: ObjetoAJButton = nueObjetoMatematico; break;
+					case Funcion:  ObjetoAJButton =  ((FuncionMatematica)nueObjetoMatematico).llamarFuncionMatematica((JFrame) SwingUtilities.getRoot(this)); break;
+
+
 				}
-				break;
-			case "...":
-				JDialog_CrearOperacionMatematica creadorOperacion = new JDialog_CrearOperacionMatematica(
-						(JFrame) SwingUtilities.getRoot(this), "crear operacion matematica");
-				OperacionMatematica operacionNueva = creadorOperacion.getOperacionMatematicaCreada();
-				if (operacionNueva != null) {
-					AgregarBotonAritmetico(new BotonAritmetico(operacionNueva));
-					CalcularConsolaOutput();
-				}
-				break;
-			case "F":
-				JDialog_CrearFuncionMatematica creadorFunciones = new JDialog_CrearFuncionMatematica(
-						(JFrame) SwingUtilities.getRoot(this), "crear operacion matematica");
-				UnidadMatematica resultadoFuncion = creadorFunciones.getUnidadMatematicaResultadoFuncion();
-				if (resultadoFuncion != null) {
-					AgregarBotonAritmetico(new BotonAritmetico(resultadoFuncion));
-					CalcularConsolaOutput();
-				}
-				break;
+
+			JPanelOperacionesAreaDeTrabajo.AgregarBotonAritmetico(new BotonAritmetico(ObjetoAJButton));
+
+			CalcularConsolaOutput();
+
+
+
+			break;
+
 		}
 
 	}

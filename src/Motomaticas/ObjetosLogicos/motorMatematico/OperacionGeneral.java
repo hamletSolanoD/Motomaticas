@@ -317,7 +317,12 @@ public class OperacionGeneral implements Serializable {
 			Error = CuartoOrden;
 			return CuartoOrden;
 		} else {
+			try{
 			Resultado = ObjetosMatematicos_CuartoOrden.get(0);// respuesta final de la sumatoria
+			}catch(Throwable e){
+				//System.err.println(e);
+
+			}
 
 		}
 

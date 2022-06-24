@@ -1,4 +1,4 @@
-package Motomaticas.RecursosCustomizados;
+package Motomaticas.RecursosCustomizados.JPanelInspector;
 
 import java.awt.Dialog;
 import java.awt.Dimension;
@@ -14,7 +14,9 @@ import java.util.HashMap;
 
 import javax.swing.ScrollPaneConstants;
 
+import Motomaticas.ObjetosLogicos.motorMatematico.ObjetoMatematico;
 import Motomaticas.ObjetosLogicos.motorMatematico.operaciones.OperacionMatematica;
+import Motomaticas.RecursosCustomizados.BotonAritmetico;
 
 import java.awt.BorderLayout;
 import java.awt.GridBagLayout;
@@ -25,9 +27,9 @@ import Motomaticas.ValoresDefault.Constantes;
 
 import java.awt.event.ActionEvent;
 
-public class JDialog_CrearOperacionMatematica extends JDialog {
+public class JPanel_CrearOperacionMatematica extends JPanel  {
     private final JPanel contentPanel = new JPanel();
-    private OperacionMatematica operacionMatematicaCreada;
+    private ActionListener actionListenerEscucha;
     private HashMap<String, JPanel> categoriasContenido = new HashMap<String, JPanel>();// Contenidos
     private HashMap<String, JPanel> categoriasSeccionCompleta = new HashMap<String, JPanel>();// panel con contenido y
                                                                                               // titulos y bordes
@@ -42,15 +44,8 @@ public class JDialog_CrearOperacionMatematica extends JDialog {
 
             BotonAritmetico nuevaOperacion = new BotonAritmetico(operacionMatematica);
             nuevaOperacion.setPreferredSize(new Dimension(nuevaOperacion.getMaximumSize().width, 100));
-
-            nuevaOperacion.addActionListener(new ActionListener() {
-
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    operacionMatematicaCreada = operacionMatematica.clonarNuevaInstanciaOperacionMatematica();
-                    dispose();
-                }
-            });
+            nuevaOperacion.setActionCommand("CreadoDesdeInspector");
+            nuevaOperacion.addActionListener(actionListenerEscucha);
 
             OperacionesMatematicasJP.add(nuevaOperacion, BorderLayout.CENTER);
             OperacionesMatematicasJP.add(Box.createVerticalStrut(5), BorderLayout.SOUTH);
@@ -104,16 +99,16 @@ public class JDialog_CrearOperacionMatematica extends JDialog {
 
     }
 
-    public JDialog_CrearOperacionMatematica(JFrame Padre, String Mensaje) {
-        super(Padre, "Confirmar", Dialog.ModalityType.TOOLKIT_MODAL);
+    public JPanel_CrearOperacionMatematica(ActionListener actionListenerEscucha) {
         gridBagLayourPanelCategorias.gridx = 0;
         gridBagLayourPanelCategorias.gridy = GridBagConstraints.RELATIVE;
         gridBagLayourPanelCategorias.fill = GridBagConstraints.HORIZONTAL;
         gridBagLayourPanelCategorias.weightx = 1;
+        gridBagLayourPanelCategorias.weighty = 1;
+        gridBagLayourPanelCategorias.anchor = GridBagConstraints.FIRST_LINE_START;
 
-        setBounds(100, 100, Constantes.PantallaOrdenadorX / 3, Constantes.PantallaOrdenadorY / 3);
-        setTitle("Insertar operacion Matematica");
-        setResizable(false);
+        this.actionListenerEscucha = actionListenerEscucha;
+
 
         contentPanel.setBackground(Constantes.PrincipalColor);
         contentPanel.setLayout(new GridBagLayout());
@@ -124,18 +119,11 @@ public class JDialog_CrearOperacionMatematica extends JDialog {
         Operaciones.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
         Operaciones.setViewportView(contentPanel);
         inicializarOpcionesOperacionMatematica();
-
-        getContentPane().add(Operaciones, BorderLayout.CENTER);
-
-        setVisible(true);
-        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-
+        this.setLayout(new BorderLayout());
+        this.add(Operaciones, BorderLayout.CENTER);
 
     }
 
-    public OperacionMatematica getOperacionMatematicaCreada() {
-        return operacionMatematicaCreada;
 
-    }
 
 }
