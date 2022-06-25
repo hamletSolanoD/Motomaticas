@@ -233,41 +233,7 @@ public class OperacionGeneral implements Serializable {
 		return posibleError;
 	}
 
-	private TipoDeErrorMatematico ResolverTercerOrden() {
-
-		ObjetoMatematico ObjetoUltimo = null;
-		ObjetoMatematico ObjetoPenultimo = null;
-
-		for (ObjetoMatematico ObjetoActual : ObjetosMatematicos_TercerOrden) {
-			if (ObjetoUltimo != null) {
-				if (ObjetoActual.getTipoDeObjetoMatematico() == TipoObjetoMatematico.Unidad) { /// IDENTIFICAR EL TIPO
-																								/// DE OBJETO ACTUAL
-					if (ObjetoUltimo.getTipoDeObjetoMatematico() == TipoObjetoMatematico.Operacion) {
-						if (ObjetoPenultimo.getTipoDeObjetoMatematico() == TipoObjetoMatematico.Unidad) {
-							Resultado = ((OperacionMatematica) ObjetoUltimo)
-									.calcularOperacion((UnidadMatematica) Resultado, (UnidadMatematica) ObjetoActual);
-						} else {
-							return TipoDeErrorMatematico.EntradaInvalida;
-						}
-					}
-					break;
-				}
-			} else {
-				if (ObjetoActual.getTipoDeObjetoMatematico() == TipoObjetoMatematico.Unidad) {
-					Resultado = ObjetoActual;
-				} else {
-					return TipoDeErrorMatematico.EntradaInvalida;
-				}
-
-			}
-			ObjetoPenultimo = ObjetoUltimo;
-			ObjetoUltimo = ObjetoActual;
-
-		}
-
-		return null;
-
-	}
+	
 
 	public void HardReset() {
 		Resultado = null;
