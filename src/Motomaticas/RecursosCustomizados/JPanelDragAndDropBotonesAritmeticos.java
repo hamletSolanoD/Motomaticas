@@ -11,6 +11,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.imageio.ImageIO;
 import javax.management.ConstructorParameters;
+import javax.management.Query;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComponent;
@@ -73,17 +74,26 @@ public class JPanelDragAndDropBotonesAritmeticos extends JPanel implements Mouse
 					botonAritmetico.setBackground(Constantes.DetallesColor);
 					botonAritmetico.setForeground(Constantes.PrincipalColor);
 					ventanaDeOperacionesPadre.setDetallesDisplayText(botonAritmetico.getObjetoMatematico().toString());
+					BotonMatematicoEnfocado = botonAritmetico;
 				} else {
 					botonAritmetico.setBackground(Constantes.SecundarioColor);
 					botonAritmetico.setForeground(Constantes.DetallesSegundoColor);
 					ventanaDeOperacionesPadre.setDetallesDisplayText(null);
-
+					BotonMatematicoEnfocado = null;
 				}
 
 			}
 
 		});
-		botonesAritmeticos.add(botonAritmetico);
+		
+		if(BotonMatematicoEnfocado != null){
+			botonesAritmeticos.add(botonesAritmeticos.indexOf(BotonMatematicoEnfocado)+1, botonAritmetico);
+		}
+		else{
+			botonesAritmeticos.add(botonAritmetico);
+		}
+
+
 		refrescarPanel();
 
 	}
