@@ -1,25 +1,21 @@
 package Principal;
 
-import java.util.ArrayList;
-
-import javax.swing.JFrame;
-
 import ModulosImportados.NumerosReales.UnidadNumerosRacionales;
 import ModulosImportados.Vector3D.Vector3D;
-import Motomaticas.DefaultCrearPlantillas.EstandarNparamsJDialog;
-import Motomaticas.ObjetosLogicos.motorMatematico.operaciones.OperacionMatematica;
-
-import Motomaticas.VentanasProyecto.Portada;
+import Motomaticas.configuracionProyecto;
+import Motomaticas.motomaticas;
 
 public class main {
 
 	public static void main(String[] args) {
-		OperacionMatematica.inyectarBases();
-		new Vector3D("");
-		new UnidadNumerosRacionales();
+		configuracionProyecto.activarPanelVisualizar(false);
+		configuracionProyecto.activarPanelNotas(false);
+		configuracionProyecto.activarPanelOperaciones(true);
+		configuracionProyecto.activarPanelProcesoExplicadoMatematico(true);
+		configuracionProyecto.activarPanelPizzarra(false);
 
-		new Portada();
-
+		motomaticas nuevoProyecto  = new motomaticas();
+		nuevoProyecto.importarUnidadesMatematicas(new Vector3D(""), new UnidadNumerosRacionales());
 	}
 
 }

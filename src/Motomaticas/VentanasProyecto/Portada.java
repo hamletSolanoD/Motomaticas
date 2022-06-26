@@ -135,7 +135,7 @@ public class Portada extends JFrame implements ActionListener {
 				JDialog_NuevoCuadernoDeApuntes NuevoApunte = new JDialog_NuevoCuadernoDeApuntes(this);
 				CuadernoDeApuntesBaseLogica CuadernoDeApuntesNuevo = NuevoApunte.getCuadernoDeApuntes();
 				if (CuadernoDeApuntesNuevo != null) {
-					MainApunteFrame MainApunteFrame = new MainApunteFrame(CuadernoDeApuntesNuevo);
+					ApunteMotomaticas MainApunteFrame = new ApunteMotomaticas(CuadernoDeApuntesNuevo);
 					dispose();
 				}
 				break;
@@ -151,7 +151,7 @@ public class Portada extends JFrame implements ActionListener {
 							.readObject();
 					if (CuadernoDeApuntesCargado != null) {
 
-						MainApunteFrame MainApunteFrame = new MainApunteFrame(CuadernoDeApuntesCargado);
+						ApunteMotomaticas MainApunteFrame = new ApunteMotomaticas(CuadernoDeApuntesCargado);
 						MainApunteFrame.panel_Operaciones.JIFActivo = (JInternalFrameOperacion) OIS.readObject();
 						dispose();
 					}

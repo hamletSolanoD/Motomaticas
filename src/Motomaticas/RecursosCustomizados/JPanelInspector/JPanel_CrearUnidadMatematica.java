@@ -1,4 +1,4 @@
-package Motomaticas.RecursosCustomizados;
+package Motomaticas.RecursosCustomizados.JPanelInspector;
 
 import java.awt.Dialog;
 
@@ -13,22 +13,21 @@ import java.util.HashMap;
 import java.awt.Dimension;
 import javax.swing.ScrollPaneConstants;
 
+import Motomaticas.ObjetosLogicos.motorMatematico.ObjetoMatematico;
+import Motomaticas.ObjetosLogicos.motorMatematico.variables.UnidadMatematica;
+import Motomaticas.RecursosCustomizados.BotonAritmetico;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
-
-import Motomaticas.ObjetosLogicos.motorMatematico.funciones.FuncionMatematica;
-import Motomaticas.ObjetosLogicos.motorMatematico.variables.UnidadMatematica;
 import Motomaticas.ValoresDefault.Constantes;
 
 import java.awt.event.ActionEvent;
 
-public class JDialog_CrearFuncionMatematica extends JDialog {
+public class JPanel_CrearUnidadMatematica extends JPanel  {
     private final JPanel contentPanel = new JPanel();
-    private UnidadMatematica FuncionMatematicaRespuesta;
-    private JFrame padre;
+    private ActionListener actionListenerEscucha;
     private HashMap<String, JPanel> categoriasContenido = new HashMap<String, JPanel>();// Contenidos
     private HashMap<String, JPanel> categoriasSeccionCompleta = new HashMap<String, JPanel>();// panel con contenido y
                                                                                               // titulos y bordes
@@ -36,30 +35,25 @@ public class JDialog_CrearFuncionMatematica extends JDialog {
 
     private void inicializarOpcionesUnidadesMatematicas() {
 
-        for (FuncionMatematica funcionMatematica : FuncionMatematica.TotalFuncionesMatematicas) {
-            JPanel FuncionMatematicaJP = new JPanel();
-            FuncionMatematicaJP.setBackground(Constantes.PrincipalColor);
-            FuncionMatematicaJP.setLayout(new BorderLayout());
+        for (UnidadMatematica unidadMatematica : UnidadMatematica.TotalUnidadesMatematicas) {
+            JPanel UnidadesMatematicasJP = new JPanel();
+            UnidadesMatematicasJP.setBackground(Constantes.PrincipalColor);
+            UnidadesMatematicasJP.setLayout(new BorderLayout());
 
-            BotonAritmetico nuevaFuncion = new BotonAritmetico(funcionMatematica);
-            nuevaFuncion.setPreferredSize(new Dimension(nuevaFuncion.getMaximumSize().width, 100));
+            BotonAritmetico nuevaUnidad = new BotonAritmetico(unidadMatematica);
+            nuevaUnidad.setPreferredSize(new Dimension(nuevaUnidad.getMaximumSize().width, 100));
+            nuevaUnidad.setActionCommand("CreadoDesdeInspector");
+            nuevaUnidad.addActionListener(actionListenerEscucha);
 
-            nuevaFuncion.addActionListener(new ActionListener() {
+          
 
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    FuncionMatematicaRespuesta = funcionMatematica.llamarFuncionMatematica(padre);
-                    dispose();
-                }
-            });
+            UnidadesMatematicasJP.add(nuevaUnidad, BorderLayout.CENTER);
+            UnidadesMatematicasJP.add(Box.createVerticalStrut(5), BorderLayout.SOUTH);
+            UnidadesMatematicasJP.add(Box.createVerticalStrut(5), BorderLayout.NORTH);
+            UnidadesMatematicasJP.add(Box.createHorizontalStrut(5), BorderLayout.EAST);
+            UnidadesMatematicasJP.add(Box.createHorizontalStrut(5), BorderLayout.WEST);
 
-            FuncionMatematicaJP.add(nuevaFuncion, BorderLayout.CENTER);
-            FuncionMatematicaJP.add(Box.createVerticalStrut(5), BorderLayout.SOUTH);
-            FuncionMatematicaJP.add(Box.createVerticalStrut(5), BorderLayout.NORTH);
-            FuncionMatematicaJP.add(Box.createHorizontalStrut(5), BorderLayout.EAST);
-            FuncionMatematicaJP.add(Box.createHorizontalStrut(5), BorderLayout.WEST);
-
-            if (!categoriasSeccionCompleta.containsKey(funcionMatematica.getCategoriaMatematica())) {
+            if (!categoriasSeccionCompleta.containsKey(unidadMatematica.getCategoriaMatematica())) {
                 // Crea panel de categoria con sus borders
                 JPanel nuevaCategoria = new JPanel(new BorderLayout());
 
@@ -68,7 +62,7 @@ public class JDialog_CrearFuncionMatematica extends JDialog {
                 // panel de titulo de categoria con sus borders
                 JPanel TituloCategoria = new JPanel(new BorderLayout());
                 TituloCategoria.setBackground(Constantes.PrincipalColor);
-                JLabel JLabelTitulo = new JLabel(funcionMatematica.getCategoriaMatematica());
+                JLabel JLabelTitulo = new JLabel(unidadMatematica.getCategoriaMatematica());
                 JLabelTitulo.setFont(Constantes.botones);
                 JLabelTitulo.setForeground(Constantes.TerciarioColor);
                 TituloCategoria.add(JLabelTitulo, BorderLayout.CENTER);
@@ -79,10 +73,10 @@ public class JDialog_CrearFuncionMatematica extends JDialog {
 
                 // panel de los elementos el cual sera insertado en el hashmap
 
-                JPanel CategoriaElementos = new JPanel(new GridLayout(0, 3));
+                JPanel CategoriaElementos = new JPanel(new GridLayout(0, 1));
 
                 CategoriaElementos.setBackground(Constantes.PrincipalColor);
-                categoriasContenido.put(funcionMatematica.getCategoriaMatematica(), CategoriaElementos);
+                categoriasContenido.put(unidadMatematica.getCategoriaMatematica(), CategoriaElementos);
 
                 // añadir todo al panel general
                 nuevaCategoria.add(TituloCategoria, BorderLayout.NORTH);
@@ -90,11 +84,11 @@ public class JDialog_CrearFuncionMatematica extends JDialog {
                 nuevaCategoria.add(Box.createVerticalStrut(5), BorderLayout.SOUTH);
                 nuevaCategoria.add(Box.createHorizontalStrut(5), BorderLayout.EAST);
                 nuevaCategoria.add(Box.createHorizontalStrut(5), BorderLayout.WEST);
-                categoriasSeccionCompleta.put(funcionMatematica.getCategoriaMatematica(), nuevaCategoria);
+                categoriasSeccionCompleta.put(unidadMatematica.getCategoriaMatematica(), nuevaCategoria);
             }
 
-            ((JPanel) categoriasContenido.get(funcionMatematica.getCategoriaMatematica()))
-                    .add(FuncionMatematicaJP);
+            ((JPanel) categoriasContenido.get(unidadMatematica.getCategoriaMatematica()))
+                    .add(UnidadesMatematicasJP);
 
             contentPanel.removeAll();
             for (Object categoria : categoriasSeccionCompleta.values().toArray()) {
@@ -105,17 +99,16 @@ public class JDialog_CrearFuncionMatematica extends JDialog {
 
     }
 
-    public JDialog_CrearFuncionMatematica(JFrame Padre, String Mensaje) {
-        super(Padre, "Confirmar", Dialog.ModalityType.TOOLKIT_MODAL);
-        this.padre = Padre;
+    public JPanel_CrearUnidadMatematica( ActionListener actionListenerEscucha) {
+        this.actionListenerEscucha = actionListenerEscucha;
         gridBagLayourPanelCategorias.gridx = 0;
         gridBagLayourPanelCategorias.gridy = GridBagConstraints.RELATIVE;
         gridBagLayourPanelCategorias.fill = GridBagConstraints.HORIZONTAL;
         gridBagLayourPanelCategorias.weightx = 1;
+        gridBagLayourPanelCategorias.weighty = 1;
+        gridBagLayourPanelCategorias.anchor = GridBagConstraints.FIRST_LINE_START;
+
      
-        setBounds(100, 100, Constantes.PantallaOrdenadorX / 3, Constantes.PantallaOrdenadorY / 3);
-        setTitle("Crear Unidad Matematica");
-        setResizable(false);
 
         contentPanel.setBackground(Constantes.PrincipalColor);
         contentPanel.setLayout(new GridBagLayout());
@@ -126,16 +119,11 @@ public class JDialog_CrearFuncionMatematica extends JDialog {
         Operaciones.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
         Operaciones.setViewportView(contentPanel);
         inicializarOpcionesUnidadesMatematicas();
+        this.setLayout(new BorderLayout());
+        this.add(Operaciones, BorderLayout.CENTER);
 
-        getContentPane().add(Operaciones, BorderLayout.CENTER);
-
-        setVisible(true);
-        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 
     }
 
-    public UnidadMatematica getUnidadMatematicaResultadoFuncion() {
-        return FuncionMatematicaRespuesta;
-    }
 
 }

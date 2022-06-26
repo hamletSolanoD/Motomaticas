@@ -4,6 +4,12 @@ import java.io.Serializable;
 
 import javax.swing.JButton;
 
+import org.w3c.dom.events.EventTarget;
+import org.w3c.dom.events.MouseEvent;
+import org.w3c.dom.views.AbstractView;
+
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 import Motomaticas.ObjetosLogicos.motorMatematico.ObjetoMatematico;
 import Motomaticas.ValoresDefault.Constantes;
 
@@ -12,6 +18,7 @@ public class BotonAritmetico extends JButton implements Serializable {
     private ObjetoMatematico ObjetoMatematico;
 	private String Informacion;
 	private boolean Seleccionado;
+
 	
 	public BotonAritmetico(ObjetoMatematico objetoMatematico) {
 		super(objetoMatematico.toStringReducido());
@@ -23,6 +30,10 @@ public class BotonAritmetico extends JButton implements Serializable {
 		this.Informacion = objetoMatematico.toString();
 		this.setToolTipText(objetoMatematico.toString());
 		
+	}
+
+	public void setMouseListener(MouseListener mouseListener){
+		this.addMouseListener(mouseListener);
 	}
 
 	public String getEtiqueta() {
@@ -44,6 +55,12 @@ public class BotonAritmetico extends JButton implements Serializable {
 	public boolean isSeleccionado() {
 		return Seleccionado;
 	}
+
+
+
+
+
+
 	
 	
 

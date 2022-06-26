@@ -31,7 +31,7 @@ import javax.swing.SwingConstants;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 
-public  class MainApunteFrame extends JFrame implements WindowListener, Serializable, ActionListener{
+public  class ApunteMotomaticas extends JFrame implements WindowListener, Serializable, ActionListener{
 
 	private CuadernoDeApuntesBaseLogica MainApunte;
 	
@@ -41,10 +41,11 @@ public  class MainApunteFrame extends JFrame implements WindowListener, Serializ
 	public static JPanelNotas panel_Notas;
 	public static JpanelOperaciones panel_Operaciones;
 	public static JPanelVisualizar panel_Visualizar;
+
 	
 
 	/*crear o leer un apunte ya guardado, crear toda la parte visual desde la parte logica del apunte*/
-	public MainApunteFrame(CuadernoDeApuntesBaseLogica Apunte) {
+	public ApunteMotomaticas(CuadernoDeApuntesBaseLogica Apunte) {
 		MainApunte = Apunte;
 		setBounds(Constantes.PantallaOrdenadorX/25,Constantes.PantallaOrdenadorY/20,(Constantes.PantallaOrdenadorX/10)*9,(Constantes.PantallaOrdenadorY/10)*9);
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
@@ -52,18 +53,10 @@ public  class MainApunteFrame extends JFrame implements WindowListener, Serializ
 		getContentPane().setLayout(new BorderLayout(0, 0));
 		
 		    panel_Operaciones = Apunte.getOperaciones();
-			
 		    panel_Matematico = Apunte.getMatematico();
-			 
 		    panel_Notas = Apunte.getNotas();
-		    
 		    panel_Pizarra = Apunte.getPizarra();
-
 		    panel_Visualizar = Apunte.getVisualizar();
-
-			
-		   /* panel_Grafico = new JPanel();
-			tabbedPane.addTab("Grafico", null, panel_Grafico, null);*/
 			
 			
 		
@@ -82,11 +75,26 @@ public  class MainApunteFrame extends JFrame implements WindowListener, Serializ
 		tabbedPane.setBorder(null);
 		tabbedPane.setBackground(Constantes.DetallesColor);
 		tabbedPane.setFont(Constantes.textoNormal);
-		tabbedPane.addTab("Operaciones", null, panel_Operaciones, null);
-		tabbedPane.addTab("Matematico", null, panel_Matematico, null);
-		tabbedPane.addTab("Vizualizar", null, panel_Visualizar, null);
-		tabbedPane.addTab("Notas", null, panel_Notas, null);
-		tabbedPane.addTab("Pizarra", null, panel_Pizarra, null);
+
+
+		if(panel_Operaciones != null){
+			tabbedPane.addTab("Operaciones", null, panel_Operaciones, null);
+		}
+		if(panel_Matematico != null){
+			tabbedPane.addTab("Matematico", null, panel_Matematico, null);
+		}
+		if(panel_Visualizar != null){
+			tabbedPane.addTab("Vizualizar", null, panel_Visualizar, null);
+		}
+		if(panel_Notas != null){
+			tabbedPane.addTab("Notas", null, panel_Notas, null);
+		}
+		if(panel_Pizarra != null){
+			tabbedPane.addTab("Pizarra", null, panel_Pizarra, null);
+		}
+
+
+
 
 		
 	   
@@ -170,6 +178,7 @@ public  class MainApunteFrame extends JFrame implements WindowListener, Serializ
 		// TODO Auto-generated method stub
 		switch(arg0.getActionCommand()){
 			case "Guardar": 
+
 				MainApunte.setOperaciones(panel_Operaciones);
 				MainApunte.setPizarra(panel_Pizarra);
 				MainApunte.setMatematico(panel_Matematico);

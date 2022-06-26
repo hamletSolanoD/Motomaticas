@@ -7,7 +7,7 @@ import Motomaticas.ObjetosLogicos.motorMatematico.variables.UnidadMatematica;
 import Motomaticas.RecursosCustomizados.BotonApuntes;
 import Motomaticas.ValoresDefault.Constantes;
 import Motomaticas.ValoresDefault.Constantes.Apunte;
-import Motomaticas.VentanasProyecto.MainApunteFrame;
+import Motomaticas.VentanasProyecto.ApunteMotomaticas;
 
 public abstract class OperacionMatematica extends ObjetoMatematico implements Cloneable {
 
@@ -91,7 +91,7 @@ public abstract class OperacionMatematica extends ObjetoMatematico implements Cl
 	 * lenguaje humano en un objeto tipo boton de apuntes
 	 */
 	protected void MostrarInformacion(Apunte Apunte) {
-		MainApunteFrame.panel_Matematico.AgregarBotonDeApuntes(new BotonApuntes(Apunte));
+		ApunteMotomaticas.panel_Matematico.AgregarBotonDeApuntes(new BotonApuntes(Apunte));
 	}
 
 	@Override
