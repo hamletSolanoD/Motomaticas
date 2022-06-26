@@ -220,7 +220,7 @@ public class JInternalFrameOperacion extends JInternalFrame implements ActionLis
 								.crearUnidad((JFrame) SwingUtilities.getRoot(this));
 						break;
 					case Operacion:
-						ObjetoAJButton = nueObjetoMatematico;
+						ObjetoAJButton = ((OperacionMatematica)nueObjetoMatematico).clonarNuevaInstanciaOperacionMatematica();
 						break;
 					case Funcion:
 						ObjetoAJButton = ((FuncionMatematica) nueObjetoMatematico)
