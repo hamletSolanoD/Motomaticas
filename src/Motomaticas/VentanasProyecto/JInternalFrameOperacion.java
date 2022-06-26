@@ -174,7 +174,7 @@ public class JInternalFrameOperacion extends JInternalFrame implements ActionLis
 	public void CalcularConsolaOutput() {
 		ConsolaOutput.setText(""); /// reset output
 		OperacionGeneral.HardReset();
-		MainApunteFrame.panel_Matematico.HardReset_JPanelMatematico();
+		ApunteMotomaticas.panel_Matematico.HardReset_JPanelMatematico();
 
 		for (BotonAritmetico i : JPanelOperacionesAreaDeTrabajo.getListaBotonesAritmeticos()) {
 			ConsolaOutput.setText(ConsolaOutput.getText() + i.getEtiqueta());
