@@ -1,19 +1,21 @@
 package Principal;
 
-import java.util.Vector;
-
+import ModulosImportados.NumerosReales.UnidadNumerosRacionales;
 import ModulosImportados.Vector3D.Vector3D;
-import ObjetosLogicos.motorMatematico.*;
-import VentanasProyecto.Portada;
+import Motomaticas.configuracionProyecto;
+import Motomaticas.motomaticas;
 
 public class main {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		configuracionProyecto.activarPanelVisualizar(false);
+		configuracionProyecto.activarPanelNotas(false);
+		configuracionProyecto.activarPanelOperaciones(true);
+		configuracionProyecto.activarPanelProcesoExplicadoMatematico(true);
+		configuracionProyecto.activarPanelPizzarra(false);
 
-		new Portada();
-		// new MainApunteFrame();
-		//System.out.println(Operacion.VecProductoEscalar(new Vector3("VA", 3, 5, 1), new Vector3("VB", 6, 2, 8)));
+		motomaticas nuevoProyecto  = new motomaticas();
+		nuevoProyecto.importarUnidadesMatematicas(new Vector3D(""), new UnidadNumerosRacionales());
 	}
 
 }
