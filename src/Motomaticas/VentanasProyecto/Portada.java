@@ -101,7 +101,7 @@ public class Portada extends JFrame implements ActionListener {
 		lbl_Titulo.setForeground(Constantes.DetallesSegundoColor);
 		lbl_Titulo.setEditable(false);
 		lbl_Titulo.setFont(Constantes.Titulos);
-		lbl_Titulo.setText("Motomatematicas: Cuaderno de apuntes Matematicos");
+		lbl_Titulo.setText("MOTOMATICAS\nCuaderno de Apuntes Matematicos Virtual");
 		lbl_Titulo.setBackground(Constantes.PrincipalColor);
 		StyledDocument doc = lbl_Titulo.getStyledDocument();
 		SimpleAttributeSet center = new SimpleAttributeSet();
