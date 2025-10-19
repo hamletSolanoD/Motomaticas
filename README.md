@@ -1,71 +1,80 @@
-# 🧮 Motomaticas: Motor Matemático OpenSource con Inyección de Dependencias Dinámicas
+# 🧮 Motomaticas: OpenSource Mathematical Engine with Dynamic Dependency Injection
 
-![Java](https://img.shields.io/badge/Java-ED8B00?style=flat&logo=java&logoColor=white) ![Estado](https://img.shields.io/badge/Estado-Producci%C3%B3n-success) ![Arquitectura](https://img.shields.io/badge/Arquitectura-SOLID-blue) ![Licencia](https://img.shields.io/badge/Licencia-OpenSource-green) ![Patrón](https://img.shields.io/badge/Patr%C3%B3n-Dependency_Injection-orange)
-## 📝 Descripción
-**Motomaticas** es un motor matemático modular de código abierto que resuelve el problema de la fragmentación en herramientas de cálculo matemático. Mediante **inyección de dependencias dinámicas**, permite a programadores y educadores crear, compartir y reutilizar módulos matemáticos sin necesidad de desarrollar toda la infraestructura desde cero ni aprender lenguajes especializados como MATLAB o Mathematica.
-### Motivación Técnica
-El proyecto nace de la necesidad de democratizar el desarrollo de herramientas matemáticas interactivas. Tradicionalmente, crear una calculadora científica personalizada requiere:
-- Dominio de lenguajes matemáticos especializados (elevado tiempo de capacitación)
-- Implementación completa de jerarquía de operaciones
-- Desarrollo de sistema de parsing y evaluación
-- Creación de interfaz gráfica desde cero
-**Motomaticas** abstrae toda esta complejidad mediante un sistema de **plugins matemáticos** donde el desarrollador solo se enfoca en la lógica específica de su operación o unidad.
-## 🎮 Demostración
-### Panel de Operaciones
-_Interfaz principal mostrando operaciones complejas con vectores 3D y números reales_
+![Java](https://img.shields.io/badge/Java-ED8B00?style=flat&logo=java&logoColor=white) ![Status](https://img.shields.io/badge/Status-Production-success) ![Architecture](https://img.shields.io/badge/Architecture-SOLID-blue) ![License](https://img.shields.io/badge/License-OpenSource-green) ![Pattern](https://img.shields.io/badge/Pattern-Dependency_Injection-orange)
+
+## 📝 Description
+
+**Motomaticas** is a modular open-source mathematical engine that solves the fragmentation problem in mathematical calculation tools. Through **dynamic dependency injection**, it allows programmers and educators to create, share, and reuse mathematical modules without needing to develop the entire infrastructure from scratch or learn specialized languages like MATLAB or Mathematica.
+
+### Technical Motivation
+
+The project stems from the need to democratize the development of interactive mathematical tools. Traditionally, creating a custom scientific calculator requires:
+- Mastery of specialized mathematical languages (high training time investment)
+- Complete implementation of operation hierarchy
+- Development of parsing and evaluation system
+- GUI creation from scratch
+
+**Motomaticas** abstracts all this complexity through a **mathematical plugin system** where developers only focus on the specific logic of their operation or unit.
+
+## 🎮 Demo
+
+### Operations Panel
+_Main interface showing complex operations with 3D vectors and real numbers_
 <img width="1029" height="543" alt="image" src="https://github.com/user-attachments/assets/c91d4eea-f024-4ba2-9a50-5725aed7cfeb" />
 <img width="882" height="495" alt="image" src="https://github.com/user-attachments/assets/c61b98e9-9863-4445-8287-864e54b131b1" />
 <img width="860" height="403" alt="image" src="https://github.com/user-attachments/assets/e2435501-3ae5-4b73-bfea-8aece423ea54" />
 
-
-### Resolución Paso a Paso
+### Step-by-Step Resolution
 <img width="845" height="435" alt="image" src="https://github.com/user-attachments/assets/70923b73-03a0-4f97-9031-96bf906c56bf" />
 <img width="883" height="477" alt="image" src="https://github.com/user-attachments/assets/c2c5cf69-fd5f-4476-b827-2648129d6cdf" />
 
-### Creación de Unidades Personalizadas
+### Custom Unit Creation
 <img width="807" height="299" alt="image" src="https://github.com/user-attachments/assets/9aeb6338-9270-448e-b55d-7075cb230d97" />
 
-## ✨ Características
-### Funcionalidades Core
-- 🔌 **Inyección de Dependencias Dinámicas**: Sistema plugin para agregar unidades y operaciones sin modificar código base
-- 📊 **Jerarquía de Operaciones Automática**: Resolución correcta según orden matemático (PEMDAS) con 4 niveles de prioridad
-- 📚 **Explicaciones Auto-Generadas**: Cada operación genera documentación humana de su proceso
-- 🎨 **Interfaz Modular**: Paneles independientes (Operaciones, Procedimiento, Notas, Pizarra, Visualización)
-- 💾 **Sistema de Apuntes**: Serialización completa de sesiones de trabajo para compartir y reutilizar
-### Capacidades Técnicas
-- ⚡ **Algoritmo Divide & Conquer**: Resolución recursiva de sub-operaciones con complejidad O(n log n)
-- 🧩 **Polimorfismo Extremo**: Arquitectura 100% basada en abstracciones (ObjetoMatematico base)
-- 🔄 **Evaluación de Expresiones Anidadas**: Soporte para operaciones con múltiples niveles de paréntesis
-- 🎯 **Type Safety**: Sistema de validación de operandos en tiempo de ejecución
-- 📦 **Serialización Completa**: Persistencia de estado mediante Serializable
+## ✨ Features
 
-## 🏗️ Arquitectura
-### Diagrama de Clases Principal
+### Core Functionalities
+- 🔌 **Dynamic Dependency Injection**: Plugin system to add units and operations without modifying base code
+- 📊 **Automatic Operation Hierarchy**: Correct resolution according to mathematical order (PEMDAS) with 4 priority levels
+- 📚 **Auto-Generated Explanations**: Each operation generates human-readable documentation of its process
+- 🎨 **Modular Interface**: Independent panels (Operations, Procedure, Notes, Whiteboard, Visualization)
+- 💾 **Note-Taking System**: Complete session serialization for sharing and reuse
+
+### Technical Capabilities
+- ⚡ **Divide & Conquer Algorithm**: Recursive resolution of sub-operations with O(n log n) complexity
+- 🧩 **Extreme Polymorphism**: 100% abstraction-based architecture (ObjetoMatematico base)
+- 🔄 **Nested Expression Evaluation**: Support for operations with multiple levels of parentheses
+- 🎯 **Type Safety**: Runtime operand validation system
+- 📦 **Complete Serialization**: State persistence through Serializable
+
+## 🏗️ Architecture
+
+### Main Class Diagram
 
 ```
 ObjetoMatematico (Abstract)
 ├── UnidadMatematica (Abstract)
 │   ├── Vector3D
 │   ├── UnidadNumerosRacionales
-│   └── [Otras unidades inyectables]
+│   └── [Other injectable units]
 ├── OperacionMatematica (Abstract)
 │   ├── Suma
 │   ├── Resta
 │   ├── Multiplicacion
 │   ├── Division
-│   └── [Otras operaciones inyectables]
+│   └── [Other injectable operations]
 └── FuncionMatematica (Abstract)
-    └── [Funciones inyectables]
+    └── [Injectable functions]
 ```
 
-### Jerarquía de Resolución
-El motor implementa un sistema de **4 niveles de prioridad**:
-1. **Nivel 4 - Paréntesis y Funciones**: Operaciones encapsuladas `{...}` o funciones `f(x)`
-2. **Nivel 3 - Potencias**: Exponenciación, raíces
-3. **Nivel 2 - Multiplicación/División**: Operaciones de segundo orden
-4. **Nivel 1 - Suma/Resta**: Operaciones de primer orden y resultado final
+### Resolution Hierarchy
+The engine implements a **4-level priority system**:
+1. **Level 4 - Parentheses and Functions**: Encapsulated operations `{...}` or functions `f(x)`
+2. **Level 3 - Powers**: Exponentiation, roots
+3. **Level 2 - Multiplication/Division**: Second-order operations
+4. **Level 1 - Addition/Subtraction**: First-order operations and final result
 
-### Patrón de Inyección
+### Injection Pattern
 ```java
 public class motomaticas {
     private ArrayList<UnidadMatematica> unidadesMatematicasUsadas;
@@ -80,17 +89,20 @@ public class motomaticas {
 }
 ```
 
-Este patrón permite **inyección en tiempo de ejecución** sin recompilación.
+This pattern enables **runtime injection** without recompilation.
 
-## 🎯 Patrones de Diseño
-### Implementación SOLID
+## 🎯 Design Patterns
+
+### SOLID Implementation
+
 #### Single Responsibility Principle (SRP)
-Cada clase tiene una única responsabilidad bien definida:
-- `OperacionGeneral`: Solo resuelve operaciones
-- `ObjetoMatematico`: Solo define estructura base
-- `UnidadMatematica`: Solo representa unidades cuantificables
+Each class has a single, well-defined responsibility:
+- `OperacionGeneral`: Only resolves operations
+- `ObjetoMatematico`: Only defines base structure
+- `UnidadMatematica`: Only represents quantifiable units
+
 #### Open-Closed Principle (OCP)
-Sistema abierto para extensión mediante herencia, cerrado para modificación:
+System open for extension through inheritance, closed for modification:
 ```java
 public abstract class UnidadMatematica extends ObjetoMatematico {
     public abstract UnidadMatematica crearUnidad(JFrame padre);
@@ -99,9 +111,10 @@ public abstract class UnidadMatematica extends ObjetoMatematico {
 }
 ```
 
-Desarrolladores extienden sin modificar el motor core.
+Developers extend without modifying the core engine.
+
 #### Liskov Substitution Principle (LSP)
-Cualquier subtipo de `ObjetoMatematico` es intercambiable:
+Any subtype of `ObjetoMatematico` is interchangeable:
 
 ```java
 List<ObjetoMatematico> operacion = new LinkedList<>();
@@ -111,7 +124,7 @@ operacion.add(new UnidadNumerosRacionales());
 ```
 
 #### Interface Segregation Principle (ISP)
-Interfaces especializadas evitan dependencias innecesarias:
+Specialized interfaces avoid unnecessary dependencies:
 ```java
 public interface operacionesMatematicasGenericasInterface {
     class llaveIzquierda extends OperacionMatematica { }
@@ -120,7 +133,7 @@ public interface operacionesMatematicasGenericasInterface {
 ```
 
 #### Dependency Inversion Principle (DIP)
-**Núcleo de la arquitectura**: Motor depende de abstracciones, no de implementaciones concretas:
+**Architecture core**: Engine depends on abstractions, not concrete implementations:
 ```java
 public class OperacionGeneral {
     private List<ObjetoMatematico> ObjetosMatematicos;
@@ -130,15 +143,18 @@ public class OperacionGeneral {
 }
 ```
 
-El motor trabaja exclusivamente con `ObjetoMatematico`, permitiendo inyección de cualquier tipo.
+The engine works exclusively with `ObjetoMatematico`, allowing injection of any type.
 
-### Otros Patrones
-**Template Method**: Clases abstractas definen estructura, subclases implementan detalles **Factory Pattern**: Creación dinámica de objetos matemáticos según tipo **Iterator Pattern**: Recorrido de operaciones mediante `CopyOnWriteArrayList`
-## 🧠 Algoritmos
+### Other Patterns
+**Template Method**: Abstract classes define structure, subclasses implement details
+**Factory Pattern**: Dynamic creation of mathematical objects by type
+**Iterator Pattern**: Operation traversal using `CopyOnWriteArrayList`
 
-### Algoritmo de Resolución Jerárquica
-**Complejidad**: O(n log n) donde n es el número de objetos matemáticos
-**Estrategia**: Divide & Conquer con recursión
+## 🧠 Algorithms
+
+### Hierarchical Resolution Algorithm
+**Complexity**: O(n log n) where n is the number of mathematical objects
+**Strategy**: Divide & Conquer with recursion
 ```java
 private TipoDeErrorMatematico ResolverPrimerOrden() {
     Repetidor: while (ObjetosMatematicos.size() > 0) {
@@ -182,9 +198,9 @@ private TipoDeErrorMatematico ResolverPrimerOrden() {
 }
 ```
 
-### Búsqueda de Paréntesis Correspondiente
-**Complejidad**: O(n)
-**Algoritmo**: Contador de balance de paréntesis
+### Corresponding Parenthesis Search
+**Complexity**: O(n)
+**Algorithm**: Parenthesis balance counter
 ```java
 private ObjetoMatematico BuscarParentesisCierre(ObjetoMatematico Inicio) {
     int NumeroDeParentesis = 0;
@@ -212,8 +228,8 @@ private ObjetoMatematico BuscarParentesisCierre(ObjetoMatematico Inicio) {
 }
 ```
 
-### Resolución de Orden N
-**Estrategia**: Recursión con array apuntador para mantener estado
+### Order N Resolution
+**Strategy**: Recursion with pointer array to maintain state
 ```java
 private TipoDeErrorMatematico ResolverOrdenN(
     List<ObjetoMatematico> ListaDeOrdenPrevia,
@@ -236,16 +252,21 @@ private TipoDeErrorMatematico ResolverOrdenN(
 }
 ```
 
-### Análisis de Complejidad
-**Mejor caso**: O(n) - Operación lineal sin paréntesis **Caso promedio**: O(n log n) - Operaciones con anidamiento moderado **Peor caso**: O(n²) - Anidamiento profundo con múltiples sub-operaciones recursivas
-**Optimizaciones implementadas**:
-- `CopyOnWriteArrayList` para iteración thread-safe
-- Búsqueda de operadores por prioridad evitando recorridos completos
-- Reutilización de sub-resultados (memoization implícita)
-## 📦 Módulos Principales
-### 1. Motor Matemático (OperacionGeneral)
-**Propósito**: Núcleo de evaluación de expresiones matemáticas
-**Implementación**:
+### Complexity Analysis
+**Best case**: O(n) - Linear operation without parentheses
+**Average case**: O(n log n) - Operations with moderate nesting
+**Worst case**: O(n²) - Deep nesting with multiple recursive sub-operations
+
+**Implemented optimizations**:
+- `CopyOnWriteArrayList` for thread-safe iteration
+- Operator search by priority avoiding complete traversals
+- Sub-result reuse (implicit memoization)
+
+## 📦 Main Modules
+
+### 1. Mathematical Engine (OperacionGeneral)
+**Purpose**: Core expression evaluation engine
+**Implementation**:
 ```java
 public class OperacionGeneral implements Serializable {
     private List<ObjetoMatematico> ObjetosMatematicos;
@@ -272,16 +293,16 @@ public class OperacionGeneral implements Serializable {
 }
 ```
 
-**Patrón aplicado**: Template Method + Chain of Responsibility
+**Applied pattern**: Template Method + Chain of Responsibility
 
-**Desafíos superados**:
-- Manejo correcto de precedencia de operadores
-- Detección de errores sintácticos (paréntesis desbalanceados, operadores consecutivos)
-- Evaluación perezosa para optimizar rendimiento
+**Challenges overcome**:
+- Correct operator precedence handling
+- Syntax error detection (unbalanced parentheses, consecutive operators)
+- Lazy evaluation for performance optimization
 
-### 2. Sistema de Inyección (motomaticas)
-**Propósito**: Gestión de plugins matemáticos
-**Implementación**:
+### 2. Injection System (motomaticas)
+**Purpose**: Mathematical plugin management
+**Implementation**:
 ```java
 public class motomaticas {
     private ArrayList<UnidadMatematica> unidadesMatematicasUsadas;
@@ -296,16 +317,16 @@ public class motomaticas {
 }
 ```
 
-**Patrón aplicado**: Dependency Injection + Registry Pattern
+**Applied pattern**: Dependency Injection + Registry Pattern
 
-**Interacción con otros módulos**:
-- Registra plugins en listas globales estáticas
-- Provee acceso centralizado a todos los objetos matemáticos disponibles
-- Gestiona ciclo de vida de la aplicación
+**Interaction with other modules**:
+- Registers plugins in static global lists
+- Provides centralized access to all available mathematical objects
+- Manages application lifecycle
 
-### 3. Jerarquía de Objetos Matemáticos
-**Propósito**: Abstracción unificada para todos los elementos matemáticos
-**Implementación**:
+### 3. Mathematical Object Hierarchy
+**Purpose**: Unified abstraction for all mathematical elements
+**Implementation**:
 ```java
 public abstract class ObjetoMatematico implements Serializable {
     protected String ID;
@@ -327,16 +348,16 @@ public abstract class ObjetoMatematico implements Serializable {
 }
 ```
 
-**Patrón aplicado**: Abstract Factory
+**Applied pattern**: Abstract Factory
 
-**Desafíos superados**:
-- Diseño de jerarquía flexible que permita cualquier tipo de unidad matemática
-- Sistema de identificación único mediante UUID
-- Serialización para persistencia de sesiones
+**Challenges overcome**:
+- Design of flexible hierarchy allowing any type of mathematical unit
+- Unique identification system using UUID
+- Serialization for session persistence
 
-### 4. Sistema de Configuración
-**Propósito**: Control de paneles UI mediante flags
-**Implementación**:
+### 4. Configuration System
+**Purpose**: UI panel control through flags
+**Implementation**:
 ```java
 public class configuracionProyecto {
     public static boolean panelGrafico;
@@ -352,33 +373,35 @@ public class configuracionProyecto {
 }
 ```
 
-**Patrón aplicado**: Singleton implícito (variables estáticas)
+**Applied pattern**: Implicit Singleton (static variables)
 
-**Interacción**:
-- Controla visibilidad de componentes UI desde punto de entrada
-- Permite personalización modular de interfaz
-- Reduce acoplamiento entre módulos de visualización
+**Interaction**:
+- Controls UI component visibility from entry point
+- Allows modular interface customization
+- Reduces coupling between visualization modules
 
-## 🛠️ Tecnologías
+## 🛠️ Technologies
+
 ### Core
-- **Java 8+**: Lenguaje principal, orientado a objetos
-- **Swing/AWT**: Bibliotecas de interfaz gráfica multiplataforma
-- **Java Serialization**: Persistencia de objetos
+- **Java 8+**: Primary language, object-oriented
+- **Swing/AWT**: Cross-platform GUI libraries
+- **Java Serialization**: Object persistence
 
-### Justificación Técnica
-**¿Por qué Java?**
-- Multiplataforma (Write Once, Run Anywhere)
-- Amplia adopción en educación
-- Ecosistema maduro de bibliotecas
-- Fuerte tipado para seguridad en cálculos matemáticos
+### Technical Justification
 
-**¿Por qué Swing/AWT?**
-- Bibliotecas estándar, sin dependencias externas
-- Documentación extensa y comunidad grande
-- Look & Feel nativo multiplataforma
-- Drag & Drop integrado para UX interactiva
+**Why Java?**
+- Cross-platform (Write Once, Run Anywhere)
+- Wide adoption in education
+- Mature library ecosystem
+- Strong typing for safety in mathematical calculations
 
-### Estructura de Directorios
+**Why Swing/AWT?**
+- Standard libraries, no external dependencies
+- Extensive documentation and large community
+- Native cross-platform Look & Feel
+- Integrated Drag & Drop for interactive UX
+
+### Directory Structure
 ```
 Motomaticas/
 ├── src/
@@ -404,11 +427,12 @@ Motomaticas/
 └── README.md
 ```
 
-## 📦 Instalación
-### Requisitos del Sistema
-- **JDK**: 8 o superior
-- **RAM**: 512 MB mínimo
-- **SO**: Windows, macOS, Linux (cualquier sistema con JVM)
+## 📦 Installation
+
+### System Requirements
+- **JDK**: 8 or higher
+- **RAM**: 512 MB minimum
+- **OS**: Windows, macOS, Linux (any system with JVM)
 
 ```
  __  __       _                        _   _               
@@ -418,5 +442,6 @@ Motomaticas/
 |_|  |_|\___/ \__\___/|_| |_| |_|\__,_|\__|_|\___\__,_|___/
 ```
 
-_Herramienta matemática modular desarrollada con ❤️ en Java_
-**⭐ Si este proyecto te resulta útil, considera darle una estrella en GitHub**
+_Modular mathematical tool developed with ❤️ in Java_
+
+**⭐ If you find this project useful, consider giving it a star on GitHub**
